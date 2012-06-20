@@ -1,0 +1,29 @@
+@font-face {
+    font-family: "DroidSansMono";
+    src: url("../font/DroidSansMono-webfont.eot");
+    src: url("../font/DroidSansMono-webfont.eot?#iefix") format("embedded-opentype"),
+         url("../font/DroidSansMono-webfont.woff") format("woff"),
+         url("../font/DroidSansMono-webfont.ttf") format("truetype"),
+         url("../font/DroidSansMono-webfont.svg#DroidSansMono") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    background-image: -webkit-radial-gradient(50% 50%, 100% 100%, #fff, #111);
+    color: white;
+    font-family: "DroidSansMono", sans-serif;
+    min-height: 100%;
+}
+
+.white { background-color: rgba(0,0,0,0.5); }
+.violet { background-color: rgba(238,130,238,0.9); }
+.indigo { background-color: rgba(75,0,130,0.9); }
+.blue { background-color: rgba(0,0,255,0.9); }
+.green { background-color: rgba(0,128,0,0.9); }
+.red { background-color: rgba(255,0,0,0.9); }
+.orange { background-color: rgba(255,165,0,0.9); }

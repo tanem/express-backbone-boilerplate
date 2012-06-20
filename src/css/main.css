@@ -1,0 +1,283 @@
+/* line 17, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* line 20, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+body {
+  line-height: 1;
+}
+
+/* line 22, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 24, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 26, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 28, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 101, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 30, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 114, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+@font-face {
+  font-family: "DroidSansMono";
+  src: url("../font/DroidSansMono-webfont.eot");
+  src: url("../font/DroidSansMono-webfont.eot?#iefix") format("embedded-opentype"), url("../font/DroidSansMono-webfont.woff") format("woff"), url("../font/DroidSansMono-webfont.ttf") format("truetype"), url("../font/DroidSansMono-webfont.svg#DroidSansMono") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 12, ../sass/partials/_core.scss */
+html {
+  min-height: 100%;
+}
+
+/* line 16, ../sass/partials/_core.scss */
+body {
+  background-image: -webkit-radial-gradient(50% 50%, 100% 100%, white, #111111);
+  color: white;
+  font-family: "DroidSansMono", sans-serif;
+  min-height: 100%;
+}
+
+/* line 23, ../sass/partials/_core.scss */
+.white {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* line 24, ../sass/partials/_core.scss */
+.violet {
+  background-color: rgba(238, 130, 238, 0.9);
+}
+
+/* line 25, ../sass/partials/_core.scss */
+.indigo {
+  background-color: rgba(75, 0, 130, 0.9);
+}
+
+/* line 26, ../sass/partials/_core.scss */
+.blue {
+  background-color: rgba(0, 0, 255, 0.9);
+}
+
+/* line 27, ../sass/partials/_core.scss */
+.green {
+  background-color: rgba(0, 128, 0, 0.9);
+}
+
+/* line 28, ../sass/partials/_core.scss */
+.red {
+  background-color: rgba(255, 0, 0, 0.9);
+}
+
+/* line 29, ../sass/partials/_core.scss */
+.orange {
+  background-color: rgba(255, 165, 0, 0.9);
+}
+
+/* line 1, ../sass/partials/_carousel.scss */
+.carousel {
+  border: 1px solid #CCC;
+  height: 140px;
+  margin: 0 auto 40px;
+  -webkit-perspective: 1100px;
+  perspective: 1100px;
+  position: relative;
+  width: 210px;
+}
+
+/* line 10, ../sass/partials/_carousel.scss */
+.carousel-inner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: translateZ(-288px);
+  -moz-transform: translateZ(-288px);
+  -ms-transform: translateZ(-288px);
+  -o-transform: translateZ(-288px);
+  transform: translateZ(-288px);
+  -webkit-transition: -webkit-transform 1s;
+  -moz-transition: -moz-transform 1s;
+  -ms-transition: -ms-transform 1s;
+  -o-transition: -o-transform 1s;
+  transition: transform 1s;
+}
+
+/* line 19, ../sass/partials/_carousel.scss */
+.panel {
+  border: 2px solid black;
+  color: white;
+  display: block;
+  font-size: 80px;
+  font-weight: bold;
+  height: 116px;
+  left: 10px;
+  line-height: 116px;
+  position: absolute;
+  text-align: center;
+  top: 10px;
+  width: 186px;
+}
+
+/* line 34, ../sass/partials/_carousel.scss */
+.panel:nth-child(1) {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* line 35, ../sass/partials/_carousel.scss */
+.panel:nth-child(2) {
+  background: rgba(255, 170, 0, 0.8);
+}
+
+/* line 36, ../sass/partials/_carousel.scss */
+.panel:nth-child(3) {
+  background: rgba(170, 255, 0, 0.8);
+}
+
+/* line 37, ../sass/partials/_carousel.scss */
+.panel:nth-child(4) {
+  background: rgba(0, 255, 0, 0.8);
+}
+
+/* line 38, ../sass/partials/_carousel.scss */
+.panel:nth-child(5) {
+  background: rgba(0, 255, 170, 0.8);
+}
+
+/* line 39, ../sass/partials/_carousel.scss */
+.panel:nth-child(6) {
+  background: rgba(0, 170, 255, 0.8);
+}
+
+/* line 40, ../sass/partials/_carousel.scss */
+.panel:nth-child(7) {
+  background: rgba(0, 0, 255, 0.8);
+}
+
+/* line 41, ../sass/partials/_carousel.scss */
+.panel:nth-child(8) {
+  background: rgba(170, 0, 255, 0.8);
+}
+
+/* line 42, ../sass/partials/_carousel.scss */
+.panel:nth-child(9) {
+  background: rgba(255, 0, 170, 0.8);
+}
+
+/* line 44, ../sass/partials/_carousel.scss */
+.panel:nth-child(1) {
+  -webkit-transform: rotateY(0deg) translateZ(288px);
+  -moz-transform: rotateY(0deg) translateZ(288px);
+  -o-transform: rotateY(0deg) translateZ(288px);
+  transform: rotateY(0deg) translateZ(288px);
+}
+
+/* line 50, ../sass/partials/_carousel.scss */
+.panel:nth-child(2) {
+  -webkit-transform: rotateY(40deg) translateZ(288px);
+  -moz-transform: rotateY(40deg) translateZ(288px);
+  -o-transform: rotateY(40deg) translateZ(288px);
+  transform: rotateY(40deg) translateZ(288px);
+}
+
+/* line 56, ../sass/partials/_carousel.scss */
+.panel:nth-child(3) {
+  -webkit-transform: rotateY(80deg) translateZ(288px);
+  -moz-transform: rotateY(80deg) translateZ(288px);
+  -o-transform: rotateY(80deg) translateZ(288px);
+  transform: rotateY(80deg) translateZ(288px);
+}
+
+/* line 62, ../sass/partials/_carousel.scss */
+.panel:nth-child(4) {
+  -webkit-transform: rotateY(120deg) translateZ(288px);
+  -moz-transform: rotateY(120deg) translateZ(288px);
+  -o-transform: rotateY(120deg) translateZ(288px);
+  transform: rotateY(120deg) translateZ(288px);
+}
+
+/* line 68, ../sass/partials/_carousel.scss */
+.panel:nth-child(5) {
+  -webkit-transform: rotateY(160deg) translateZ(288px);
+  -moz-transform: rotateY(160deg) translateZ(288px);
+  -o-transform: rotateY(160deg) translateZ(288px);
+  transform: rotateY(160deg) translateZ(288px);
+}
+
+/* line 74, ../sass/partials/_carousel.scss */
+.panel:nth-child(6) {
+  -webkit-transform: rotateY(200deg) translateZ(288px);
+  -moz-transform: rotateY(200deg) translateZ(288px);
+  -o-transform: rotateY(200deg) translateZ(288px);
+  transform: rotateY(200deg) translateZ(288px);
+}
+
+/* line 80, ../sass/partials/_carousel.scss */
+.panel:nth-child(7) {
+  -webkit-transform: rotateY(240deg) translateZ(288px);
+  -moz-transform: rotateY(240deg) translateZ(288px);
+  -o-transform: rotateY(240deg) translateZ(288px);
+  transform: rotateY(240deg) translateZ(288px);
+}
+
+/* line 86, ../sass/partials/_carousel.scss */
+.panel:nth-child(8) {
+  -webkit-transform: rotateY(280deg) translateZ(288px);
+  -moz-transform: rotateY(280deg) translateZ(288px);
+  -o-transform: rotateY(280deg) translateZ(288px);
+  transform: rotateY(280deg) translateZ(288px);
+}
+
+/* line 92, ../sass/partials/_carousel.scss */
+.panel:nth-child(9) {
+  -webkit-transform: rotateY(320deg) translateZ(288px);
+  -moz-transform: rotateY(320deg) translateZ(288px);
+  -o-transform: rotateY(320deg) translateZ(288px);
+  transform: rotateY(320deg) translateZ(288px);
+}
