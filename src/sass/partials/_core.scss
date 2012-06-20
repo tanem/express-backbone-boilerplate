@@ -9,15 +9,20 @@
     font-style: normal;
 }
 
-html {
-    min-height: 100%;
-}
-
 body {
-    background-image: -webkit-radial-gradient(50% 50%, 100% 100%, #fff, #111);
+    background-image: -webkit-radial-gradient(50% 50%, 100% 100%, #fff, #ccc);
     color: white;
     font-family: "DroidSansMono", sans-serif;
-    min-height: 100%;
+}
+
+#left-panel {
+    float: left;
+    width: 75%;
+}
+
+#right-panel {
+    float: right;
+    width: 25%;
 }
 
 .white { background-color: rgba(0,0,0,0.5); }

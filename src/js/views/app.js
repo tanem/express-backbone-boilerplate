@@ -14,10 +14,35 @@ define([
 
         initialize: function () {
             
+            this.$leftPanel = $('#left-panel');
+            this.$rightPanel = $('#right-panel');
+
+            this.renderCarousel([
+                { label: '1' },
+                { label: '2' },
+                { label: '3' },
+                { label: '4' },
+                { label: '5' },
+                { label: '6' },
+                { label: '7' },
+                { label: '8' },
+                { label: '9' },
+                { label: '10' }
+            ]);
+
+        },
+
+        renderCarousel: function (data) {
+            
+            var panelsCollection = new PanelsCollection();
+
             this.carouselView = new CarouselView({
-                collection: new PanelsCollection(),
-                $body: $('body')
+                collection: panelsCollection
             });
+
+            this.carouselView.render().$el.appendTo(this.$leftPanel);
+
+            panelsCollection.reset(data);
 
         }
 

@@ -1,7 +1,7 @@
 .carousel {
     border: 1px solid #CCC;
     height: 140px;
-    margin: 0 auto 40px;
+    margin: 0 auto;
     @include perspective(1100px);
     position: relative;
     width: 210px;
@@ -31,15 +31,7 @@
     width: 186px;
 }
 
-      .panel:nth-child(1) { background: rgba(0,0,0,0.5); }
-      .panel:nth-child(2) { background: hsla(  40, 100%, 50%, 0.8 ); }
-      .panel:nth-child(3) { background: hsla(  80, 100%, 50%, 0.8 ); }
-      .panel:nth-child(4) { background: hsla( 120, 100%, 50%, 0.8 ); }
-      .panel:nth-child(5) { background: hsla( 160, 100%, 50%, 0.8 ); }
-      .panel:nth-child(6) { background: hsla( 200, 100%, 50%, 0.8 ); }
-      .panel:nth-child(7) { background: hsla( 240, 100%, 50%, 0.8 ); }
-      .panel:nth-child(8) { background: hsla( 280, 100%, 50%, 0.8 ); }
-      .panel:nth-child(9) { background: hsla( 320, 100%, 50%, 0.8 ); }
+
 
       .panel:nth-child(1) {
       -webkit-transform: rotateY(   0deg ) translateZ( 288px );

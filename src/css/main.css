@@ -72,49 +72,55 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* line 12, ../sass/partials/_core.scss */
-html {
-  min-height: 100%;
-}
-
-/* line 16, ../sass/partials/_core.scss */
 body {
-  background-image: -webkit-radial-gradient(50% 50%, 100% 100%, white, #111111);
+  background-image: -webkit-radial-gradient(50% 50%, 100% 100%, white, #cccccc);
   color: white;
   font-family: "DroidSansMono", sans-serif;
-  min-height: 100%;
+}
+
+/* line 18, ../sass/partials/_core.scss */
+#left-panel {
+  float: left;
+  width: 75%;
 }
 
 /* line 23, ../sass/partials/_core.scss */
+#right-panel {
+  float: right;
+  width: 25%;
+}
+
+/* line 28, ../sass/partials/_core.scss */
 .white {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* line 24, ../sass/partials/_core.scss */
+/* line 29, ../sass/partials/_core.scss */
 .violet {
   background-color: rgba(238, 130, 238, 0.9);
 }
 
-/* line 25, ../sass/partials/_core.scss */
+/* line 30, ../sass/partials/_core.scss */
 .indigo {
   background-color: rgba(75, 0, 130, 0.9);
 }
 
-/* line 26, ../sass/partials/_core.scss */
+/* line 31, ../sass/partials/_core.scss */
 .blue {
   background-color: rgba(0, 0, 255, 0.9);
 }
 
-/* line 27, ../sass/partials/_core.scss */
+/* line 32, ../sass/partials/_core.scss */
 .green {
   background-color: rgba(0, 128, 0, 0.9);
 }
 
-/* line 28, ../sass/partials/_core.scss */
+/* line 33, ../sass/partials/_core.scss */
 .red {
   background-color: rgba(255, 0, 0, 0.9);
 }
 
-/* line 29, ../sass/partials/_core.scss */
+/* line 34, ../sass/partials/_core.scss */
 .orange {
   background-color: rgba(255, 165, 0, 0.9);
 }
@@ -123,7 +129,7 @@ body {
 .carousel {
   border: 1px solid #CCC;
   height: 140px;
-  margin: 0 auto 40px;
+  margin: 0 auto;
   -webkit-perspective: 1100px;
   perspective: 1100px;
   position: relative;
@@ -165,52 +171,7 @@ body {
   width: 186px;
 }
 
-/* line 34, ../sass/partials/_carousel.scss */
-.panel:nth-child(1) {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-/* line 35, ../sass/partials/_carousel.scss */
-.panel:nth-child(2) {
-  background: rgba(255, 170, 0, 0.8);
-}
-
 /* line 36, ../sass/partials/_carousel.scss */
-.panel:nth-child(3) {
-  background: rgba(170, 255, 0, 0.8);
-}
-
-/* line 37, ../sass/partials/_carousel.scss */
-.panel:nth-child(4) {
-  background: rgba(0, 255, 0, 0.8);
-}
-
-/* line 38, ../sass/partials/_carousel.scss */
-.panel:nth-child(5) {
-  background: rgba(0, 255, 170, 0.8);
-}
-
-/* line 39, ../sass/partials/_carousel.scss */
-.panel:nth-child(6) {
-  background: rgba(0, 170, 255, 0.8);
-}
-
-/* line 40, ../sass/partials/_carousel.scss */
-.panel:nth-child(7) {
-  background: rgba(0, 0, 255, 0.8);
-}
-
-/* line 41, ../sass/partials/_carousel.scss */
-.panel:nth-child(8) {
-  background: rgba(170, 0, 255, 0.8);
-}
-
-/* line 42, ../sass/partials/_carousel.scss */
-.panel:nth-child(9) {
-  background: rgba(255, 0, 170, 0.8);
-}
-
-/* line 44, ../sass/partials/_carousel.scss */
 .panel:nth-child(1) {
   -webkit-transform: rotateY(0deg) translateZ(288px);
   -moz-transform: rotateY(0deg) translateZ(288px);
@@ -218,7 +179,7 @@ body {
   transform: rotateY(0deg) translateZ(288px);
 }
 
-/* line 50, ../sass/partials/_carousel.scss */
+/* line 42, ../sass/partials/_carousel.scss */
 .panel:nth-child(2) {
   -webkit-transform: rotateY(40deg) translateZ(288px);
   -moz-transform: rotateY(40deg) translateZ(288px);
@@ -226,7 +187,7 @@ body {
   transform: rotateY(40deg) translateZ(288px);
 }
 
-/* line 56, ../sass/partials/_carousel.scss */
+/* line 48, ../sass/partials/_carousel.scss */
 .panel:nth-child(3) {
   -webkit-transform: rotateY(80deg) translateZ(288px);
   -moz-transform: rotateY(80deg) translateZ(288px);
@@ -234,7 +195,7 @@ body {
   transform: rotateY(80deg) translateZ(288px);
 }
 
-/* line 62, ../sass/partials/_carousel.scss */
+/* line 54, ../sass/partials/_carousel.scss */
 .panel:nth-child(4) {
   -webkit-transform: rotateY(120deg) translateZ(288px);
   -moz-transform: rotateY(120deg) translateZ(288px);
@@ -242,7 +203,7 @@ body {
   transform: rotateY(120deg) translateZ(288px);
 }
 
-/* line 68, ../sass/partials/_carousel.scss */
+/* line 60, ../sass/partials/_carousel.scss */
 .panel:nth-child(5) {
   -webkit-transform: rotateY(160deg) translateZ(288px);
   -moz-transform: rotateY(160deg) translateZ(288px);
@@ -250,7 +211,7 @@ body {
   transform: rotateY(160deg) translateZ(288px);
 }
 
-/* line 74, ../sass/partials/_carousel.scss */
+/* line 66, ../sass/partials/_carousel.scss */
 .panel:nth-child(6) {
   -webkit-transform: rotateY(200deg) translateZ(288px);
   -moz-transform: rotateY(200deg) translateZ(288px);
@@ -258,7 +219,7 @@ body {
   transform: rotateY(200deg) translateZ(288px);
 }
 
-/* line 80, ../sass/partials/_carousel.scss */
+/* line 72, ../sass/partials/_carousel.scss */
 .panel:nth-child(7) {
   -webkit-transform: rotateY(240deg) translateZ(288px);
   -moz-transform: rotateY(240deg) translateZ(288px);
@@ -266,7 +227,7 @@ body {
   transform: rotateY(240deg) translateZ(288px);
 }
 
-/* line 86, ../sass/partials/_carousel.scss */
+/* line 78, ../sass/partials/_carousel.scss */
 .panel:nth-child(8) {
   -webkit-transform: rotateY(280deg) translateZ(288px);
   -moz-transform: rotateY(280deg) translateZ(288px);
@@ -274,7 +235,7 @@ body {
   transform: rotateY(280deg) translateZ(288px);
 }
 
-/* line 92, ../sass/partials/_carousel.scss */
+/* line 84, ../sass/partials/_carousel.scss */
 .panel:nth-child(9) {
   -webkit-transform: rotateY(320deg) translateZ(288px);
   -moz-transform: rotateY(320deg) translateZ(288px);

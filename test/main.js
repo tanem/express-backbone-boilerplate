@@ -41,7 +41,7 @@ require.config({
 
         'jasmineHtml': {
             deps: ['jasmine'],
-            exports: 'jasmine.TrivialReporter'
+            exports: 'jasmine.HtmlReporter'
         }
 
     }
@@ -57,17 +57,16 @@ define([
     $,
     jasmine
 ) {
-    $(function () {
-        
-        var jasmineEnv = jasmine.getEnv(),
-            trivialReporter = new jasmine.TrivialReporter();
-        
-        jasmineEnv.updateInterval = 1000;
-        jasmineEnv.addReporter(trivialReporter);
-        jasmineEnv.specFilter = function (spec) {
-            return trivialReporter.specFilter(spec);
-        };
-        jasmineEnv.execute();
 
+    var jasmineEnv = jasmine.getEnv(),
+        htmlReporter = new jasmine.HtmlReporter();
+
+    jasmineEnv.updateInterval = 250;
+    jasmineEnv.addReporter(htmlReporter);
+
+    $(function () {
+        $('.version').html(jasmineEnv.versionString());
+        jasmineEnv.execute();
     });
+  
 });
