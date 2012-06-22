@@ -1,10 +1,16 @@
+// TODO: Mixins;
+// TODO: Responsive design - move the carousel on axis when screen size changes?;
+
 .carousel {
-    border: 1px solid #CCC;
-    height: 140px;
-    margin: 0 auto;
-    @include perspective(1100px);
-    position: relative;
-    width: 210px;
+    @include box-sizing(border-box);
+    height: 120px;
+    left: 50%;
+    margin-left: -90px;
+    margin-top: -60px;
+    @include perspective(1000px);
+    position: absolute;
+    top: 50%;
+    width: 180px;
 }
 
 .carousel-inner {
@@ -17,16 +23,14 @@
 }
 
 .panel {
-    border: 2px solid black;
+    border: 3px solid black;
+    @include box-sizing(border-box);
     color: white;
-    display: block;
-    font-size: 80px;
+    font-size: 60px;
     font-weight: bold;
-    height: 116px;
-    left: 10px;
-    line-height: 116px;
+    height: 120px;
+    line-height: 120px;
     position: absolute;
     text-align: center;
-    top: 10px;
-    width: 186px;
+    width: 180px;
 }

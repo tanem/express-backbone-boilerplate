@@ -14,9 +14,6 @@ define([
 
         initialize: function () {
             
-            this.$leftPanel = $('#left-panel');
-            this.$rightPanel = $('#right-panel');
-
             this.renderCarousel([
                 { label: '1' },
                 { label: '2' },
@@ -40,7 +37,7 @@ define([
                 collection: panelsCollection
             });
 
-            this.carouselView.render().$el.appendTo(this.$leftPanel);
+            this.carouselView.render().$el.appendTo(this.el);
 
             panelsCollection.reset(data);
 

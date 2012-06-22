@@ -38,5 +38,7 @@ require.config({
 });
 
 define(['views/app'], function (AppView) {
-    var appView = new AppView();
+    var appView = new AppView({
+        el: 'body'
+    });
 });
