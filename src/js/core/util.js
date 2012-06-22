@@ -4,7 +4,6 @@ define(function () {
         
         // These are defined in the _colours.scss partial.
         colours = [
-            'white',
             'violet',
             'indigo',
             'blue',

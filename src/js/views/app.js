@@ -24,7 +24,9 @@ define([
                 { label: '7' },
                 { label: '8' },
                 { label: '9' },
-                { label: '10' }
+                { label: '10' },
+                { label: '11' },
+                { label: '12' }
             ]);
 
         },
