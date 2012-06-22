@@ -13,19 +13,15 @@ define([
 ) {
    
     var CarouselView = Backbone.View.extend({
-        
-        panelColours: [
-            'violet',
-            'indigo',
-            'red',
-            'blue',
-            'green',
-            'orange'
-        ],
 
         initialize: function () {
+
             this.collection.bind('reset', this.addPanels, this);
             this.collection.bind('add', this.addPanel, this);
+
+            this.colours = util.getColours();
+            this.coloursLength = this.colours.length;
+
         },
 
         render: function () {
@@ -53,9 +49,9 @@ define([
         },
 
         getPanelColourClass: function () {
-            return this.panelColours[Math.floor(Math.random() * this.panelColours.length)];
+            return this.colours[Math.floor(Math.random() * this.coloursLength)];
         },
-        
+
         adjustPanelTransformStrings: function () {
 
             var $panels = this.$('.panel'),

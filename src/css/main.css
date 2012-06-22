@@ -63,6 +63,41 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
+/* line 1, ../sass/partials/_colours.scss */
+.white {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* line 5, ../sass/partials/_colours.scss */
+.violet {
+  background-color: rgba(238, 130, 238, 0.9);
+}
+
+/* line 9, ../sass/partials/_colours.scss */
+.indigo {
+  background-color: rgba(75, 0, 130, 0.9);
+}
+
+/* line 13, ../sass/partials/_colours.scss */
+.blue {
+  background-color: rgba(0, 0, 255, 0.9);
+}
+
+/* line 17, ../sass/partials/_colours.scss */
+.green {
+  background-color: rgba(0, 128, 0, 0.9);
+}
+
+/* line 21, ../sass/partials/_colours.scss */
+.red {
+  background-color: rgba(255, 0, 0, 0.9);
+}
+
+/* line 25, ../sass/partials/_colours.scss */
+.orange {
+  background-color: rgba(255, 165, 0, 0.9);
+}
+
 @font-face {
   font-family: "DroidSansMono";
   src: url("../font/DroidSansMono-webfont.eot");
@@ -88,41 +123,6 @@ body {
 #right-panel {
   float: right;
   width: 25%;
-}
-
-/* line 28, ../sass/partials/_core.scss */
-.white {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* line 29, ../sass/partials/_core.scss */
-.violet {
-  background-color: rgba(238, 130, 238, 0.9);
-}
-
-/* line 30, ../sass/partials/_core.scss */
-.indigo {
-  background-color: rgba(75, 0, 130, 0.9);
-}
-
-/* line 31, ../sass/partials/_core.scss */
-.blue {
-  background-color: rgba(0, 0, 255, 0.9);
-}
-
-/* line 32, ../sass/partials/_core.scss */
-.green {
-  background-color: rgba(0, 128, 0, 0.9);
-}
-
-/* line 33, ../sass/partials/_core.scss */
-.red {
-  background-color: rgba(255, 0, 0, 0.9);
-}
-
-/* line 34, ../sass/partials/_core.scss */
-.orange {
-  background-color: rgba(255, 165, 0, 0.9);
 }
 
 /* line 1, ../sass/partials/_carousel.scss */
@@ -169,76 +169,4 @@ body {
   text-align: center;
   top: 10px;
   width: 186px;
-}
-
-/* line 36, ../sass/partials/_carousel.scss */
-.panel:nth-child(1) {
-  -webkit-transform: rotateY(0deg) translateZ(288px);
-  -moz-transform: rotateY(0deg) translateZ(288px);
-  -o-transform: rotateY(0deg) translateZ(288px);
-  transform: rotateY(0deg) translateZ(288px);
-}
-
-/* line 42, ../sass/partials/_carousel.scss */
-.panel:nth-child(2) {
-  -webkit-transform: rotateY(40deg) translateZ(288px);
-  -moz-transform: rotateY(40deg) translateZ(288px);
-  -o-transform: rotateY(40deg) translateZ(288px);
-  transform: rotateY(40deg) translateZ(288px);
-}
-
-/* line 48, ../sass/partials/_carousel.scss */
-.panel:nth-child(3) {
-  -webkit-transform: rotateY(80deg) translateZ(288px);
-  -moz-transform: rotateY(80deg) translateZ(288px);
-  -o-transform: rotateY(80deg) translateZ(288px);
-  transform: rotateY(80deg) translateZ(288px);
-}
-
-/* line 54, ../sass/partials/_carousel.scss */
-.panel:nth-child(4) {
-  -webkit-transform: rotateY(120deg) translateZ(288px);
-  -moz-transform: rotateY(120deg) translateZ(288px);
-  -o-transform: rotateY(120deg) translateZ(288px);
-  transform: rotateY(120deg) translateZ(288px);
-}
-
-/* line 60, ../sass/partials/_carousel.scss */
-.panel:nth-child(5) {
-  -webkit-transform: rotateY(160deg) translateZ(288px);
-  -moz-transform: rotateY(160deg) translateZ(288px);
-  -o-transform: rotateY(160deg) translateZ(288px);
-  transform: rotateY(160deg) translateZ(288px);
-}
-
-/* line 66, ../sass/partials/_carousel.scss */
-.panel:nth-child(6) {
-  -webkit-transform: rotateY(200deg) translateZ(288px);
-  -moz-transform: rotateY(200deg) translateZ(288px);
-  -o-transform: rotateY(200deg) translateZ(288px);
-  transform: rotateY(200deg) translateZ(288px);
-}
-
-/* line 72, ../sass/partials/_carousel.scss */
-.panel:nth-child(7) {
-  -webkit-transform: rotateY(240deg) translateZ(288px);
-  -moz-transform: rotateY(240deg) translateZ(288px);
-  -o-transform: rotateY(240deg) translateZ(288px);
-  transform: rotateY(240deg) translateZ(288px);
-}
-
-/* line 78, ../sass/partials/_carousel.scss */
-.panel:nth-child(8) {
-  -webkit-transform: rotateY(280deg) translateZ(288px);
-  -moz-transform: rotateY(280deg) translateZ(288px);
-  -o-transform: rotateY(280deg) translateZ(288px);
-  transform: rotateY(280deg) translateZ(288px);
-}
-
-/* line 84, ../sass/partials/_carousel.scss */
-.panel:nth-child(9) {
-  -webkit-transform: rotateY(320deg) translateZ(288px);
-  -moz-transform: rotateY(320deg) translateZ(288px);
-  -o-transform: rotateY(320deg) translateZ(288px);
-  transform: rotateY(320deg) translateZ(288px);
 }
