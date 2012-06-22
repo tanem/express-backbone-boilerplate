@@ -1,11 +1,13 @@
 define([
     'backbone',
     'handlebars',
+    'core/util',
     'views/panel',
     'text!templates/carousel.handlebars'
 ], function (
     Backbone,
     Handlebars,
+    util,
     PanelView,
     carouselTemplate
 ) {
@@ -53,12 +55,7 @@ define([
         getPanelColourClass: function () {
             return this.panelColours[Math.floor(Math.random() * this.panelColours.length)];
         },
-
-        getRadians: function (deg) {
-            var degPerRadian = 360 / (2 * Math.PI);
-            return deg / degPerRadian;
-        },
-
+        
         adjustPanelTransformStrings: function () {
 
             var $panels = this.$('.panel'),
@@ -72,7 +69,7 @@ define([
                 rotation = translate = 0;
             } else {
                 rotation = 360 / numPanels;
-                translate = 105 / Math.tan(this.getRadians(rotation / 2));
+                translate = 105 / Math.tan(util.getRadians(rotation / 2));
             }
 
             $panels.each(function (i) {

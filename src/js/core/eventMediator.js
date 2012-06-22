@@ -1,11 +1,11 @@
-define([], function () {
+define(function () {
     
     var events = {};
     
     // Returns the array of subscriptions for the passed event.
     function getSubscriptions(event) {
         return events[event];
-    };
+    }
     
     // Clears subscriptions for the passed event, or clears
     // subscriptions to all events if an event isn't specified.
@@ -13,7 +13,7 @@ define([], function () {
         if (events[event]) {
             delete events[event];
         } else {
-            events = {};    
+            events = {};
         }
     }
     
@@ -25,9 +25,9 @@ define([], function () {
         }
         
         events[event].push({
-           context: context || this,
-           callback: cb
-       });
+            context: context || this,
+            callback: cb
+        });
     
     }
     
