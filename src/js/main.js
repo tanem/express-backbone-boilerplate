@@ -37,8 +37,13 @@ require.config({
 
 });
 
-define(['views/app'], function (AppView) {
+define(['backbone', 'views/app'], function (Backbone, AppView) {
+
+    // No synching for now.
+    Backbone.sync = function () {};
+
     var appView = new AppView({
         el: 'body'
     });
+
 });

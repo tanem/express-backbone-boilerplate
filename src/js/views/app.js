@@ -12,36 +12,52 @@ define([
    
     var AppView = Backbone.View.extend({
 
+        events: {
+            'keydown': 'keydownListener'
+        },
+
         initialize: function () {
             
             this.renderCarousel([
                 { label: '1' },
                 { label: '2' },
-                { label: '3' },
-                { label: '4' },
-                { label: '5' },
-                { label: '6' },
-                { label: '7' },
-                { label: '8' },
-                { label: '9' },
-                { label: '10' },
-                { label: '11' },
-                { label: '12' }
+                { label: '3' }
             ]);
 
         },
 
         renderCarousel: function (data) {
             
-            var panelsCollection = new PanelsCollection();
+            this.panelsCollection = new PanelsCollection();
 
-            this.carouselView = new CarouselView({
-                collection: panelsCollection
+            var carouselView = new CarouselView({
+                collection: this.panelsCollection
             });
 
-            this.carouselView.render().$el.appendTo(this.el);
+            carouselView.render().$el.appendTo(this.el);
 
-            panelsCollection.reset(data);
+            this.panelsCollection.reset(data);
+
+        },
+
+        keydownListener: function (e) {
+            
+            switch (e.which) {
+            case 8:
+                this.panelsCollection.pop();
+                return false;
+            case 13:
+                this.panelsCollection.create({
+                    label: this.panelsCollection.models.length
+                });
+                return false;
+            case 39:
+                //this.carouselView.rotateRight();
+                return false;
+            case 37:
+                //this.carouselView.rotateLeft();
+                return false;
+            }
 
         }
 

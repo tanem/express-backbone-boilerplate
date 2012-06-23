@@ -18,6 +18,7 @@ define([
 
             this.collection.bind('reset', this.addPanels, this);
             this.collection.bind('add', this.addPanel, this);
+            this.collection.bind('remove', this.removePanel, this);
 
             this.colours = util.getColours();
             this.coloursLength = this.colours.length;
@@ -46,6 +47,11 @@ define([
 
             this.adjustPanelTransformStrings();
 
+        },
+
+        removePanel: function (panelModel) {
+            panelModel.destroy();
+            this.adjustPanelTransformStrings();
         },
 
         getPanelColourClass: function () {

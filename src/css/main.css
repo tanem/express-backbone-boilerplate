@@ -131,16 +131,6 @@ body {
   position: absolute;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  -webkit-transform: translateZ(-288px);
-  -moz-transform: translateZ(-288px);
-  -ms-transform: translateZ(-288px);
-  -o-transform: translateZ(-288px);
-  transform: translateZ(-288px);
-  -webkit-transition: -webkit-transform 1s;
-  -moz-transition: -moz-transform 1s;
-  -ms-transition: -ms-transform 1s;
-  -o-transition: -o-transform 1s;
-  transition: transform 1s;
 }
 
 /* line 25, ../sass/partials/_carousel.scss */
@@ -156,5 +146,10 @@ body {
   line-height: 120px;
   position: absolute;
   text-align: center;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
   width: 180px;
 }

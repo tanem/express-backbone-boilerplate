@@ -11,8 +11,12 @@ define([
     var PanelView = Backbone.View.extend({
         
         initialize: function () {
+            
             this.model.bind('change', this.render, this);
+            this.model.bind('destroy', this.remove, this);
+
             this.template = Handlebars.compile(panelTemplate);
+            
         },
 
         render: function () {
