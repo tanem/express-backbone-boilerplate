@@ -1,11 +1,13 @@
 define([
     'backbone',
     'collections/panels',
+    'core/util',
     'views/panel',
     'views/carousel'
 ], function (
     Backbone,
     PanelsCollection,
+    util,
     PanelView,
     CarouselView
 ) {
@@ -17,7 +19,7 @@ define([
         },
 
         initialize: function () {
-            
+
             this.renderCarousel([
                 { label: '1' },
                 { label: '2' },
@@ -30,11 +32,11 @@ define([
             
             this.panelsCollection = new PanelsCollection();
 
-            var carouselView = new CarouselView({
+            this.carouselView = new CarouselView({
                 collection: this.panelsCollection
             });
 
-            carouselView.render().$el.appendTo(this.el);
+            this.carouselView.render().$el.appendTo(this.el);
 
             this.panelsCollection.reset(data);
 
@@ -42,20 +44,26 @@ define([
 
         keydownListener: function (e) {
             
+            var keyMap = util.keyMap;
+
             switch (e.which) {
-            case 8:
+            case keyMap.del:
                 this.panelsCollection.pop();
                 return false;
-            case 13:
+            case keyMap.enter:
                 this.panelsCollection.create({
                     label: this.panelsCollection.models.length
                 });
                 return false;
-            case 39:
-                //this.carouselView.rotateRight();
+            case keyMap.rightArrow:
+
+                // TODO: USE THE MEDIATOR!!!!
+                // eventMediator.publish('carousel:rotateRight');
+
+                this.carouselView.rotateRight();
                 return false;
-            case 37:
-                //this.carouselView.rotateLeft();
+            case keyMap.leftArrow:
+                this.carouselView.rotateLeft();
                 return false;
             }
 

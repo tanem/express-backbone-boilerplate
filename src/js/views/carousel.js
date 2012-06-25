@@ -20,7 +20,9 @@ define([
             this.collection.bind('add', this.addPanel, this);
             this.collection.bind('remove', this.removePanel, this);
 
-            this.colours = util.getColours();
+            this.carouselRotation = 0;
+            this.panelRotation = 0;
+            this.colours = util.colours;
             this.coloursLength = this.colours.length;
 
         },
@@ -46,6 +48,7 @@ define([
                 .addClass(this.getPanelColourClass());
 
             this.adjustPanelTransformStrings();
+            this.rotateByAmount(this.panelRotation);
 
         },
 
@@ -60,24 +63,45 @@ define([
 
         adjustPanelTransformStrings: function () {
 
-            var $panels = this.$('.panel'),
+            var that = this,
+                $panels = this.$('.panel'),
                 numPanels = $panels.length,
-                rotation,
                 translate;
 
             // TODO: Make panel width (105) dynamic as well - specified in options passed to carousel?
 
             if (numPanels === 1) {
-                rotation = translate = 0;
+                this.panelRotation = translate = 0;
             } else {
-                rotation = 360 / numPanels;
-                translate = 105 / Math.tan(util.getRadians(rotation / 2));
+                this.panelRotation = 360 / numPanels;
+                translate = 105 / Math.tan(util.getRadians(this.panelRotation / 2));
             }
 
             $panels.each(function (i) {
-                $(this).css('-webkit-transform', 'rotateY(' + (i * rotation) + 'deg) translateZ(' + translate + 'px)');
+                $(this).css('-webkit-transform', 'rotateY(' + (i * that.panelRotation) + 'deg) translateZ(' + translate + 'px)');
             });
 
+        },
+
+        // HMM - create nicer API?
+        
+        rotateByAmount: function (amount) {
+            this.carouselRotation = amount;
+            this.rotateCarousel();
+        },
+
+        rotateRight: function () {
+            this.carouselRotation -= this.panelRotation;
+            this.rotateCarousel();
+        },
+
+        rotateLeft: function () {
+            this.carouselRotation += this.panelRotation;
+            this.rotateCarousel();
+        },
+
+        rotateCarousel: function () {
+            this.$carouselInner.css('-webkit-transform', 'rotateY(' + this.carouselRotation + 'deg)');
         }
     
     });

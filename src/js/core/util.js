@@ -1,16 +1,6 @@
 define(function () {
 
-    var degreesPerRadian = 360 / (2 * Math.PI),
-        
-        // These are defined in the _colours.scss partial.
-        colours = [
-            'violet',
-            'indigo',
-            'blue',
-            'green',
-            'red',
-            'orange'
-        ];
+    var degreesPerRadian = 360 / (2 * Math.PI);
 
     return {
         
@@ -18,8 +8,21 @@ define(function () {
             return degrees / degreesPerRadian;
         },
 
-        getColours: function () {
-            return colours;
+        // These are defined in the _colours.scss partial.
+        colours: [
+            'violet',
+            'indigo',
+            'blue',
+            'green',
+            'red',
+            'orange'
+        ],
+
+        keyMap: {
+            del: 8,
+            enter: 13,
+            rightArrow: 39,
+            leftArrow: 37
         }
 
     };

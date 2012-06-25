@@ -19,7 +19,7 @@
     position: absolute;
     @include transform-style(preserve-3d);
     //@include transform(translateZ(-288px));
-    //@include transition(transform 1s);    
+    @include transition(transform 0.5s);    
 }
 
 .panel {
