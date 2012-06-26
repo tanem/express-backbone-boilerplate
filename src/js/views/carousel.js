@@ -34,8 +34,6 @@ define([
 
             this.carouselRotation = 0;
             this.panelRotation = 0;
-            this.colours = util.colours;
-            this.coloursLength = this.colours.length;
 
         },
 
@@ -57,7 +55,7 @@ define([
             
             panelView.render().$el
                 .appendTo(this.$carouselInner)
-                .addClass(this.getPanelColourClass());
+                .css('background-color', util.getRandomRGBA(this.options.panelOpacity));
 
             this.repositionPanels();
             this.carouselRotation = this.panelRotation;
@@ -68,10 +66,6 @@ define([
         removePanel: function (panelModel) {
             panelModel.destroy();
             this.repositionPanels();
-        },
-
-        getPanelColourClass: function () {
-            return this.colours[Math.floor(Math.random() * this.coloursLength)];
         },
 
         repositionPanels: function () {

@@ -34,7 +34,10 @@ define([
             
             this.panelsCollection = new PanelsCollection();
 
+            // TODO: add panel width as an option.
+            
             var carouselView = new CarouselView({
+                panelOpacity: 0.9,
                 collection: this.panelsCollection
             });
 
