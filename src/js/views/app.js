@@ -1,12 +1,14 @@
 define([
     'backbone',
     'collections/panels',
+    'core/eventMediator',
     'core/util',
     'views/panel',
     'views/carousel'
 ], function (
     Backbone,
     PanelsCollection,
+    eventMediator,
     util,
     PanelView,
     CarouselView
@@ -32,11 +34,11 @@ define([
             
             this.panelsCollection = new PanelsCollection();
 
-            this.carouselView = new CarouselView({
+            var carouselView = new CarouselView({
                 collection: this.panelsCollection
             });
 
-            this.carouselView.render().$el.appendTo(this.el);
+            carouselView.render().$el.appendTo(this.el);
 
             this.panelsCollection.reset(data);
 
@@ -52,18 +54,14 @@ define([
                 return false;
             case keyMap.enter:
                 this.panelsCollection.create({
-                    label: this.panelsCollection.models.length
+                    label: this.panelsCollection.models.length + 1
                 });
                 return false;
             case keyMap.rightArrow:
-
-                // TODO: USE THE MEDIATOR!!!!
-                // eventMediator.publish('carousel:rotateRight');
-
-                this.carouselView.rotateRight();
+                eventMediator.publish('rightArrow');
                 return false;
             case keyMap.leftArrow:
-                this.carouselView.rotateLeft();
+                eventMediator.publish('leftArrow');
                 return false;
             }
 

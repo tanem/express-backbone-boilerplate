@@ -1,12 +1,14 @@
 define([
     'backbone',
     'handlebars',
+    'core/eventMediator',
     'core/util',
     'views/panel',
     'text!templates/carousel.handlebars'
 ], function (
     Backbone,
     Handlebars,
+    eventMediator,
     util,
     PanelView,
     carouselTemplate
@@ -19,6 +21,16 @@ define([
             this.collection.bind('reset', this.addPanels, this);
             this.collection.bind('add', this.addPanel, this);
             this.collection.bind('remove', this.removePanel, this);
+
+            eventMediator.subscribe('rightArrow', function () {
+                this.carouselRotation -= this.panelRotation;
+                this.rotate(this.carouselRotation);
+            }, this);
+
+            eventMediator.subscribe('leftArrow', function () {
+                this.carouselRotation += this.panelRotation;
+                this.rotate(this.carouselRotation);
+            }, this);
 
             this.carouselRotation = 0;
             this.panelRotation = 0;
@@ -47,21 +59,22 @@ define([
                 .appendTo(this.$carouselInner)
                 .addClass(this.getPanelColourClass());
 
-            this.adjustPanelTransformStrings();
-            this.rotateByAmount(this.panelRotation);
+            this.repositionPanels();
+            this.carouselRotation = this.panelRotation;
+            this.rotate();
 
         },
 
         removePanel: function (panelModel) {
             panelModel.destroy();
-            this.adjustPanelTransformStrings();
+            this.repositionPanels();
         },
 
         getPanelColourClass: function () {
             return this.colours[Math.floor(Math.random() * this.coloursLength)];
         },
 
-        adjustPanelTransformStrings: function () {
+        repositionPanels: function () {
 
             var that = this,
                 $panels = this.$('.panel'),
@@ -83,24 +96,7 @@ define([
 
         },
 
-        // HMM - create nicer API?
-        
-        rotateByAmount: function (amount) {
-            this.carouselRotation = amount;
-            this.rotateCarousel();
-        },
-
-        rotateRight: function () {
-            this.carouselRotation -= this.panelRotation;
-            this.rotateCarousel();
-        },
-
-        rotateLeft: function () {
-            this.carouselRotation += this.panelRotation;
-            this.rotateCarousel();
-        },
-
-        rotateCarousel: function () {
+        rotate: function () {
             this.$carouselInner.css('-webkit-transform', 'rotateY(' + this.carouselRotation + 'deg)');
         }
     
