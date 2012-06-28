@@ -32,6 +32,17 @@ define([
                 this.rotate(this.carouselRotation);
             }, this);
 
+            // TODO: up/down arrow 
+            // eventMediator.subscribe('upArrow', function () {
+            //     this.carouselRotation += this.panelRotation;
+            //     this.rotate(this.carouselRotation);
+            // }, this);
+
+            // eventMediator.subscribe('downArrow', function () {
+            //     this.carouselRotation += this.panelRotation;
+            //     this.rotate(this.carouselRotation);
+            // }, this);
+
             this.carouselRotation = 0;
             this.panelRotation = 0;
 

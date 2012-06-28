@@ -27,7 +27,9 @@ define(function () {
             del: 8,
             enter: 13,
             rightArrow: 39,
-            leftArrow: 37
+            leftArrow: 37,
+            upArrow: 38,
+            downArrow: 40
         }
 
     };

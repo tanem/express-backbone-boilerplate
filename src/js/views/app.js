@@ -66,6 +66,12 @@ define([
             case keyMap.leftArrow:
                 eventMediator.publish('leftArrow');
                 return false;
+            case keyMap.upArrow:
+                eventMediator.publish('upArrow');
+                return false;
+            case keyMap.downArrow:
+                eventMediator.publish('downArrow');
+                return false;
             }
 
         }
