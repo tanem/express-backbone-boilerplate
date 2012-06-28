@@ -66,6 +66,8 @@ define([
         removePanel: function (panelModel) {
             panelModel.destroy();
             this.repositionPanels();
+            this.carouselRotation = this.panelRotation;
+            this.rotate();
         },
 
         repositionPanels: function () {
