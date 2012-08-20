@@ -1,6 +1,6 @@
 require.config({
     
-    baseUrl: 'js',
+    baseUrl: '/src/js',
 
     enforceDefine: true,
 
