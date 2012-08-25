@@ -64,6 +64,10 @@ define([
     jasmineEnv.updateInterval = 250;
     jasmineEnv.addReporter(htmlReporter);
 
+    jasmineEnv.specFilter = function (spec) {
+        return htmlReporter.specFilter(spec);
+    };
+
     $(function () {
         $('.version').html(jasmineEnv.versionString());
         jasmineEnv.execute();

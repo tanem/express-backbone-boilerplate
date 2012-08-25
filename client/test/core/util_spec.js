@@ -9,27 +9,10 @@ define(['core/util'], function (util) {
             expect(util.getRadians(45)).toEqual(Math.PI / 4);
         });
 
-        // it('should ')
-        // // Generates a random RGBA string.
-        // getRandomRGBA: function (alpha) {
-            
-        //     var rand = function () {
-        //         return Math.floor(Math.random() * (255 + 1));
-        //     };
-
-        //     alpha = alpha || 1;
-
-        //     return 'rgba(' + rand() + ', ' + rand() + ', ' + rand() + ', ' + alpha + ')';
-
-        // },
-
-        // Maps key names to key codes.
-        // keyMap: {
-        //     del: 8,
-        //     enter: 13,
-        //     rightArrow: 39,
-        //     leftArrow: 37
-        // }
+        it('should correctly generate a random RGBA string', function () {
+            expect(util.getRandomRGBA()).toMatch(/^rgba\((?:([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]), ){3}1\)$/);
+            expect(util.getRandomRGBA(0.5)).toMatch(/^rgba\((?:([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]), ){3}0.5\)$/);
+        });
 
     });
 
