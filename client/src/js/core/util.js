@@ -25,11 +25,11 @@ define(function () {
         // Maps key names to key codes.
         keyMap: {
             del: 8,
+            downArrow: 40,
             enter: 13,
-            rightArrow: 39,
             leftArrow: 37,
-            upArrow: 38,
-            downArrow: 40
+            rightArrow: 39,
+            upArrow: 38
         }
 
     };

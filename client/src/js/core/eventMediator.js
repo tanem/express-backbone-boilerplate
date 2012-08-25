@@ -33,15 +33,17 @@ define(function () {
     
     // Publishes an event.
     function publish(event) {
-                
+        
+        var args, i, l, subscription;
+
         if (!events[event]) {
             return;
         }
         
-        var args = [].slice.call(arguments, 1);
+        args = [].slice.call(arguments, 1);
         
-        for (var i = 0, l = events[event].length; i < l; i++) {
-            var subscription = events[event][i];
+        for (i = 0, l = events[event].length; i < l; i++) {
+            subscription = events[event][i];
             subscription.callback.apply(subscription.context, args);
         }
         

@@ -74,16 +74,12 @@ define(['core/eventMediator'], function (eventMediator) {
         
         it('should publish an event correctly', function () {
             
-            var test = { 
-                fn: function (arg) {} 
-            };
-                
-            spyOn(test, 'fn');
+            var fn = jasmine.createSpy();
             
-            eventMediator.subscribe('test', test.fn);
+            eventMediator.subscribe('test', fn);
             eventMediator.publish('test', 'anArg');
             
-            expect(test.fn).toHaveBeenCalledWith('anArg');
+            expect(fn).toHaveBeenCalledWith('anArg');
         
         });
        

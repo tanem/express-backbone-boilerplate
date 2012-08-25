@@ -7,13 +7,13 @@ require.config({
     paths: {
 
         // Core libraries.
-        jquery: 'lib/jquery-1.7.2',
+        jquery: 'lib/jquery-1.8.0',
         underscore: 'lib/underscore-1.3.3',
         backbone: 'lib/backbone-0.9.2',
         handlebars: 'lib/handlebars-1.0.0.beta.6',
 
         // RequireJS plugins.
-        text: 'lib/text-2.0.0'
+        text: 'lib/text-2.0.3'
 
     },
 
