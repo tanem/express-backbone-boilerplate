@@ -13,8 +13,7 @@ define([
         initialize: function () {
             this.model.bind('change', this.render, this);
             this.model.bind('destroy', this.remove, this);
-            this.template = Handlebars.compile(panelTemplate);
-            
+            this.template = Handlebars.compile(panelTemplate);  
         },
 
         render: function () {
