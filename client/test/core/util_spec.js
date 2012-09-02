@@ -10,8 +10,8 @@ define(['core/util'], function (util) {
         });
 
         it('should correctly generate a random RGBA string', function () {
-            expect(util.getRandomRGBA()).toMatch(/^rgba\((?:([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]), ){3}1\)$/);
-            expect(util.getRandomRGBA(0.5)).toMatch(/^rgba\((?:([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]), ){3}0.5\)$/);
+            expect(util.getRandomRGBA()).toMatch(/^rgba\((?:([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]), ){3}1\)$/);
+            expect(util.getRandomRGBA(0.5)).toMatch(/^rgba\((?:([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]), ){3}0.5\)$/);
         });
 
     });
