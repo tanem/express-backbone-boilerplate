@@ -32,18 +32,18 @@ define([
 
         renderCarousel: function (data) {
             
-            this.panelsCollection = new PanelsCollection();
+            var panelsCollection = new PanelsCollection();
 
             // TODO: add panel width as an option.
             
             var carouselView = new CarouselView({
                 panelOpacity: 0.9,
-                collection: this.panelsCollection
+                collection: panelsCollection
             });
 
             carouselView.render().$el.appendTo(this.el);
 
-            this.panelsCollection.reset(data);
+            panelsCollection.reset(data);
 
         },
 
@@ -53,24 +53,16 @@ define([
 
             switch (e.which) {
             case keyMap.del:
-                this.panelsCollection.pop();
+                eventMediator.publish('delete');
                 return false;
             case keyMap.enter:
-                this.panelsCollection.create({
-                    label: this.panelsCollection.models.length + 1
-                });
+                eventMediator.publish('enter');
                 return false;
             case keyMap.rightArrow:
                 eventMediator.publish('rightArrow');
                 return false;
             case keyMap.leftArrow:
                 eventMediator.publish('leftArrow');
-                return false;
-            case keyMap.upArrow:
-                eventMediator.publish('upArrow');
-                return false;
-            case keyMap.downArrow:
-                eventMediator.publish('downArrow');
                 return false;
             }
 

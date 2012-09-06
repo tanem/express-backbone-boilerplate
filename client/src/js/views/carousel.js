@@ -22,6 +22,8 @@ define([
             this.collection.bind('add', this._addPanel, this);
             this.collection.bind('remove', this._removePanel, this);
 
+            eventMediator.subscribe('delete', this._deleteHandler, this);
+            eventMediator.subscribe('enter', this._enterHandler, this);
             eventMediator.subscribe('rightArrow', this._rightArrowHandler, this);
             eventMediator.subscribe('leftArrow', this._leftArrowHandler, this);
 
@@ -34,6 +36,16 @@ define([
             this.setElement(carouselTemplate);
             this.$carouselInner = this.$('.carousel-inner');
             return this;
+        },
+
+        _deleteHandler: function () {
+            this.collection.pop();
+        },
+
+        _enterHandler: function () {
+            this.collection.create({
+                label: this.collection.models.length + 1
+            });
         },
 
         _rightArrowHandler: function () {

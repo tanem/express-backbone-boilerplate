@@ -3,7 +3,7 @@ define(['views/carousel'], function (CarouselView) {
     describe('CarouselView', function () {
 
         it('should add a panel when the enter key is pressed', function () {
-
+            
         });
 
         it('should remove a panel when the delete key is pressed', function () {
