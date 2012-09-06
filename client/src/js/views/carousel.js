@@ -18,30 +18,12 @@ define([
 
         initialize: function () {
 
-            this.collection.bind('reset', this.addPanels, this);
-            this.collection.bind('add', this.addPanel, this);
-            this.collection.bind('remove', this.removePanel, this);
+            this.collection.bind('reset', this._addPanels, this);
+            this.collection.bind('add', this._addPanel, this);
+            this.collection.bind('remove', this._removePanel, this);
 
-            eventMediator.subscribe('rightArrow', function () {
-                this.carouselRotation -= this.panelRotation;
-                this.rotate(this.carouselRotation);
-            }, this);
-
-            eventMediator.subscribe('leftArrow', function () {
-                this.carouselRotation += this.panelRotation;
-                this.rotate(this.carouselRotation);
-            }, this);
-
-            // TODO: up/down arrow 
-            // eventMediator.subscribe('upArrow', function () {
-            //     this.carouselRotation += this.panelRotation;
-            //     this.rotate(this.carouselRotation);
-            // }, this);
-
-            // eventMediator.subscribe('downArrow', function () {
-            //     this.carouselRotation += this.panelRotation;
-            //     this.rotate(this.carouselRotation);
-            // }, this);
+            eventMediator.subscribe('rightArrow', this._rightArrowHandler, this);
+            eventMediator.subscribe('leftArrow', this._leftArrowHandler, this);
 
             this.carouselRotation = 0;
             this.panelRotation = 0;
@@ -54,11 +36,21 @@ define([
             return this;
         },
 
-        addPanels: function () {
-            this.collection.each(this.addPanel, this);
+        _rightArrowHandler: function () {
+            this.carouselRotation -= this.panelRotation;
+            this._rotate(this.carouselRotation);
         },
 
-        addPanel: function (panelModel) {
+        _leftArrowHandler: function () {
+            this.carouselRotation += this.panelRotation;
+            this._rotate(this.carouselRotation);
+        },
+
+        _addPanels: function () {
+            this.collection.each(this._addPanel, this);
+        },
+
+        _addPanel: function (panelModel) {
             
             var panelView = new PanelView({
                 model: panelModel
@@ -68,20 +60,20 @@ define([
                 .appendTo(this.$carouselInner)
                 .css('background-color', util.getRandomRGBA(this.options.panelOpacity));
 
-            this.repositionPanels();
+            this._repositionPanels();
             this.carouselRotation = this.panelRotation;
-            this.rotate();
+            this._rotate();
 
         },
 
-        removePanel: function (panelModel) {
+        _removePanel: function (panelModel) {
             panelModel.destroy();
-            this.repositionPanels();
+            this._repositionPanels();
             this.carouselRotation = this.panelRotation;
-            this.rotate();
+            this._rotate();
         },
 
-        repositionPanels: function () {
+        _repositionPanels: function () {
 
             var that = this,
                 $panels = this.$('.panel'),
@@ -97,14 +89,22 @@ define([
                 translate = 105 / Math.tan(util.getRadians(this.panelRotation / 2));
             }
 
-            $panels.each(function (i) {
-                $(this).css('-webkit-transform', 'rotateY(' + (i * that.panelRotation) + 'deg) translateZ(' + translate + 'px)');
-            });
+            $panels.each(this._adjustPanelTransformString(this, translate));
 
         },
 
-        rotate: function () {
-            this.$carouselInner.css('-webkit-transform', 'rotateY(' + this.carouselRotation + 'deg)');
+        _rotate: function () {
+            this.$carouselInner.css('-webkit-transform', 'rotateY(' +
+                this.carouselRotation + 'deg)');
+        },
+
+        // TODO: add transforms for other browsers.
+        _adjustPanelTransformString: function (carouselView, translate) {
+            return function (i) {
+                var rotateY = i * carouselView.panelRotation;
+                $(this).css('-webkit-transform', 'rotateY(' + rotateY +
+                    'deg) translateZ(' + translate + 'px)');
+            };
         }
     
     });
