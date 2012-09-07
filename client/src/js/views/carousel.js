@@ -16,52 +16,6 @@ define([
    
     var CarouselView = Backbone.View.extend({
 
-        initialize: function () {
-
-            this.collection.bind('reset', this._addPanels, this);
-            this.collection.bind('add', this._addPanel, this);
-            this.collection.bind('remove', this._removePanel, this);
-
-            eventMediator.subscribe('delete', this._deleteHandler, this);
-            eventMediator.subscribe('enter', this._enterHandler, this);
-            eventMediator.subscribe('rightArrow', this._rightArrowHandler, this);
-            eventMediator.subscribe('leftArrow', this._leftArrowHandler, this);
-
-            this.carouselRotation = 0;
-            this.panelRotation = 0;
-
-        },
-
-        render: function () {
-            this.setElement(carouselTemplate);
-            this.$carouselInner = this.$('.carousel-inner');
-            return this;
-        },
-
-        _deleteHandler: function () {
-            this.collection.pop();
-        },
-
-        _enterHandler: function () {
-            this.collection.create({
-                label: this.collection.models.length + 1
-            });
-        },
-
-        _rightArrowHandler: function () {
-            this.carouselRotation -= this.panelRotation;
-            this._rotate(this.carouselRotation);
-        },
-
-        _leftArrowHandler: function () {
-            this.carouselRotation += this.panelRotation;
-            this._rotate(this.carouselRotation);
-        },
-
-        _addPanels: function () {
-            this.collection.each(this._addPanel, this);
-        },
-
         _addPanel: function (panelModel) {
             
             var panelView = new PanelView({
@@ -76,6 +30,39 @@ define([
             this.carouselRotation = this.panelRotation;
             this._rotate();
 
+        },
+
+        _addPanels: function () {
+            this.collection.each(this._addPanel, this);
+        },
+
+        _adjustPanelTransformString: function (carouselView, translate) {
+            return function (i) {
+                var rotateY = i * carouselView.panelRotation;
+                $(this).css('-webkit-transform', 'rotateY(' + rotateY +
+                    'deg) translateZ(' + translate + 'px)');
+            };
+        },
+
+        _deleteHandler: function () {
+            this.collection.pop();
+        },
+
+        _enterHandler: function () {
+            var label = this.collection.models.length + 1;
+            this.collection.create({
+                label: '' + label
+            });
+        },
+
+        _leftArrowHandler: function () {
+            this.carouselRotation += this.panelRotation;
+            this._rotate(this.carouselRotation);
+        },
+
+        _rightArrowHandler: function () {
+            this.carouselRotation -= this.panelRotation;
+            this._rotate(this.carouselRotation);
         },
 
         _removePanel: function (panelModel) {
@@ -110,13 +97,26 @@ define([
                 this.carouselRotation + 'deg)');
         },
 
-        // TODO: add transforms for other browsers.
-        _adjustPanelTransformString: function (carouselView, translate) {
-            return function (i) {
-                var rotateY = i * carouselView.panelRotation;
-                $(this).css('-webkit-transform', 'rotateY(' + rotateY +
-                    'deg) translateZ(' + translate + 'px)');
-            };
+        initialize: function () {
+
+            this.collection.bind('reset', this._addPanels, this);
+            this.collection.bind('add', this._addPanel, this);
+            this.collection.bind('remove', this._removePanel, this);
+
+            eventMediator.subscribe('delete', this._deleteHandler, this);
+            eventMediator.subscribe('enter', this._enterHandler, this);
+            eventMediator.subscribe('rightArrow', this._rightArrowHandler, this);
+            eventMediator.subscribe('leftArrow', this._leftArrowHandler, this);
+
+            this.carouselRotation = 0;
+            this.panelRotation = 0;
+
+        },
+
+        render: function () {
+            this.setElement(carouselTemplate);
+            this.$carouselInner = this.$('.carousel-inner');
+            return this;
         }
     
     });
