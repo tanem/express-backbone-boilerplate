@@ -1,17 +1,10 @@
 var express = require('express'),
     app = express(),
-    path = require('path'),
-    src = require('./routes/src'),
-    test = require('./routes/test');
+    path = require('path');
 
-app.get('/src/css/*', src.css);
-app.get('/src/font/*', src.font);
-app.get('/src/js/*', src.js);
-app.get('/', src.index);
-
-app.get('/test/*.js', test.js);
-app.get('/test/lib/*', test.lib);
-app.get('/test', test.index);
+require('./routes/src')(app);
+require('./routes/test')(app);
+require('./routes/api')(app);
 
 app.listen(3000);
 console.log('Carousel app listening on port 3000');

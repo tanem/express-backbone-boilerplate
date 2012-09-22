@@ -1,0 +1,13 @@
+.panel {
+    border: 1px solid white;
+    @include box-sizing(border-box);
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
+    height: 120px;
+    line-height: 120px;
+    position: absolute;
+    text-align: center;
+    @include transition(all 0.3s);
+    width: 180px;
+}

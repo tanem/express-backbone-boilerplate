@@ -17,17 +17,3 @@
     @include transform-style(preserve-3d);
     @include transition(transform 0.5s);    
 }
-
-.panel {
-    border: 1px solid white;
-    @include box-sizing(border-box);
-    color: white;
-    font-size: 60px;
-    font-weight: bold;
-    height: 120px;
-    line-height: 120px;
-    position: absolute;
-    text-align: center;
-    @include transition(all 0.5s);
-    width: 180px;
-}

@@ -113,7 +113,7 @@ body {
   transition: transform 0.5s;
 }
 
-/* line 21, ../sass/partials/_carousel.scss */
+/* line 1, ../sass/partials/_panel.scss */
 .panel {
   border: 1px solid white;
   -webkit-box-sizing: border-box;
@@ -126,9 +126,9 @@ body {
   line-height: 120px;
   position: absolute;
   text-align: center;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
   width: 180px;
 }

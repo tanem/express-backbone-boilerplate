@@ -1,18 +1,22 @@
 var path = require('path'),
     clientSrcPath = path.join(__dirname, '/../../client/src');
 
-exports.css = function (req, res) {
-    res.sendfile(path.join(clientSrcPath, 'css', req.params[0]));
-};
+module.exports = function (app) {
+  
+    app.get('/src/css/*', function (req, res) {
+        res.sendfile(path.join(clientSrcPath, 'css', req.params[0]));
+    });
 
-exports.js = function (req, res) {
-    res.sendfile(path.join(clientSrcPath, 'js', req.params[0]));
-};
+    app.get('/src/font/*', function (req, res) {
+        res.sendfile(path.join(clientSrcPath, 'font', req.params[0]));
+    });
 
-exports.font = function (req, res) {
-    res.sendfile(path.join(clientSrcPath, 'font', req.params[0]));
-};
+    app.get('/src/js/*', function (req, res) {
+        res.sendfile(path.join(clientSrcPath, 'js', req.params[0]));
+    });
 
-exports.index = function (req, res) {
-    res.sendfile(path.join(clientSrcPath, 'index.html'));
+    app.get('/', function (req, res) {
+        res.sendfile(path.join(clientSrcPath, 'index.html'));
+    });
+
 };
