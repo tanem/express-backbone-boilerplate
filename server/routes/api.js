@@ -2,6 +2,15 @@ var Panel = require('../models/panel');
 
 module.exports = function (app) {
 
+    // Get all panels in the DB.
+    /*app.get('/api/panels', function (req, res) {
+        Panel.all(function (err, arr) {
+            if (!err) {
+                res.send(arr);
+            }
+        });
+    });*/
+
     // Create.
     app.post('/api/panels', function (req, res) {
         
