@@ -79,8 +79,6 @@ define([
                 numPanels = $panels.length,
                 translate;
 
-            // TODO: Make panel width (105) dynamic as well - specified in options passed to carousel?
-
             if (numPanels === 1) {
                 this.panelRotation = translate = 0;
             } else {

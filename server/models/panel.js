@@ -15,7 +15,7 @@ Panel.prototype.save = function (fn) {
 };
 
 Panel.prototype.destroy = function (fn) {
-    exports.destroy(this.id, fn);
+    module.exports.destroy(this.id, fn);
 };
 
 /*
