@@ -56,12 +56,12 @@ define([
         },
 
         _leftArrowHandler: function () {
-            this.carouselRotation += this.panelRotation;
+            this.carouselRotation -= this.panelRotation;
             this._rotate(this.carouselRotation);
         },
 
         _rightArrowHandler: function () {
-            this.carouselRotation -= this.panelRotation;
+            this.carouselRotation += this.panelRotation;
             this._rotate(this.carouselRotation);
         },
 
