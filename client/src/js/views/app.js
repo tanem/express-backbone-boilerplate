@@ -22,6 +22,8 @@ define([
 
         initialize: function () {
 
+            // TODO: pull this from the server?
+            
             this.renderCarousel([
                 { label: '1' },
                 { label: '2' },
