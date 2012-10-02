@@ -1,5 +1,5 @@
 // id is used as the label at the moment.
-// db is a fake db, could use local store or something else instead?
+// db is a fake db, could use local store or something else instead.
 
 var ids = 0,
     db = {};
