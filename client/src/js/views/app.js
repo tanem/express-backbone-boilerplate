@@ -21,31 +21,13 @@ define([
         },
 
         initialize: function () {
-
-            // TODO: pull this from the server?
-            
-            this.renderCarousel([
-                { label: '1' },
-                { label: '2' },
-                { label: '3' }
-            ]);
-
-        },
-
-        renderCarousel: function (data) {
-            
-            var panelsCollection = new PanelsCollection();
-
-            // TODO: add panel width as an option.
-            
+                        
             var carouselView = new CarouselView({
                 panelOpacity: 0.9,
-                collection: panelsCollection
+                collection: new PanelsCollection()
             });
 
             carouselView.render().$el.appendTo(this.el);
-
-            panelsCollection.reset(data);
 
         },
 
