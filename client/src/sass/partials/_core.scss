@@ -10,7 +10,41 @@
 }
 
 body {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #444;
     color: white;
     font-family: "DroidSansMono", sans-serif;
+}
+
+header {
+    background-color: #333;
+    height: 36px;
+    position: relative;
+    
+    h1 {
+        font-size: 140%;
+        line-height: 36px;
+        margin-left: 10px;
+    }
+
+    .instructions {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 90%;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+
+        li {
+            display: inline;
+            line-height: 36px;
+            margin-right: 20px;
+        }
+
+        .key-info {
+            font-size: 80%;
+            font-style: italic;
+        }
+
+    }
+
 }

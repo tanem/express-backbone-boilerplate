@@ -73,9 +73,42 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /* line 12, ../sass/partials/_core.scss */
 body {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #444;
   color: white;
   font-family: "DroidSansMono", sans-serif;
+}
+
+/* line 18, ../sass/partials/_core.scss */
+header {
+  background-color: #333;
+  height: 36px;
+  position: relative;
+}
+/* line 23, ../sass/partials/_core.scss */
+header h1 {
+  font-size: 140%;
+  line-height: 36px;
+  margin-left: 10px;
+}
+/* line 29, ../sass/partials/_core.scss */
+header .instructions {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 90%;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+/* line 37, ../sass/partials/_core.scss */
+header .instructions li {
+  display: inline;
+  line-height: 36px;
+  margin-right: 20px;
+}
+/* line 43, ../sass/partials/_core.scss */
+header .instructions .key-info {
+  font-size: 80%;
+  font-style: italic;
 }
 
 /* line 1, ../sass/partials/_carousel.scss */
