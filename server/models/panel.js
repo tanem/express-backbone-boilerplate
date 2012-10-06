@@ -1,5 +1,5 @@
 // id is used as the label at the moment.
-// db is a fake db, could use local store or something else instead.
+// db is a fake db.
 
 var ids = 0,
     db = {};
@@ -14,26 +14,6 @@ Panel.prototype.save = function (fn) {
     fn();
 };
 
-Panel.prototype.destroy = function (fn) {
-    module.exports.destroy(this.id, fn);
-};
-
-/*
-Panel.prototype.update = function (data, fn) {
-    this.updatedAt = new Date;
-    for (var key in data) {
-        if (undefined != data[key]) {
-            this[key] = data[key];
-        }
-    }
-    this.save(fn);
-};
-*/
-
-module.exports.count = function (fn) {
-    fn(null, Object.keys(db).length);
-};
-
 // Returns an array of all the panels in the DB.
 module.exports.all = function (fn) {
     
@@ -46,11 +26,6 @@ module.exports.all = function (fn) {
 
 };
 
-// Get a panel by id.
-module.exports.get = function (id, fn) {
-    fn(null, db[id]);
-};
-
 // Remove a panel by id.
 module.exports.destroy = function (id, fn) {
     if (db[id]) {
@@ -59,4 +34,11 @@ module.exports.destroy = function (id, fn) {
     } else {
         fn(new Error('Panel ' + id + ' does not exist'));
     }
+};
+
+// Clears all objects in the DB.
+module.exports.reset = function (fn) {
+    db = {};
+    ids = 0;
+    fn();
 };
