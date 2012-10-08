@@ -9,9 +9,9 @@ define([
     describe('CarouselView', function () {
 
         beforeEach(function () {
-
+            
             var panelsCollection = new PanelsCollection();
-
+            
             this.carouselView = new CarouselView({
                 collection: panelsCollection
             }).render();
