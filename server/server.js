@@ -11,5 +11,9 @@ app.get('/shutdown', function (req, res) {
     process.exit(0);
 });
 
+app.get('/docs/*', function (req, res) {
+    res.sendfile(path.join(__dirname, '/../docs', req.params[0]));
+});
+
 app.listen(3000);
 console.log('Carousel app listening on port 3000');

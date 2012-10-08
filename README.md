@@ -1,7 +1,14 @@
 Dependencies
 ============
 
+TODO: in generate docs, set up a simple index page.
+
 phantomjs
 casperjs
 handlebars global
-python simplehttpserver
+
+pygments
+coffee-script
+docco
+
+jasmine-node
