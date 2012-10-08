@@ -63,10 +63,6 @@ define([
     var jasmineEnv = jasmine.getEnv(),
         htmlReporter = new jasmine.HtmlReporter();
 
-    // No synching for now.
-    // TODO: Set up node endpoints.
-    Backbone.sync = function () {};
-
     jasmineEnv.updateInterval = 250;
     jasmineEnv.addReporter(htmlReporter);
 

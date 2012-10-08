@@ -39,10 +39,6 @@ require.config({
 
 define(['backbone', 'views/app'], function (Backbone, AppView) {
 
-    // No synching for now.
-    // TODO: Set up node endpoints.
-    //Backbone.sync = function () {};
-
     var appView = new AppView({
         el: 'body'
     });

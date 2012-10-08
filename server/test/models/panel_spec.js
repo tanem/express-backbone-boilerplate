@@ -18,12 +18,9 @@ describe('Models / Panel', function () {
     });
 
     it('should correctly create a panel in the DB', function () {
-        
         var panel = new Panel();
-        
         expect(panel.id).toEqual(1);
         expect(panel.createdAt).toEqual(jasmine.any(Date));
-
         panel.save(function () {
             Panel.all(function (err, arr) {
                 expect(err).toBeNull();
@@ -31,7 +28,6 @@ describe('Models / Panel', function () {
                 expect(arr[0].id).toEqual(1);
             });
         });
-
     });
 
     it('should correctly delete a panel by ID from the DB', function () {

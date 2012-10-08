@@ -57,12 +57,12 @@ define([
 
         it('should rotate the carousel to the correct position when the right arrow key is pressed', function () {
             this.carouselView._rightArrowHandler();
-            expect(this.carouselView.carouselRotation).toEqual(0);
+            expect(this.carouselView.carouselRotation).toEqual(180);
         });
 
         it('should rotate the carousel to the correct position when the left arrow key is pressed', function () {
             this.carouselView._leftArrowHandler();
-            expect(this.carouselView.carouselRotation).toEqual(180);
+            expect(this.carouselView.carouselRotation).toEqual(0);
         });
 
     });
