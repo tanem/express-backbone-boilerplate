@@ -11,8 +11,13 @@ app.get('/shutdown', function (req, res) {
     process.exit(0);
 });
 
-app.get('/docs/*', function (req, res) {
-    res.sendfile(path.join(__dirname, '/../docs', req.params[0]));
+app.get('/docs*', function (req, res) {
+    var param = req.params[0];
+    if (param !== '') {
+        res.sendfile(path.join(__dirname, '/../docs', param));
+    } else {
+        res.sendfile(path.join(__dirname, '/../docs', 'index.html'));
+    }
 });
 
 app.listen(3000);
