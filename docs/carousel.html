@@ -1,0 +1,127 @@
+<!DOCTYPE html>  <html> <head>   <title>carousel.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="eventMediator.html">                 eventMediator.js               </a>                                           <a class="source" href="util.html">                 util.js               </a>                                           <a class="source" href="main.html">                 main.js               </a>                                           <a class="source" href="app.html">                 app.js               </a>                                           <a class="source" href="carousel.html">                 carousel.js               </a>                                           <a class="source" href="panel.html">                 panel.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               carousel.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="nx">define</span><span class="p">([</span>
+    <span class="s1">&#39;backbone&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;handlebars&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;core/eventMediator&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;core/util&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;views/panel&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;text!templates/carousel.handlebars&#39;</span>
+<span class="p">],</span> <span class="kd">function</span> <span class="p">(</span>
+    <span class="nx">Backbone</span><span class="p">,</span>
+    <span class="nx">Handlebars</span><span class="p">,</span>
+    <span class="nx">eventMediator</span><span class="p">,</span>
+    <span class="nx">util</span><span class="p">,</span>
+    <span class="nx">PanelView</span><span class="p">,</span>
+    <span class="nx">carouselTemplate</span>
+<span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">CarouselView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+        <span class="nx">_addPanel</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">panelModel</span><span class="p">)</span> <span class="p">{</span>
+            
+            <span class="kd">var</span> <span class="nx">panelView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PanelView</span><span class="p">({</span>
+                <span class="nx">model</span><span class="o">:</span> <span class="nx">panelModel</span>
+            <span class="p">});</span>
+            
+            <span class="nx">panelView</span><span class="p">.</span><span class="nx">render</span><span class="p">().</span><span class="nx">$el</span>
+                <span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">$carouselInner</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;background-color&#39;</span><span class="p">,</span> <span class="nx">util</span><span class="p">.</span><span class="nx">getRandomRGBA</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">panelOpacity</span><span class="p">));</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">_repositionPanels</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">carouselRotation</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">panelRotation</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_rotate</span><span class="p">();</span>
+
+        <span class="p">},</span>
+
+        <span class="nx">_addPanels</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_addPanel</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="p">},</span>
+
+        <span class="nx">_adjustPanelTransformString</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">carouselView</span><span class="p">,</span> <span class="nx">translate</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">rotateY</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">*</span> <span class="nx">carouselView</span><span class="p">.</span><span class="nx">panelRotation</span><span class="p">;</span>
+                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;-webkit-transform&#39;</span><span class="p">,</span> <span class="s1">&#39;rotateY(&#39;</span> <span class="o">+</span> <span class="nx">rotateY</span> <span class="o">+</span>
+                    <span class="s1">&#39;deg) translateZ(&#39;</span> <span class="o">+</span> <span class="nx">translate</span> <span class="o">+</span> <span class="s1">&#39;px)&#39;</span><span class="p">);</span>
+            <span class="p">};</span>
+        <span class="p">},</span>
+
+        <span class="nx">_deleteHandler</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+        <span class="p">},</span>
+
+        <span class="nx">_enterHandler</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">label</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+                <span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">label</span>
+            <span class="p">});</span>
+        <span class="p">},</span>
+
+        <span class="nx">_leftArrowHandler</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">carouselRotation</span> <span class="o">-=</span> <span class="k">this</span><span class="p">.</span><span class="nx">panelRotation</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_rotate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">carouselRotation</span><span class="p">);</span>
+        <span class="p">},</span>
+
+        <span class="nx">_rightArrowHandler</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">carouselRotation</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">panelRotation</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_rotate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">carouselRotation</span><span class="p">);</span>
+        <span class="p">},</span>
+
+        <span class="nx">_removePanel</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">panelModel</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">panelModel</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_repositionPanels</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">carouselRotation</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">panelRotation</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_rotate</span><span class="p">();</span>
+        <span class="p">},</span>
+
+        <span class="nx">_repositionPanels</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+            <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+                <span class="nx">$panels</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.panel&#39;</span><span class="p">),</span>
+                <span class="nx">numPanels</span> <span class="o">=</span> <span class="nx">$panels</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+                <span class="nx">translate</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">numPanels</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">panelRotation</span> <span class="o">=</span> <span class="nx">translate</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">panelRotation</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="nx">numPanels</span><span class="p">;</span>
+                <span class="nx">translate</span> <span class="o">=</span> <span class="mi">105</span> <span class="o">/</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">tan</span><span class="p">(</span><span class="nx">util</span><span class="p">.</span><span class="nx">getRadians</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">panelRotation</span> <span class="o">/</span> <span class="mi">2</span><span class="p">));</span>
+            <span class="p">}</span>
+
+            <span class="nx">$panels</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_adjustPanelTransformString</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">translate</span><span class="p">));</span>
+
+        <span class="p">},</span>
+
+        <span class="nx">_rotate</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">$carouselInner</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;-webkit-transform&#39;</span><span class="p">,</span> <span class="s1">&#39;rotateY(&#39;</span> <span class="o">+</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">carouselRotation</span> <span class="o">+</span> <span class="s1">&#39;deg)&#39;</span><span class="p">);</span>
+        <span class="p">},</span>
+
+        <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;reset&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_addPanels</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_addPanel</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_removePanel</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+
+            <span class="nx">eventMediator</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_deleteHandler</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+            <span class="nx">eventMediator</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;enter&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_enterHandler</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+            <span class="nx">eventMediator</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;rightArrow&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_rightArrowHandler</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+            <span class="nx">eventMediator</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;leftArrow&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_leftArrowHandler</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">carouselRotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">panelRotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">scaleFactor</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="p">},</span>
+
+        <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">setElement</span><span class="p">(</span><span class="nx">carouselTemplate</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">$carouselInner</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.carousel-inner&#39;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+    
+    <span class="p">});</span>
+   
+    <span class="k">return</span> <span class="nx">CarouselView</span><span class="p">;</span>
+   
+<span class="p">});</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
