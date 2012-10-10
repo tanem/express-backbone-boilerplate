@@ -1,3 +1,6 @@
+var path = require('path'),
+    docsPath = path.join(__dirname, '/../../docs');
+
 module.exports = function (app) {
 
     app.get('/docs*', function (req, res) {
@@ -5,11 +8,11 @@ module.exports = function (app) {
         var param = req.params[0];
         
         if (param !== '') {
-            res.sendfile(path.join(__dirname, '/../docs', param));
+            res.sendfile(path.join(docsPath, param));
         } else {
-            res.sendfile(path.join(__dirname, '/../docs', 'index.html'));
+            res.sendfile(path.join(docsPath, 'index.html'));
         }
-        
+
     });
 
 };
