@@ -5,19 +5,11 @@ var express = require('express'),
 require('./routes/src')(app);
 require('./routes/test')(app);
 require('./routes/api')(app);
+require('./routes/docs')(app);
 
 app.get('/shutdown', function (req, res) {
     res.send('');
     process.exit(0);
-});
-
-app.get('/docs*', function (req, res) {
-    var param = req.params[0];
-    if (param !== '') {
-        res.sendfile(path.join(__dirname, '/../docs', param));
-    } else {
-        res.sendfile(path.join(__dirname, '/../docs', 'index.html'));
-    }
 });
 
 app.listen(3000);
