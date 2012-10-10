@@ -1,7 +1,7 @@
 {
-  "name": "Carousel",
-  "description": "NodeJS based carousel biz.",
-  "version": "0.1",
+  "name": "Node Carousel",
+  "description": "Node.js based carousel biz.",
+  "version": "1.0",
   "private": true,
   "dependencies": {
     "express": "3.0.x"
