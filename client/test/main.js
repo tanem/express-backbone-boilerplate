@@ -15,6 +15,7 @@ require.config({
 
         jasmine: '../../test/lib/jasmine-1.2.0/jasmine',
         jasmineHtml: '../../test/lib/jasmine-1.2.0/jasmine-html',
+        jasmineJunitXml: '../../test/lib/jasmine-reporters/jasmine.junit_reporter',
         
         tests: '../../test/tests'
 
@@ -42,6 +43,11 @@ require.config({
         'jasmineHtml': {
             deps: ['jasmine'],
             exports: 'jasmine.HtmlReporter'
+        },
+
+        'jasmineJunitXml': {
+            deps: ['jasmine'],
+            exports: 'jasmine.JUnitXmlReporter'
         }
 
     }
@@ -53,6 +59,7 @@ define([
     'jquery',
     'jasmine',
     'jasmineHtml',
+    'jasmineJunitXml',
     'tests'
 ], function (
     Backbone,
@@ -60,6 +67,23 @@ define([
     jasmine
 ) {
 
+    var jasmineEnv = jasmine.getEnv(),
+        htmlReporter = new jasmine.HtmlReporter(),
+        junitXmlReporter = new jasmine.JUnitXmlReporter();
+    
+    jasmineEnv.updateInterval = 250;
+    jasmineEnv.addReporter(htmlReporter);
+    jasmineEnv.addReporter(junitXmlReporter);
+    jasmineEnv.specFilter = function (spec) {
+        return htmlReporter.specFilter(spec);
+    };
+    
+    $(function () {
+        $('.version').html(jasmineEnv.versionString());
+        jasmineEnv.execute();
+    });
+
+    /*
     var jasmineEnv = jasmine.getEnv(),
         htmlReporter = new jasmine.HtmlReporter();
 
@@ -74,5 +98,6 @@ define([
         $('.version').html(jasmineEnv.versionString());
         jasmineEnv.execute();
     });
+    */
   
 });

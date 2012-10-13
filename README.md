@@ -2,7 +2,7 @@
 
 A small project I used to figure out how to wire up a simple Node/ExpressJS based dev environment.
 
-The app can be started via `./start.sh`.
+The app can be started via `./start.sh`
 
 ## Dependencies
 
