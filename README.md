@@ -22,6 +22,7 @@ The app can be started via `./start.sh`. Client and server tests can be run via 
 ## Unit tests
 
 Both client and server unit tests can be run via `./run-tests.sh`. JUnit XML is output to `./_junitxml'.
+
 ### Client
 
  * Can be run in the browser via `http://localhost:3000/client/test/`
