@@ -2,7 +2,7 @@
 
 A small project I used to figure out how to wire up a simple Node/ExpressJS based dev environment.
 
-The app can be started via `./start.sh`. Client and server tests can be run via `./run-tests.sh`.
+The app can be started via `./start.sh`.
 
 ## Dependencies
 
