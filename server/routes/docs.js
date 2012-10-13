@@ -1,9 +1,9 @@
 var path = require('path'),
-    docsPath = path.join(__dirname, '/../../docs');
+    docsPath = path.join(__dirname, '/../../client/docs');
 
 module.exports = function (app) {
 
-    app.get('/docs*', function (req, res) {
+    app.get('/client/docs*', function (req, res) {
         
         var param = req.params[0];
         

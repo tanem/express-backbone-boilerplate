@@ -1,6 +1,6 @@
 var fs = require('fs'),
     path = require('path'),
-    docsPath = path.join(__dirname, '../../docs'),
+    docsPath = path.join(__dirname, '../docs'),
     fileList = '';
 
 // Read the generated docco html files and create a list from them.
@@ -13,7 +13,7 @@ fs.readdirSync(docsPath).forEach(function (fileName) {
     }
     
     displayName = fileName.replace(/\.html$/, '');
-    href = '/docs/' + fileName;
+    href = '/client/docs/' + fileName;
 
     fileList += '<li><a href="' + href + '">' + displayName + '</a></li>';
 
