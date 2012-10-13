@@ -15,7 +15,7 @@ module.exports = function (app) {
         res.sendfile(path.join(clientSrcPath, 'js', req.params[0]));
     });
 
-    app.get('/', function (req, res) {
+    app.get('/client', function (req, res) {
         res.sendfile(path.join(clientSrcPath, 'index.html'));
     });
 

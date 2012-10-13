@@ -3,15 +3,15 @@ var path = require('path'),
 
 module.exports = function (app) {
 
-    app.get('/test/*.js', function (req, res) {
+    app.get('/client/test/*.js', function (req, res) {
         res.sendfile(path.join(clientTestPath, req.params[0] + '.js'));
     });
     
-    app.get('/test/lib/*', function (req, res) {
+    app.get('/client/test/lib/*', function (req, res) {
         res.sendfile(path.join(clientTestPath, 'lib', req.params[0]));
     });
     
-    app.get('/test', function (req, res) {
+    app.get('/client/test', function (req, res) {
         res.sendfile(path.join(clientTestPath, 'index.html'));
     });
 
