@@ -1,3 +1,4 @@
+// Hat tip to andrewpmckenzie for the initial concept!
 var http = require('http'),
     options = {
         host: 'localhost',
