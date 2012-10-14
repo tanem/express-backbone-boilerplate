@@ -2,7 +2,7 @@ var casper = require('casper').create(),
     fs = require('fs'),
     junitXmlDir = './_junitxml/client';
 
-casper.start('http://localhost:3000/test/');
+casper.start('http://localhost:3000/client/test/');
 
 casper.waitFor(
     function check() {
