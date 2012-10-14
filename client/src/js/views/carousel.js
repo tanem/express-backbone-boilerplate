@@ -108,7 +108,6 @@ define([
 
             this.carouselRotation = 0;
             this.panelRotation = 0;
-            this.scaleFactor = 1;
 
         },
 
