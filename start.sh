@@ -1,3 +1,5 @@
 #!/bin/bash
 
-node server/server.js & compass watch
+node server/bin/stop-server.js
+node server/server.js &
+compass watch
