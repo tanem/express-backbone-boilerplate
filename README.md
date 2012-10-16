@@ -1,6 +1,6 @@
-# Node Carousel
+# Node Backbone Carousel
 
-A small project I used to figure out how to wire up a simple Node/ExpressJS based dev environment.
+A small project I used to figure out how to wire up a simple Node/ExpressJS based dev environment. This was used to develop a Backbone MVC based client which communicated with the backend via a RESTful API.
 
 The app can be started via `./start.sh`.
 
@@ -21,7 +21,7 @@ The app can be started via `./start.sh`.
 
 ## Unit tests
 
-Both client and server unit tests can be run via `./run-tests.sh`. JUnit XML is output to `./_junitxml'.
+Both client and server unit tests can be run via `./run-tests.sh`. JUnit XML is output to `./_junitxml', and be used in CI tools like Jenkins.
 
 ### Client
 
