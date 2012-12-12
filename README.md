@@ -12,6 +12,8 @@ The app can be started via `./start.sh`.
  * [Compass](http://compass-style.org/)
  * [jasmine-node](https://github.com/mhevery/jasmine-node)
 
+Note that on Windows, as per [this issue](https://github.com/jashkenas/docco/issues/131), you'll need to install docco as follows: `npm install -g https://github.com/jashkenas/docco/archive/master.tar.gz`
+
 ## Client
 
  * Can be accessed via `http://localhost:3000/client/`
