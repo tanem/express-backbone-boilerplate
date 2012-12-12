@@ -10,8 +10,9 @@ The app can be started via `./start.sh`.
  * [Docco](http://jashkenas.github.com/docco/)
  * [CasperJS](http://casperjs.org/)
  * [Compass](http://compass-style.org/)
- * [CasperJS](http://casperjs.org/)
  * [jasmine-node](https://github.com/mhevery/jasmine-node)
+
+Note that on Windows, as per [this issue](https://github.com/jashkenas/docco/issues/131), you'll need to install docco as follows: `npm install -g https://github.com/jashkenas/docco/archive/master.tar.gz`
 
 ## Client
 
