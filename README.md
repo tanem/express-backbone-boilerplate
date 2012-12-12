@@ -10,7 +10,6 @@ The app can be started via `./start.sh`.
  * [Docco](http://jashkenas.github.com/docco/)
  * [CasperJS](http://casperjs.org/)
  * [Compass](http://compass-style.org/)
- * [CasperJS](http://casperjs.org/)
  * [jasmine-node](https://github.com/mhevery/jasmine-node)
 
 ## Client
