@@ -4,3 +4,4 @@ TODO.md
 build/
 _junitxml/
 client/src/css/
+node_modules/
