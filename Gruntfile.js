@@ -50,15 +50,20 @@ module.exports = function(grunt){
         report: true,
         savePath : '_junitxml/server/'
       }
+    },
+    casperjs: {
+      src: 'client/test/lib/casperjs-runner.js'
     }
   });
 
+  grunt.loadNpmTasks('grunt-casperjs');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jasmine-node');
   
   grunt.registerTask('server', function(){ require('./server/server.js').listen(3000); });
+  grunt.registerTask('test-client', ['server', 'casperjs']);
   grunt.registerTask('start', ['server', 'watch']);
 
 };

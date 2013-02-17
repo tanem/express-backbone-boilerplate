@@ -23,6 +23,7 @@
     "grunt-contrib-compass": "0.1.1rc8",
     "grunt-contrib-watch": "0.2.0rc7",
     "grunt-contrib-jshint": "0.1.1rc6",
-    "grunt-jasmine-node": "0.0.6"
+    "grunt-jasmine-node": "0.0.6",
+    "grunt-casperjs": "1.0.3"
   }
 }
