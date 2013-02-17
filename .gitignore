@@ -3,3 +3,4 @@ TODO.md
 .sass-cache/
 build/
 _junitxml/
+client/src/css/
