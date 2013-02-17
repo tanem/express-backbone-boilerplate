@@ -1,0 +1,25 @@
+{
+  "name": "node-backbone-carousel",
+  "description": "Express based dev setup.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Tane Morgan",
+    "url": "http://github.com/tanem"
+  },
+  "homepage": "http://github.com/tanem/node-backbone-carousel",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/tanem/node-backbone-carousel.git"
+  },
+  "bugs": {
+    "url": "http://github.com/tanem/node-backbone-carousel/issues"
+  },
+  "engines": {
+    "node": ">= 0.8.4"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "0.4.0rc8",
+    "grunt-contrib-compass": "0.1.1rc8"
+  }
+}
