@@ -34,17 +34,21 @@ module.exports = function(grunt){
         files: 'client/src/sass/**/*.scss',
         tasks: 'compass:dev'
       },
-      jsSrc: {
-        files: '<%= jshint.src %>',
-        tasks: 'jshint:src'
-      },
-      jsTest: {
-        files: '<%= jshint.test %>',
-        tasks: 'jshint:test'
+      jsClient: {
+        files: ['<%= jshint.src %>', '<%= jshint.test %>'],
+        tasks: ['jshint:src', 'jshint:test'/*, 'casperjs'*/]
       },
       jsServer: {
         files: '<%= jshint.server %>',
-        tasks: 'jshint:server'
+        tasks: ['jshint:server', 'jasmine_node']
+      }
+    },
+    jasmine_node: {
+      projectRoot: 'server/test',
+      forceExit: true,
+      jUnit: {
+        report: true,
+        savePath : '_junitxml/server/'
       }
     }
   });
@@ -52,6 +56,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-jasmine-node');
   
   grunt.registerTask('server', function(){ require('./server/server.js').listen(3000); });
   grunt.registerTask('start', ['server', 'watch']);
