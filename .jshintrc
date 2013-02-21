@@ -1,4 +1,4 @@
 {
-  browser: true,
-  es5: true
+  "browser": true,
+  "es5": true
 }
