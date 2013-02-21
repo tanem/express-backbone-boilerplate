@@ -1,6 +1,6 @@
 # Node Backbone Carousel
 
-A small project I used to figure out how to wire up a simple Node/ExpressJS based JS dev environment.
+A small project I used to figure out how to wire up a simple Node/Express based dev environment.
 
 ## Dependencies
 
