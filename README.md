@@ -2,12 +2,6 @@
 
 A small project I used to figure out how to wire up a simple Node/ExpressJS based JS dev environment.
 
- grunt.registerTask('docs', ['clean:docs', 'docco', 'docco_index']);
-  grunt.registerTask('test-client', ['clean:junitxml:client', 'server', 'casperjs']);
-  grunt.registerTask('test-server', ['clean:junitxml:server', 'prep_junitxmldir', 'jasmine_node']);
-  grunt.registerTask('start', ['server', 'watch']);
-
-
 ## Dependencies
 
  * [Node.js](http://nodejs.org/) and [npm](https://npmjs.org/)
