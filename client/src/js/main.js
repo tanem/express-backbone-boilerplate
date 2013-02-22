@@ -1,43 +1,46 @@
 require.config({
     
-    baseUrl: '/src/js',
+  baseUrl: '/src/js',
 
-    enforceDefine: true,
+  enforceDefine: true,
 
-    paths: {
+  paths: {
 
-        // Core libraries.
-        jquery: 'lib/jquery-1.8.0',
-        underscore: 'lib/underscore-1.3.3',
-        backbone: 'lib/backbone-0.9.2',
-        handlebars: 'lib/handlebars-1.0.0.beta.6',
+    // Core libraries.
+    jquery: 'lib/jquery-1.8.0',
+    underscore: 'lib/underscore-1.3.3',
+    backbone: 'lib/backbone-0.9.2',
+    handlebars: 'lib/handlebars-1.0.0.beta.6',
 
-        // RequireJS plugins.
-        text: 'lib/text-2.0.3'
+    // RequireJS plugins.
+    text: 'lib/text-2.0.3'
 
+  },
+
+  // Sets the configuration for scripts that are not AMD compatible.
+  shim: {
+
+    'underscore': {
+      exports: '_'
     },
 
-    // Sets the configuration for scripts that are not AMD compatible.
-    shim: {
+    'backbone': {
+      deps: ['jquery', 'underscore'],
+      exports: 'Backbone'
+    },
 
-        'underscore': {
-            exports: '_'
-        },
-
-        'backbone': {
-            deps: ['jquery', 'underscore'],
-            exports: 'Backbone'
-        },
-
-        'handlebars': {
-            exports: 'Handlebars'
-        }
-
+    'handlebars': {
+      exports: 'Handlebars'
     }
+
+  }
 
 });
 
-define(['backbone', 'views/app'], function (Backbone, AppView) {
+define('main', function(require){
+
+    var Backbone = require('backbone'),
+      AppView = require('views/app');
 
     var appView = new AppView({
         el: 'body'

@@ -1,8 +1,6 @@
-define([
-    'backbone'
-], function (
-    Backbone
-) {
+define('panelModel', function(require){
+
+    var Backbone = require('backbone');
    
     var PanelModel = Backbone.Model.extend({
         

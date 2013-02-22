@@ -1,27 +1,23 @@
-define([
-    'backbone',
-    'handlebars',
-    'text!templates/panel.handlebars'
-], function (
-    Backbone,
-    Handlebars,
-    panelTemplate
-) {
-    
-    var PanelView = Backbone.View.extend({
-        
-        initialize: function () {
-            this.model.bind('destroy', this.remove, this);
-            this.template = Handlebars.compile(panelTemplate);  
-        },
+define('panelView', function(require){
 
-        render: function () {
-            this.setElement(this.template(this.model.toJSON()));
-            return this;
-        }
-                
-    });
+  var Backbone = require('backbone'),
+    Handlebars = require('handlebars'),
+    panelTemplate = require('text!templates/panel.handlebars');
     
-    return PanelView;
+  var PanelView = Backbone.View.extend({
+        
+    initialize: function(){
+      this.model.bind('destroy', this.remove, this);
+      this.template = Handlebars.compile(panelTemplate);  
+    },
+
+    render: function(){
+      this.setElement(this.template(this.model.toJSON()));
+      return this;
+    }
+            
+  });
+
+  return PanelView;
    
 });

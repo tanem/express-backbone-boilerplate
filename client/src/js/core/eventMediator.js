@@ -1,4 +1,4 @@
-define(function () {
+define('eventMediator', function(){
     
     var events = {};
     
@@ -20,25 +20,21 @@ define(function () {
     // Adds a subscription to an event.
     function subscribe(event, cb, context) {
         
-        if (!events[event]) {
-            events[event] = [];
-        }
+        if (!events[event]) events[event] = [];
         
         events[event].push({
             context: context || this,
             callback: cb
         });
-    
+
     }
     
     // Publishes an event.
     function publish(event) {
         
         var args, i, l, subscription;
-
-        if (!events[event]) {
-            return;
-        }
+        
+        if (!events[event]) return;
         
         args = [].slice.call(arguments, 1);
         

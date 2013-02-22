@@ -5,21 +5,15 @@ define(function () {
     return {
 
         // Converts degrees to radians.
-        getRadians: function (degrees) {
+        getRadians: function(degrees){
             return degrees / degreesPerRadian;
         },
 
         // Generates a random RGBA string.
-        getRandomRGBA: function (alpha) {
-            
-            var rand = function () {
-                return Math.floor(Math.random() * (255 + 1));
-            };
-
+        getRandomRGBA: function(alpha){
+            var rand = function(){ return Math.floor(Math.random() * (255 + 1)); };
             alpha = alpha || 1;
-
             return 'rgba(' + rand() + ', ' + rand() + ', ' + rand() + ', ' + alpha + ')';
-
         },
 
         // Maps key names to key codes.

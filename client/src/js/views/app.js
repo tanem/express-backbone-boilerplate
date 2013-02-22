@@ -1,59 +1,52 @@
-define([
-    'backbone',
-    'collections/panels',
-    'core/eventMediator',
-    'core/util',
-    'views/panel',
-    'views/carousel'
-], function (
-    Backbone,
-    PanelsCollection,
-    eventMediator,
-    util,
-    PanelView,
-    CarouselView
-) {
+define('appView', function(require){
+
+  var Backbone = require('backbone'),
+    PanelsCollection = require('collections/panels'),
+    eventMediator = require('core/eventMediator'),
+    util = require('core/util'),
+    PanelView = require('views/panel'),
+    CarouselView = require('views/carousel');
    
-    var AppView = Backbone.View.extend({
+  var AppView = Backbone.View.extend({
 
-        events: {
-            'keydown': 'keydownListener'
-        },
+    events: {
+      'keydown': 'keydownListener'
+    },
 
-        initialize: function () {
+    initialize: function(){
                         
-            var carouselView = new CarouselView({
-                panelOpacity: 0.9,
-                collection: new PanelsCollection()
-            });
+      var carouselView = new CarouselView({
+        panelOpacity: 0.9,
+        collection: new PanelsCollection()
+      });
 
-            carouselView.render().$el.appendTo(this.el);
+      carouselView.render().$el.appendTo(this.el);
 
-        },
+    },
 
-        keydownListener: function (e) {
+    keydownListener: function(e){
             
-            var keyMap = util.keyMap;
+      var keyMap = util.keyMap;
 
-            switch (e.which) {
-            case keyMap.del:
-                eventMediator.publish('delete');
-                return false;
-            case keyMap.enter:
-                eventMediator.publish('enter');
-                return false;
-            case keyMap.rightArrow:
-                eventMediator.publish('rightArrow');
-                return false;
-            case keyMap.leftArrow:
-                eventMediator.publish('leftArrow');
-                return false;
-            }
+      switch (e.which) {
+        case keyMap.del:
+          eventMediator.publish('delete');
+          return false;
+        case keyMap.enter:
+          eventMediator.publish('enter');
+          return false;
+        case keyMap.rightArrow:
+          eventMediator.publish('rightArrow');
+          return false;
+        case keyMap.leftArrow:
+          eventMediator.publish('leftArrow');
+          return false;
+      }
 
-        }
+    }
 
-    });
+  });
    
-    return AppView;
+  return AppView;
    
 });
