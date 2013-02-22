@@ -6,12 +6,27 @@ require.config({
     
   paths: {
 
-    jquery: 'lib/jquery-1.8.0',
-    underscore: 'lib/underscore-1.3.3',
+    // Collections
+    panelsCollection: 'collections/panels',
+
+    // Core
+    eventMediator: 'core/eventMediator',
+    util: 'core/util',
+
+    // Lib
     backbone: 'lib/backbone-0.9.2',
     handlebars: 'lib/handlebars-1.0.0.beta.6',
-
+    jquery: 'lib/jquery-1.8.0',
     text: 'lib/text-2.0.3',
+    underscore: 'lib/underscore-1.3.3',
+
+    // Models
+    panelModel: 'models/panel',
+
+    // Views
+    appView: 'views/app',
+    carouselView: 'views/carousel',
+    panelView: 'views/panel',
 
     jasmine: '../../../client/test/lib/jasmine-1.2.0/jasmine',
     jasmineHtml: '../../client/test/lib/jasmine-1.2.0/jasmine-html',
@@ -60,9 +75,9 @@ define(function(require){
     $ = require('jquery'),
     jasmine = require('jasmine');
 
-  require(jasmineHtml);
-  require(jasmineJunitXml);
-  require(tests);
+  require('jasmineHtml');
+  require('jasmineJunitXml');
+  require('tests');
 
   var jasmineEnv = jasmine.getEnv(),
     htmlReporter = new jasmine.HtmlReporter(),

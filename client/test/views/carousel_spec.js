@@ -1,7 +1,7 @@
 define(function(require){
 
-  var PanelsCollection = require('collections/panels'),
-    CarouselView = require('views/carousel');
+  var PanelsCollection = require('panelsCollection'),
+    CarouselView = require('carouselView');
 
   describe('CarouselView', function(){
 

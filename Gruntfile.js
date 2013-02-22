@@ -133,6 +133,6 @@ module.exports = function(grunt){
   grunt.registerTask('docs', ['clean:docs', 'docco', 'docco_index']);
   grunt.registerTask('test-client', ['clean:junitxml:client', 'server', 'casperjs']);
   grunt.registerTask('test-server', ['clean:junitxml:server', 'prep_junitxmldir', 'jasmine_node']);
-  grunt.registerTask('start', ['server', 'watch']);
+  grunt.registerTask('start', ['compass:dev', 'server', 'watch']);
 
 };

@@ -1,6 +1,6 @@
 define(function(require){
   
-  var util = require('core/util');
+  var util = require('util');
   
   describe('Util', function(){
 
