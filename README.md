@@ -38,7 +38,7 @@ Run `npm install` once you've got a copy of the project. The app can be started 
 ## Docs
 
  * Can be generated via `grunt docs`
- * Output to `./docs`
+ * Output to `./_docs`
  * Can be accessed via `http://localhost:3000/docs/[folder]`
 
 [Docco](http://jashkenas.github.com/docco/) is used to generate the client-side docs. A basic index.html file is also generated as part of the script, and included in each subfolder.
