@@ -14,11 +14,11 @@ require.config({
     util: 'core/util',
 
     // Lib
-    backbone: 'lib/backbone-0.9.2',
-    handlebars: 'lib/handlebars-1.0.0.beta.6',
-    jquery: 'lib/jquery-1.8.0',
-    text: 'lib/text-2.0.3',
-    underscore: 'lib/underscore-1.3.3',
+    backbone: 'lib/backbone',
+    handlebars: 'lib/handlebars',
+    jquery: 'lib/jquery',
+    text: 'lib/text',
+    underscore: 'lib/underscore', 
 
     // Models
     panelModel: 'models/panel',
