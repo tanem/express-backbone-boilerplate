@@ -4,7 +4,11 @@ A small project I used to figure out how to wire up a simple Node/Express based 
 
 ## Dependencies
 
- * [Node.js](http://nodejs.org/) and [npm](https://npmjs.org/)
+ * [Node.js](http://nodejs.org/)
+ * [npm](https://npmjs.org/)
+ * [PhantomJS](http://phantomjs.org/)
+ * [CasperJS](http://casperjs.org/installation.html)
+ * [Pygments](http://pygments.org/download/)
  
 Run `npm install` once you've got a copy of the project. The app can be started via `grunt start`.
 
