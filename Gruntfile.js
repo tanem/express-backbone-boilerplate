@@ -15,6 +15,7 @@ module.exports = function(grunt){
         test: 'server/test/**/*_spec.js'
       }
     },
+
     clean: {
       all: ['_docs', '_dist', '_junitxml'],
       docs: '_docs',
@@ -24,6 +25,7 @@ module.exports = function(grunt){
         server: '_junitxml/server'
       }
     },
+
     compass: {
       dev: {
         options: {              
@@ -43,6 +45,7 @@ module.exports = function(grunt){
         }
       }
     },
+
     watch: {
       sass: {
         files: 'client/src/sass/**/*.scss',
@@ -57,6 +60,7 @@ module.exports = function(grunt){
         tasks: ['jshint:server', 'test-server']
       }
     },
+
     jasmine_node: {
       projectRoot: 'server/test',
       forceExit: true,
@@ -65,11 +69,13 @@ module.exports = function(grunt){
         savePath : '_junitxml/server/'
       }
     },
+    
     casperjs: {
       client: {
         src: 'client/test/lib/casperjs-runner.js'
       }
     },
+
     docco: {
       client_src: {
         options: {
@@ -96,6 +102,7 @@ module.exports = function(grunt){
         src: '<%= jshint.server.test %>'
       }
     },
+
     docco_index: {
       client_src: {
         serve: '/docs/client-src/',
@@ -122,6 +129,7 @@ module.exports = function(grunt){
         tmpl: 'tasks/assets/index.tmpl'
       }
     },
+
     requirejs: {
       compile: {
         options: {
@@ -132,6 +140,7 @@ module.exports = function(grunt){
         }
       }
     },
+
     copy: {
       dist: {
         files: [
@@ -141,6 +150,7 @@ module.exports = function(grunt){
         ]
       }
     }
+    
   });
 
   grunt.loadTasks('tasks');
