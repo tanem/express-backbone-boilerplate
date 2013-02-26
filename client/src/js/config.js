@@ -13,14 +13,6 @@ require.config({
     eventMediator: 'core/eventMediator',
     util: 'core/util',
 
-    // Lib
-    // backbone: 'lib/backbone',
-    // domReady: 'lib/domReady',
-    // handlebars: 'lib/handlebars',
-    // jquery: 'lib/jquery',
-    // text: 'lib/text',
-    // underscore: 'lib/underscore', 
-
     // Models
     panelModel: 'models/panel',
 
