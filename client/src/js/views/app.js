@@ -1,11 +1,18 @@
-define('appView', function(require){
-
-  var Backbone = require('backbone'),
-    PanelsCollection = require('panelsCollection'),
-    eventMediator = require('eventMediator'),
-    util = require('util'),
-    PanelView = require('panelView'),
-    CarouselView = require('carouselView');
+define([
+  'backbone',
+  'panelsCollection',
+  'eventMediator',
+  'util',
+  'panelView',
+  'carouselView'
+], function(
+  Backbone,
+  PanelsCollection,
+  eventMediator,
+  util,
+  PanelView,
+  CarouselView
+){
    
   var AppView = Backbone.View.extend({
 

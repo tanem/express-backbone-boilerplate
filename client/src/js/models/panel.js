@@ -1,15 +1,11 @@
-define('panelModel', function(require){
-
-    var Backbone = require('backbone');
+define(['backbone'], function(Backbone){
    
-    var PanelModel = Backbone.Model.extend({
-        
-        defaults: {
-            'label': '?'
-        }
-        
-    });
+  var PanelModel = Backbone.Model.extend({
+    defaults: {
+      'label': '?'
+    }    
+  });
     
-    return PanelModel;
+  return PanelModel;
     
 });

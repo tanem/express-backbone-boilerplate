@@ -1,9 +1,13 @@
-define('panelView', function(require){
+define([
+  'backbone',
+  'handlebars',
+  'text!templates/panel.handlebars'
+], function(
+  Backbone,
+  Handlebars,
+  panelTemplate
+){
 
-  var Backbone = require('backbone'),
-    Handlebars = require('handlebars'),
-    panelTemplate = require('text!templates/panel.handlebars');
-    
   var PanelView = Backbone.View.extend({
         
     initialize: function(){

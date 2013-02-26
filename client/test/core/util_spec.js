@@ -1,7 +1,5 @@
-define(function(require){
-  
-  var util = require('util');
-  
+define(['util'], function(util){
+    
   describe('Util', function(){
 
     it('should correctly convert degrees to radians', function(){

@@ -1,5 +1,5 @@
-define(function(require){
-  require('../../client/test/core/eventMediator_spec');
-  require('../../client/test/core/util_spec');
-  require('../../client/test/views/carousel_spec');
-});
+define([
+  '/client/test/core/eventMediator_spec.js',
+  '/client/test/core/util_spec.js',
+  '/client/test/views/carousel_spec.js'
+]);

@@ -1,7 +1,4 @@
-define('panelsCollection', function(require){
-
-  var Backbone = require('backbone'),
-    PanelModel = require('panelModel');
+define(['backbone', 'panelModel'], function(Backbone, PanelModel){
 
   var PanelsCollection = Backbone.Collection.extend({
     url: '/api/panels',

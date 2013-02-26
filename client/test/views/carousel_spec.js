@@ -1,7 +1,10 @@
-define(function(require){
-
-  var PanelsCollection = require('panelsCollection'),
-    CarouselView = require('carouselView');
+define([
+  'panelsCollection',
+  'carouselView'
+], function(
+  PanelsCollection,
+  CarouselView
+){
 
   describe('CarouselView', function(){
 
@@ -20,6 +23,10 @@ define(function(require){
         { label: '4' }
       ]);
 
+    });
+
+    afterEach(function(){
+      delete this.carouselView;
     });
 
     it('should remove the most recently added panel when the delete key is pressed', function(){

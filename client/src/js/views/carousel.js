@@ -1,11 +1,18 @@
-define('carouselView', function(require){
-  
-  var Backbone = require('backbone'),
-    Handlebars = require('handlebars'),
-    eventMediator = require('eventMediator'),
-    util = require('util'),
-    PanelView = require('panelView'),
-    carouselTemplate = require('text!templates/carousel.handlebars');
+define([
+  'backbone',
+  'handlebars',
+  'eventMediator',
+  'util',
+  'panelView',
+  'text!templates/carousel.handlebars'
+], function(
+  Backbone,
+  Handlebars,
+  eventMediator,
+  util,
+  PanelView,
+  carouselTemplate
+){
 
   var CarouselView = Backbone.View.extend({
 

@@ -3,13 +3,18 @@ var Panel = require('../../models/panel'),
 
 describe('Models / Panel', function(){
 
+  beforeEach(function(){
+    this.noop = function(){};
+  });
+
   afterEach(function(){
-      Panel.reset(noop);
+    Panel.reset(this.noop);
+    delete this.noop;
   });
 
   it('should correctly return an array of all panels in the DB', function(){
-    new Panel().save(noop);
-    new Panel().save(noop);
+    new Panel().save(this.noop);
+    new Panel().save(this.noop);
     Panel.all(function(err, arr){
       expect(err).toBeNull();
       expect(arr.length).toEqual(2);
@@ -32,7 +37,7 @@ describe('Models / Panel', function(){
   });
 
   it('should correctly delete a panel by ID from the DB', function(){
-    new Panel().save(noop);
+    new Panel().save(this.noop);
     Panel.destroy(1, function(err){
       expect(err).toBeUndefined();
       Panel.all(function(err, arr){
