@@ -9,8 +9,9 @@ A small project I used to figure out how to wire up a simple Node/Express based 
  * [PhantomJS](http://phantomjs.org/)
  * [CasperJS](http://casperjs.org/installation.html)
  * [Pygments](http://pygments.org/download/)
+ * [Jam](http://jamjs.org/)
  
-Run `npm install` once you've got a copy of the project. The app can be started via `grunt start`.
+Run `npm install && jam install` once you've got a copy of the project. The app can be started via `grunt start`.
 
 ## Client
 

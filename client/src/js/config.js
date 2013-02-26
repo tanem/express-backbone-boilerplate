@@ -2,6 +2,8 @@ require.config({
     
   baseUrl: '/client/src/js',
 
+  deps: ['/client/src/js/lib/require.config.js'],
+
   paths: {
 
     // Collections
@@ -12,12 +14,12 @@ require.config({
     util: 'core/util',
 
     // Lib
-    backbone: 'lib/backbone',
-    domReady: 'lib/domReady',
-    handlebars: 'lib/handlebars',
-    jquery: 'lib/jquery',
-    text: 'lib/text',
-    underscore: 'lib/underscore', 
+    // backbone: 'lib/backbone',
+    // domReady: 'lib/domReady',
+    // handlebars: 'lib/handlebars',
+    // jquery: 'lib/jquery',
+    // text: 'lib/text',
+    // underscore: 'lib/underscore', 
 
     // Models
     panelModel: 'models/panel',

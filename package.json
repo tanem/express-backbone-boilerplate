@@ -29,5 +29,16 @@
     "express": "~3.1.0",
     "grunt-contrib-requirejs": "~0.4.0",
     "grunt-contrib-copy": "~0.4.0"
+  },
+  "jam": {
+    "packageDir": "client/src/js/lib",
+    "baseUrl": "client/src/js",
+    "dependencies": {
+      "jquery": "*",
+      "backbone": "*",
+      "handlebars": "*",
+      "text": "*",
+      "underscore": "*"
+    }
   }
 }

@@ -1,18 +1,18 @@
 /** vim: et:ts=4:sw=4:sts=4
- * @license RequireJS 2.1.4 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
+ * @license RequireJS 2.1.2 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: http://github.com/jrburke/requirejs for details
  */
 //Not using strict: uneven strict support in browsers, #392, and causes
 //problems with requirejs.exec()/transpiler plugins that may not be strict.
 /*jslint regexp: true, nomen: true, sloppy: true */
-/*global window, navigator, document, importScripts, setTimeout, opera */
+/*global window, navigator, document, importScripts, jQuery, setTimeout, opera */
 
 var requirejs, require, define;
 (function (global) {
     var req, s, head, baseElement, dataMain, src,
         interactiveScript, currentlyAddingScript, mainScript, subPath,
-        version = '2.1.4',
+        version = '2.1.2',
         commentRegExp = /(\/\*([\s\S]*?)\*\/|([^:]|^)\/\/(.*)$)/mg,
         cjsRequireRegExp = /[^.]\s*require\s*\(\s*["']([^'"\s]+)["']\s*\)/g,
         jsSuffixRegExp = /\.js$/,
@@ -21,6 +21,7 @@ var requirejs, require, define;
         ostring = op.toString,
         hasOwn = op.hasOwnProperty,
         ap = Array.prototype,
+        aps = ap.slice,
         apsp = ap.splice,
         isBrowser = !!(typeof window !== 'undefined' && navigator && document),
         isWebWorker = !isBrowser && typeof importScripts !== 'undefined',
@@ -917,7 +918,8 @@ var requirejs, require, define;
                         name = this.map.name,
                         parentName = this.map.parentMap ? this.map.parentMap.name : null,
                         localRequire = context.makeRequire(map.parentMap, {
-                            enableBuildCallback: true
+                            enableBuildCallback: true,
+                            skipMap: true
                         });
 
                     //If current map is not normalized, wait for that
@@ -1015,11 +1017,8 @@ var requirejs, require, define;
                         try {
                             req.exec(text);
                         } catch (e) {
-                            return onError(makeError('fromtexteval',
-                                             'fromText eval for ' + id +
-                                            ' failed: ' + e,
-                                             e,
-                                             [id]));
+                            throw new Error('fromText eval for ' + moduleName +
+                                            ' failed: ' + e);
                         }
 
                         if (hasInteractive) {
@@ -1396,21 +1395,16 @@ var requirejs, require, define;
                      * plain URLs like nameToUrl.
                      */
                     toUrl: function (moduleNamePlusExt) {
-                        var ext, url,
-                            index = moduleNamePlusExt.lastIndexOf('.'),
-                            segment = moduleNamePlusExt.split('/')[0],
-                            isRelative = segment === '.' || segment === '..';
+                        var index = moduleNamePlusExt.lastIndexOf('.'),
+                            ext = null;
 
-                        //Have a file extension alias, and it is not the
-                        //dots from a relative path.
-                        if (index !== -1 && (!isRelative || index > 1)) {
+                        if (index !== -1) {
                             ext = moduleNamePlusExt.substring(index, moduleNamePlusExt.length);
                             moduleNamePlusExt = moduleNamePlusExt.substring(0, index);
                         }
 
-                        url = context.nameToUrl(normalize(moduleNamePlusExt,
-                                                relMap && relMap.id, true), ext || '.fake');
-                        return ext ? url : url.substring(0, url.length - 5);
+                        return context.nameToUrl(normalize(moduleNamePlusExt,
+                                                relMap && relMap.id, true), ext);
                     },
 
                     defined: function (id) {
@@ -1455,11 +1449,10 @@ var requirejs, require, define;
 
             /**
              * Called to enable a module if it is still in the registry
-             * awaiting enablement. A second arg, parent, the parent module,
-             * is passed in for context, when this method is overriden by
-             * the optimizer. Not shown here to keep code compact.
+             * awaiting enablement. parent module is passed in for context,
+             * used by the optimizer.
              */
-            enable: function (depMap) {
+            enable: function (depMap, parent) {
                 var mod = getOwn(registry, depMap.id);
                 if (mod) {
                     getModule(depMap).enable();
@@ -1998,3 +1991,137 @@ var requirejs, require, define;
     //Set up with config info.
     req(cfg);
 }(this));
+
+var jam = {
+    "packages": [
+        {
+            "name": "backbone",
+            "location": "lib/backbone",
+            "main": "backbone.js"
+        },
+        {
+            "name": "handlebars",
+            "location": "lib/handlebars",
+            "main": "handlebars.js"
+        },
+        {
+            "name": "jquery",
+            "location": "lib/jquery",
+            "main": "dist/jquery.js"
+        },
+        {
+            "name": "text",
+            "location": "lib/text",
+            "main": "text.js"
+        },
+        {
+            "name": "underscore",
+            "location": "lib/underscore",
+            "main": "underscore.js"
+        }
+    ],
+    "version": "0.2.13",
+    "shim": {
+        "backbone": {
+            "deps": [
+                "underscore",
+                "jquery"
+            ],
+            "exports": "Backbone"
+        },
+        "underscore": {
+            "exports": "_"
+        }
+    }
+};
+
+if (typeof require !== "undefined" && require.config) {
+    require.config({
+    "packages": [
+        {
+            "name": "backbone",
+            "location": "lib/backbone",
+            "main": "backbone.js"
+        },
+        {
+            "name": "handlebars",
+            "location": "lib/handlebars",
+            "main": "handlebars.js"
+        },
+        {
+            "name": "jquery",
+            "location": "lib/jquery",
+            "main": "dist/jquery.js"
+        },
+        {
+            "name": "text",
+            "location": "lib/text",
+            "main": "text.js"
+        },
+        {
+            "name": "underscore",
+            "location": "lib/underscore",
+            "main": "underscore.js"
+        }
+    ],
+    "shim": {
+        "backbone": {
+            "deps": [
+                "underscore",
+                "jquery"
+            ],
+            "exports": "Backbone"
+        },
+        "underscore": {
+            "exports": "_"
+        }
+    }
+});
+}
+else {
+    var require = {
+    "packages": [
+        {
+            "name": "backbone",
+            "location": "lib/backbone",
+            "main": "backbone.js"
+        },
+        {
+            "name": "handlebars",
+            "location": "lib/handlebars",
+            "main": "handlebars.js"
+        },
+        {
+            "name": "jquery",
+            "location": "lib/jquery",
+            "main": "dist/jquery.js"
+        },
+        {
+            "name": "text",
+            "location": "lib/text",
+            "main": "text.js"
+        },
+        {
+            "name": "underscore",
+            "location": "lib/underscore",
+            "main": "underscore.js"
+        }
+    ],
+    "shim": {
+        "backbone": {
+            "deps": [
+                "underscore",
+                "jquery"
+            ],
+            "exports": "Backbone"
+        },
+        "underscore": {
+            "exports": "_"
+        }
+    }
+};
+}
+
+if (typeof exports !== "undefined" && typeof module !== "undefined") {
+    module.exports = jam;
+}

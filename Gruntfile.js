@@ -7,7 +7,7 @@ module.exports = function(grunt){
         jshintrc: '.jshintrc'
       },
       client: {
-        src: ['client/src/js/**/*.js', '!client/src/js/lib/*.js'],
+        src: ['client/src/js/**/*.js', '!client/src/js/lib/**/*.js'],
         test: ['client/test/**/*.js', '!client/test/lib/jasmine-1.2.0/*', '!client/test/lib/jasmine-reporters/*.js']
       },
       server: {
@@ -150,7 +150,7 @@ module.exports = function(grunt){
         ]
       }
     }
-    
+
   });
 
   grunt.loadTasks('tasks');
