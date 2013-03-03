@@ -175,11 +175,11 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-htmlrefs');
   grunt.loadNpmTasks('grunt-jasmine-node');
 
+  grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist', 'htmlrefs:dist']);
   grunt.registerTask('docs', ['clean:docs', 'docco', 'docco_index']);
+  grunt.registerTask('start', ['clean:all', 'compass:dev', 'server', 'watch']);
   grunt.registerTask('test-client', ['clean:junitxml:client', 'server', 'casperjs']);
   grunt.registerTask('test-server', ['clean:junitxml:server', 'prep_junitxmldir', 'jasmine_node']);
   grunt.registerTask('test', ['clean:junitxml', 'test-server', 'test-client']);
-  grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist', 'htmlrefs:dist']);
-  grunt.registerTask('start', ['clean:all', 'compass:dev', 'server', 'watch']);
 
 };

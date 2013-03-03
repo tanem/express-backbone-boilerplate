@@ -1,6 +1,6 @@
 # Node Backbone Carousel
 
-A small project I used to figure out how to wire up a simple Node/Express based dev environment.
+A small demo project I used to figure out how to wire up an ExpressJS/Backbone app.
 
 ## Dependencies
 
@@ -10,11 +10,17 @@ A small project I used to figure out how to wire up a simple Node/Express based 
  * [CasperJS](http://casperjs.org/installation.html)
  * [Pygments](http://pygments.org/download/)
  
-Run `npm install` once you've got a copy of the project. The app can be started via `grunt start`.
+Run `npm install` once you've got a copy of the project.
 
 ## Client
 
- * Can be accessed via `http://localhost:3000/client/`
+The app can be started via `grunt start`, and accessed via `http://localhost:3000/client/`.
+
+The `grunt start` task will also:
+
+ * Watch the SASS files, and recompile the dev CSS if any changes are made
+ * Watch the client src & test JS files, and run JSHint plus the client tests if any changes are made
+ * Watch the server src & test JS files, and run JSHint plus the server tests if any changes are made
 
 [RequireJS](http://requirejs.org/) is used for file and module loading. [Backbone.js](http://backbonejs.org/) is the client-side MVC framework. [Handlebars](http://handlebarsjs.com/) is used for client-side templating. [Compass](http://compass-style.org/) is used for CSS authoring.
 
