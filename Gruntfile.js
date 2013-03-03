@@ -133,10 +133,14 @@ module.exports = function(grunt){
     requirejs: {
       compile: {
         options: {
-          name: 'main',
           baseUrl: 'client/src/js',
+          include: 'requireLib',
           mainConfigFile: 'client/src/js/config.js',
-          out: '_dist/client/src/js/main.js'
+          name: 'main',
+          out: '_dist/client/src/js/main.js',
+          paths: {
+            requireLib: 'lib/require'
+          }
         }
       }
     },
@@ -144,7 +148,6 @@ module.exports = function(grunt){
     copy: {
       dist: {
         files: [
-          { expand: true, flatten: true, src: 'client/src/index.html', dest: '_dist/client/src/', processContentExclude: 'html' },
           { expand: true, flatten: true, src: 'client/src/font/*', dest: '_dist/client/src/font/' },
           { src: ['server/**/*.js', '!server/test/**/*.js'], dest: '_dist/' }
         ]
@@ -153,7 +156,7 @@ module.exports = function(grunt){
 
     htmlrefs: {
       dist: {
-        src: ['client/src/index.html', 'client/src/index-2.html'],
+        src: 'client/src/index.html',
         dest: '_dist/client/src/'
       }
     }
@@ -176,7 +179,7 @@ module.exports = function(grunt){
   grunt.registerTask('test-client', ['clean:junitxml:client', 'server', 'casperjs']);
   grunt.registerTask('test-server', ['clean:junitxml:server', 'prep_junitxmldir', 'jasmine_node']);
   grunt.registerTask('test', ['clean:junitxml', 'test-server', 'test-client']);
-  grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist']);
+  grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist', 'htmlrefs:dist']);
   grunt.registerTask('start', ['clean:all', 'compass:dev', 'server', 'watch']);
 
 };
