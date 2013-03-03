@@ -1,18 +1,18 @@
 {
-  "name": "node-backbone-carousel",
-  "description": "Express based dev setup.",
-  "version": "0.2.0",
+  "name": "express-backbone-boilerplate",
+  "description": "Boilerplate/sample app built with ExpressJS and Backbone.",
+  "version": "1.0.0",
   "author": {
     "name": "Tane Morgan",
     "url": "http://github.com/tanem"
   },
-  "homepage": "http://github.com/tanem/node-backbone-carousel",
+  "homepage": "http://github.com/tanem/express-backbone-boilerplate",
   "repository": {
     "type": "git",
-    "url": "http://github.com/tanem/node-backbone-carousel.git"
+    "url": "http://github.com/tanem/express-backbone-boilerplate.git"
   },
   "bugs": {
-    "url": "http://github.com/tanem/node-backbone-carousel/issues"
+    "url": "http://github.com/tanem/express-backbone-boilerplate/issues"
   },
   "engines": {
     "node": ">= 0.8.4"
