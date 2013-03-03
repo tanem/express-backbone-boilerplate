@@ -5,11 +5,10 @@
 	<title>Carousel</title>
 	<link rel="stylesheet" href="/client/src/css/main.css">
   <script src="/client/src/js/lib/require.js"></script>
-  <script>
-  require(['/client/src/js/config.js'], function(){
-    require(['/client/src/js/main.js']);
-  });
-  </script>
+  <!-- build:remove -->
+  <script id="require-config" src="/client/src/js/config.js"></script>
+  <!-- endbuild -->
+  <script src="/client/src/js/main.js"></script>
 </head>
 <body>
   <header>

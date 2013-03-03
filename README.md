@@ -16,7 +16,7 @@ Run `npm install` once you've got a copy of the project. The app can be started 
 
  * Can be accessed via `http://localhost:3000/client/`
 
-[RequireJS](http://requirejs.org/) is used for file and module loading. [Backbone.js](http://backbonejs.org/) is the client-side MVC framework. [Handlebars](http://handlebarsjs.com/) is used for client-side templating. [Compass](http://compass-style.org/) is used for CSS authoring, and is started as part of the start script.
+[RequireJS](http://requirejs.org/) is used for file and module loading. [Backbone.js](http://backbonejs.org/) is the client-side MVC framework. [Handlebars](http://handlebarsjs.com/) is used for client-side templating. [Compass](http://compass-style.org/) is used for CSS authoring.
 
 ## Unit tests
 
@@ -30,7 +30,7 @@ Run `npm install` once you've got a copy of the project. The app can be started 
 
 ### Server
 
- * Can be run via `grunt test-client`
+ * Can be run via `grunt test-server`
  * JUnit XML is output to `./_junitxml/server`
 
 [jasmine-node](https://github.com/mhevery/jasmine-node) is used for testing the Node server JS.

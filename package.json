@@ -29,5 +29,6 @@
     "grunt-contrib-watch": "~0.2.0",
     "grunt-docco": "~0.2.0",
     "grunt-jasmine-node": "~0.0.6"
+    // "grunt-htmlrefs": pending patch.
   }
 }

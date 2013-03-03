@@ -144,10 +144,17 @@ module.exports = function(grunt){
     copy: {
       dist: {
         files: [
-          { expand: true, flatten: true, src: 'client/src/index.html', dest: '_dist/client/src/' },
+          { expand: true, flatten: true, src: 'client/src/index.html', dest: '_dist/client/src/', processContentExclude: 'html' },
           { expand: true, flatten: true, src: 'client/src/font/*', dest: '_dist/client/src/font/' },
           { src: ['server/**/*.js', '!server/test/**/*.js'], dest: '_dist/' }
         ]
+      }
+    },
+
+    htmlrefs: {
+      dist: {
+        src: ['client/src/index.html', 'client/src/index-2.html'],
+        dest: '_dist/client/src/'
       }
     }
 
@@ -162,6 +169,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-docco');
+  grunt.loadNpmTasks('grunt-htmlrefs');
   grunt.loadNpmTasks('grunt-jasmine-node');
 
   grunt.registerTask('docs', ['clean:docs', 'docco', 'docco_index']);
