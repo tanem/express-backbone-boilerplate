@@ -3,6 +3,8 @@
 _junitxml
 client/src/css
 client/src/js/lib
-node_modules
+# http://stackoverflow.com/questions/5533050/gitignore-exclude-folder-but-include-specific-subfolder
+node_modules/*
+!node_modules/grunt-htmlrefs/
 _docs
 _dist
