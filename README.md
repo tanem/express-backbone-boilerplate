@@ -47,4 +47,4 @@ Run `npm install` once you've got a copy of the project. The app can be started 
 
  * Can be generated via `grunt dist`
 
- Uses the RequireJS optimiser to compress the JS. Rewrites the index.html file to only include the one script.
+Uses the RequireJS optimiser to compress the JS. Rewrites the index.html file to only include the one script.
