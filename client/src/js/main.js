@@ -1,3 +1,11 @@
-require(['./config'], function(){
-  require(['./app']);
+require([
+  'views/app'
+], function(
+  AppView
+){
+
+  var appView = new AppView({
+    el: 'body'
+  });
+
 });

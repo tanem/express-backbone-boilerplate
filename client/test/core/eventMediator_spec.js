@@ -1,4 +1,8 @@
-define(['eventMediator'], function(eventMediator){
+define([
+  'core/eventMediator'
+], function(
+  eventMediator
+){
   
   describe('eventMediator', function(){
     

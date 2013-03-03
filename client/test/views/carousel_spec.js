@@ -1,6 +1,6 @@
 define([
-  'panelsCollection',
-  'carouselView'
+  'collections/panels',
+  'views/carousel'
 ], function(
   PanelsCollection,
   CarouselView

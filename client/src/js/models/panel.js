@@ -1,4 +1,12 @@
-define(['backbone'], function(Backbone){
+define([
+  'jquery',
+  'underscore',
+  'backbone'
+], function(
+  $,
+  _,
+  Backbone
+){
    
   var PanelModel = Backbone.Model.extend({
     defaults: {

@@ -4,7 +4,12 @@
   <meta charset="utf-8">
 	<title>Carousel</title>
 	<link rel="stylesheet" href="/client/src/css/main.css">
-  <script data-main="/client/src/js/main.js" src="/client/src/js/lib/require.js"></script>
+  <script src="/client/src/js/lib/require.js"></script>
+  <script>
+  require(['/client/src/js/config.js'], function(){
+    require(['/client/src/js/main.js']);
+  });
+  </script>
 </head>
 <body>
   <header>

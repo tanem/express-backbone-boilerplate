@@ -38,7 +38,7 @@ module.exports = function(grunt){
       prod: {
         options: {              
           sassDir: 'client/src/sass',
-          cssDir: '_dist/client/css',
+          cssDir: '_dist/client/src/css',
           outputStyle: 'compressed',
           noLineComments: true,
           force: true
@@ -71,8 +71,8 @@ module.exports = function(grunt){
     },
     
     casperjs: {
-      client: {
-        src: 'client/test/lib/casperjs-runner.js'
+      options: {
+        src: 'client/test/_lib/casperjs-runner.js'
       }
     },
 
@@ -135,8 +135,8 @@ module.exports = function(grunt){
         options: {
           name: 'main',
           baseUrl: 'client/src/js',
-          mainConfigFile: 'client/src/js/main.js',
-          out: '_dist/client/js/main.js'
+          mainConfigFile: 'client/src/js/config.js',
+          out: '_dist/client/src/js/main.js'
         }
       }
     },
@@ -144,8 +144,8 @@ module.exports = function(grunt){
     copy: {
       dist: {
         files: [
-          { expand: true, flatten: true, src: 'client/src/index.html', dest: '_dist/client/' },
-          { expand: true, flatten: true, src: 'client/src/font/*', dest: '_dist/client/font/' },
+          { expand: true, flatten: true, src: 'client/src/index.html', dest: '_dist/client/src/' },
+          { expand: true, flatten: true, src: 'client/src/font/*', dest: '_dist/client/src/font/' },
           { src: ['server/**/*.js', '!server/test/**/*.js'], dest: '_dist/' }
         ]
       }

@@ -1,11 +1,15 @@
 define([
+  'jquery',
+  'underscore',
   'backbone',
   'handlebars',
-  'eventMediator',
-  'util',
-  'panelView',
+  'core/eventMediator',
+  'core/util',
+  'views/panel',
   'text!templates/carousel.handlebars'
 ], function(
+  $,
+  _,
   Backbone,
   Handlebars,
   eventMediator,

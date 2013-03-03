@@ -1,8 +1,12 @@
 define([
+  'jquery',
+  'underscore',
   'backbone',
   'handlebars',
   'text!templates/panel.handlebars'
 ], function(
+  $,
+  _,
   Backbone,
   Handlebars,
   panelTemplate

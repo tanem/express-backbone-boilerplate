@@ -1,4 +1,8 @@
-define(['util'], function(util){
+define([
+  'core/util'
+], function(
+  util
+){
     
   describe('Util', function(){
 
