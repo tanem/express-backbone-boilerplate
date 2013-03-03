@@ -42,3 +42,9 @@ Run `npm install` once you've got a copy of the project. The app can be started 
  * Can be accessed via `http://localhost:3000/docs/[folder]`
 
 [Docco](http://jashkenas.github.com/docco/) is used to generate the client-side docs. A basic index.html file is also generated as part of the script, and included in each subfolder.
+
+## Dist
+
+ * Can be generated via `grunt dist`
+
+ Uses the RequireJS optimiser to compress the JS. Rewrites the index.html file to only include the one script.
