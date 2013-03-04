@@ -72,7 +72,8 @@ module.exports = function(grunt){
     
     casperjs: {
       options: {
-        src: 'client/test/_lib/casperjs-runner.js'
+        src: 'client/test/_lib/casperjs-runner.js',
+        junitxmlDest: '_junitxml/client'
       }
     },
 

@@ -1,6 +1,6 @@
 var casper = require('casper').create(),
   fs = require('fs'),
-  junitXmlDir = './_junitxml/client';
+  junitXmlDir = casper.cli.get(0);//'./_junitxml/client';
 
 casper.start('http://localhost:3000/client/test/');
 
@@ -24,8 +24,9 @@ casper.waitFor(
       fs.write(key, junitXmlResults[key], 'w');
     });
 
-    this.waitForSelector('.alert .bar', function(){
-      this.test.assertExists('.alert .passingAlert', this.fetchText('.alert .bar:nth-child(1)'));
+    this.waitForSelector('.banner .duration', function(){
+      this.test.assertSelectorExists('.alert .passingAlert', this.fetchText('.alert .bar:nth-child(1)'));
+      // if (this.test.getFailures().length > 0) this.exit(3);
     });
 
   }
