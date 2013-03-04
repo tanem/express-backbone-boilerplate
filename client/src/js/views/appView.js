@@ -2,11 +2,11 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'collections/panels',
+  'collections/panelsCollection',
   'core/eventMediator',
   'core/util',
-  'views/panel',
-  'views/carousel'
+  'views/panelView',
+  'views/carouselView'
 ], function(
   $,
   _,

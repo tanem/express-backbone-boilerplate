@@ -2,7 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'models/panel'
+  'models/panelModel'
 ], function(
   $,
   _,

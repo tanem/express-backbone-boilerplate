@@ -5,7 +5,7 @@ define([
   'handlebars',
   'core/eventMediator',
   'core/util',
-  'views/panel',
+  'views/panelView',
   'text!templates/carousel.handlebars'
 ], function(
   $,

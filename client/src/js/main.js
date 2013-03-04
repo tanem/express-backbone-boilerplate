@@ -1,5 +1,5 @@
 require([
-  'views/app'
+  'views/appView'
 ], function(
   AppView
 ){
