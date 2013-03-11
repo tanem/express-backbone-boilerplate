@@ -41,16 +41,16 @@ define([
 
       switch (e.which) {
         case keyMap.del:
-          eventMediator.publish('delete');
+          eventMediator.trigger('delete');
           return false;
         case keyMap.enter:
-          eventMediator.publish('enter');
+          eventMediator.trigger('enter');
           return false;
         case keyMap.rightArrow:
-          eventMediator.publish('rightArrow');
+          eventMediator.trigger('rightArrow');
           return false;
         case keyMap.leftArrow:
-          eventMediator.publish('leftArrow');
+          eventMediator.trigger('leftArrow');
           return false;
       }
 

@@ -105,10 +105,10 @@ define([
       this.collection.bind('add', this._addPanel, this);
       this.collection.bind('remove', this._removePanel, this);
 
-      eventMediator.subscribe('delete', this._deleteHandler, this);
-      eventMediator.subscribe('enter', this._enterHandler, this);
-      eventMediator.subscribe('rightArrow', this._rightArrowHandler, this);
-      eventMediator.subscribe('leftArrow', this._leftArrowHandler, this);
+      eventMediator.on('delete', this._deleteHandler, this);
+      eventMediator.on('enter', this._enterHandler, this);
+      eventMediator.on('rightArrow', this._rightArrowHandler, this);
+      eventMediator.on('leftArrow', this._leftArrowHandler, this);
 
       this.carouselRotation = 0;
       this.panelRotation = 0;
