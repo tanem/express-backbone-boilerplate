@@ -1,7 +1,6 @@
 .DS_Store
 .sass-cache
 client/src/css
-client/src/js/lib
 node_modules
 _docs
 _dist
