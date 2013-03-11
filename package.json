@@ -15,7 +15,8 @@
     "url": "http://github.com/tanem/express-backbone-boilerplate/issues"
   },
   "engines": {
-    "node": ">= 0.8.4"
+    "node": ">= 0.8.4",
+    "npm": ">= 1.1.48"
   },
   "dependencies": {},
   "devDependencies": {
