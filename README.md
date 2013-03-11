@@ -1,5 +1,7 @@
 # Express Backbone Boilerplate
 
+[![Build Status](https://travis-ci.org/tanem/express-backbone-boilerplate.png)](https://travis-ci.org/tanem/express-backbone-boilerplate)
+
 Okay okay, not quite a bare-bones boilerplate, more of a small sample app built using Express and Backbone plus a few friends. I've called it a boilerplate because I've used it as the basis for a few bigger projects, so hope it can help others in this regard too. 
 
 ## Dependencies
