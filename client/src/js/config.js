@@ -1,6 +1,7 @@
 require.config({
   baseUrl: '/client/src/js',            
   paths: {
+    modernizr: 'lib/modernizr',
     jquery: 'lib/jquery',
     underscore: 'lib/underscore',
     backbone: 'lib/backbone',
@@ -8,6 +9,9 @@ require.config({
     text: 'lib/text'
   },
   shim: {
+    'modernizr': {
+      exports: 'Modernizr'
+    },
     'underscore': {
       exports: '_'
     },

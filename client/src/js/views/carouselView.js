@@ -1,4 +1,5 @@
 define([
+  'modernizr',
   'jquery',
   'underscore',
   'backbone',
@@ -8,6 +9,7 @@ define([
   'views/panelView',
   'text!templates/carousel.handlebars'
 ], function(
+  Modernizr,
   $,
   _,
   Backbone,
@@ -43,8 +45,8 @@ define([
     _adjustPanelTransformString: function(carouselView, translate){
       return function(i){
         var rotateY = i * carouselView.panelRotation;
-        $(this).css('-webkit-transform', 'rotateY(' + rotateY +
-          'deg) translateZ(' + translate + 'px)');
+        this.style[Modernizr.prefixed('transform')] = 'rotateY(' + rotateY +
+          'deg) translateZ(' + translate + 'px)';
       };
     },
 
@@ -95,8 +97,8 @@ define([
     },
 
     _rotate: function(){
-      this.$carouselInner.css('-webkit-transform', 'rotateY(' +
-        this.carouselRotation + 'deg)');
+      this.carouselInner.style[Modernizr.prefixed('transform')] = 'rotateY(' +
+        this.carouselRotation + 'deg)';
     },
 
     initialize: function(){
@@ -118,6 +120,7 @@ define([
     render: function(){
       this.setElement(carouselTemplate);
       this.$carouselInner = this.$('.carousel-inner');
+      this.carouselInner = this.$carouselInner.get(0);
       return this;
     }
   
