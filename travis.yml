@@ -5,6 +5,8 @@ branches:
   only:
     - master
 before_script:
-  - npm install -g grunt-cli
+  - "npm install -g grunt-cli"
   - "phantomjs --version"
   - "export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'"
+script: "npm test"
+install: "npm install"
