@@ -2,3 +2,10 @@ language: node_js
 node_js:
   - 0.8
   - 0.6
+branches:
+  only:
+    - master
+before_script:
+  - npm install -g grunt-cli
+  - "phantomjs --version"
+  - "export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'"
