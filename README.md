@@ -47,7 +47,7 @@ The `grunt start` task will also:
 
  * Can be generated via `grunt docs`
  * Output to `./_docs`
- * Can be accessed via `http://localhost:3000/docs`
+ * Can be accessed via `http://localhost:3000/_docs`
 
 [Docker](https://github.com/Prevole/grunt-docker) is used to generate the client-side docs.
 
