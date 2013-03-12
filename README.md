@@ -47,9 +47,9 @@ The `grunt start` task will also:
 
  * Can be generated via `grunt docs`
  * Output to `./_docs`
- * Can be accessed via `http://localhost:3000/docs/[folder]`
+ * Can be accessed via `http://localhost:3000/docs`
 
-[Docco](http://jashkenas.github.com/docco/) is used to generate the client-side docs. A basic index.html file is also generated as part of the script, and included in each subfolder.
+[Docker](https://github.com/Prevole/grunt-docker) is used to generate the client-side docs.
 
 ## Dist
 

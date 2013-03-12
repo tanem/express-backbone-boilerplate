@@ -3,14 +3,14 @@ var path = require('path'),
 
 module.exports = function(app){
   
-  app.get('/_docs/*', function(req, res){      
+  app.get('/_docs*', function(req, res){      
     
     var param = req.params[0];
     
-    if (/\.(?:html|css)$/.test(param)) {
+    if (/\.(?:html|css|js)$/.test(param)) {
       res.sendfile(path.join(docsPath, param));
     } else {
-      res.sendfile(path.join(docsPath, param, 'index.html'));
+      res.redirect('/_docs/README.md.html');
     }
 
   });

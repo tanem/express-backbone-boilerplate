@@ -8,7 +8,7 @@ module.exports = function(grunt){
       },
       client: {
         src: ['client/src/js/**/*.js', '!client/src/js/lib/**/*.js'],
-        test: ['client/test/**/*.js', '!client/test/lib/jasmine-1.2.0/*', '!client/test/lib/jasmine-reporters/*.js']
+        test: ['client/test/**/*.js', '!client/test/_lib/jasmine-1.2.0/*', '!client/test/_lib/jasmine-reporters/*.js']
       },
       server: {
         src: ['server/**/*.js', '!server/node_modules/**/*'],
@@ -77,60 +77,6 @@ module.exports = function(grunt){
       }
     },
 
-    docco: {
-      client_src: {
-        options: {
-          output: '_docs/client-src'
-        },
-        src: '<%= jshint.client.src %>'
-      },
-      client_test: {
-        options: {
-          output: '_docs/client-test'
-        },
-        src: '<%= jshint.client.test %>'
-      },
-      server_src: {
-        options: {
-          output: '_docs/server-src'
-        },
-        src: '<%= jshint.server.src %>'
-      },
-      server_test: {
-        options: {
-          output: '_docs/server-test'
-        },
-        src: '<%= jshint.server.test %>'
-      }
-    },
-
-    docco_index: {
-      client_src: {
-        serve: '/docs/client-src/',
-        src: '<%= docco.client_src.options.output %>',
-        title: 'Client Source',
-        tmpl: 'tasks/assets/index.tmpl'
-      },
-      client_test: {
-        serve: '/docs/client-test/',
-        src: '<%= docco.client_test.options.output %>',
-        title: 'Client Test',
-        tmpl: 'tasks/assets/index.tmpl'
-      },
-      server_src: {
-        serve: '/docs/server-src/',
-        src: '<%= docco.server_src.options.output %>',
-        title: 'Server Source',
-        tmpl: 'tasks/assets/index.tmpl'
-      },
-      server_test: {
-        serve: '/docs/server-test/',
-        src: '<%= docco.server_test.options.output %>',
-        title: 'Server Test',
-        tmpl: 'tasks/assets/index.tmpl'
-      }
-    },
-
     requirejs: {
       compile: {
         options: {
@@ -160,6 +106,24 @@ module.exports = function(grunt){
         src: 'client/src/index.html',
         dest: '_dist/client/src/'
       }
+    },
+
+    docker: {
+      app: {
+        expand: true,
+        src: [
+          '<%= jshint.client.src %>', 
+          '<%= jshint.client.test %>',
+          '<%= jshint.server.src %>',
+          '<%= jshint.server.test %>',
+          'README.md'
+        ],
+        dest: '_docs',
+        options: {
+          onlyUpdated: true,
+          colourScheme: 'default'
+        }
+      }
     }
 
   });
@@ -172,15 +136,15 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-docco');
+  grunt.loadNpmTasks('grunt-docker');
   grunt.loadNpmTasks('grunt-htmlrefs');
   grunt.loadNpmTasks('grunt-jasmine-node');
 
   grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist', 'htmlrefs:dist']);
-  grunt.registerTask('docs', ['clean:docs', 'docco', 'docco_index']);
-  grunt.registerTask('start', ['clean:all', 'compass:dev', 'server', 'watch']);
+  grunt.registerTask('docs', ['clean:docs', 'docker']);
   grunt.registerTask('test-client', ['clean:junitxml:client', 'server', 'casperjs']);
   grunt.registerTask('test-server', ['clean:junitxml:server', 'prep_junitxmldir', 'jasmine_node']);
   grunt.registerTask('test', ['clean:junitxml', 'test-server', 'test-client']);
+  grunt.registerTask('start', ['clean:all', 'compass:dev', 'docker', 'server', 'watch']);
 
 };
