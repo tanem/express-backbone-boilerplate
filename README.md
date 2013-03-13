@@ -59,6 +59,6 @@ Uses the RequireJS optimiser to compress the JS. Rewrites the index.html file to
 
 ## Thanks
 
- * @andrewpmckenzie, whose [node-jasmine-dom](https://github.com/andrewpmckenzie/node-jasmine-dom) was a big inspiration for this project
- * @smozely, for the scaffolding and eventMediator suggestions
- * @timsnadden, for showing me some new npm modules and Backbone helpers
+ * [@andrewpmckenzie](https://github.com/andrewpmckenzie), whose [node-jasmine-dom](https://github.com/andrewpmckenzie/node-jasmine-dom) was a big inspiration for this project
+ * [@smozely](https://github.com/smozely), for the scaffolding and eventMediator suggestions
+ * [@timsnadden](https://github.com/timsnadden), for showing me some new npm modules and Backbone helpers
