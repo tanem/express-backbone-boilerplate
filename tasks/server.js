@@ -4,7 +4,7 @@ module.exports = function(grunt){
     var http = require('http'),
       done = this.async(),
       port = this.args[0] || 3000,
-      server = http.createServer(require('../server/app.js'));
+      server = http.createServer(require('../server/src/app.js'));
 
     server.on('error', function(e){
       if (e.code == 'EADDRINUSE') {

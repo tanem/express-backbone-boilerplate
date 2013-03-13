@@ -1,5 +1,5 @@
 var path = require('path'),
-  clientSrcPath = path.join(__dirname, '/../../client/src');
+  clientSrcPath = path.join(__dirname, '/../../../client/src');
 
 module.exports = function(app){
   

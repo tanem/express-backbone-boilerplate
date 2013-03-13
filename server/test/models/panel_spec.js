@@ -1,4 +1,4 @@
-var Panel = require('../../models/panel'),
+var Panel = require('../../src/models/panel'),
   noop = function(){};
 
 describe('Models / Panel', function(){
