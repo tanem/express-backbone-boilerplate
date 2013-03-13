@@ -51,8 +51,14 @@ The `grunt start` task will also:
 
 [Docker](https://github.com/Prevole/grunt-docker) is used to generate the client-side docs.
 
-## Dist
+## Distribution
 
  * Can be generated via `grunt dist`
 
 Uses the RequireJS optimiser to compress the JS. Rewrites the index.html file to only include the one script.
+
+## Thanks
+
+ * @andrewpmckenzie, whose [node-jasmine-dom](https://github.com/andrewpmckenzie/node-jasmine-dom) was a big inspiration for this project
+ * @smozely, for the scaffolding and eventMediator suggestions
+ * @timsnadden, for showing me some new npm modules and Backbone helpers
