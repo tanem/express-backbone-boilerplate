@@ -12,7 +12,7 @@ module.exports = function(app){
   });
   
   app.get('/client/test', function(req, res){
-    res.sendfile(path.join(clientTestPath, 'lib/index.html'));
+    res.sendfile(path.join(clientTestPath, 'lib/SpecRunner.html'));
   });
 
 };
