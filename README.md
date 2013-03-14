@@ -34,7 +34,7 @@ The `grunt start` task will also:
  * Can also be run headless via `grunt test-client`
  * JUnit XML is output to `./_junitxml/client`
 
-[Jasmine](http://pivotal.github.com/jasmine/) is used for testing the JS. [CasperJS](http://casperjs.org/) is used to drive the tests headless via [PhantomJS](http://phantomjs.org/).
+A module listing the required tests to run is generated via grunt. [Jasmine](http://pivotal.github.com/jasmine/) is used for testing the JS. [CasperJS](http://casperjs.org/) is used to drive the tests headless via [PhantomJS](http://phantomjs.org/).
 
 ### Server
 
