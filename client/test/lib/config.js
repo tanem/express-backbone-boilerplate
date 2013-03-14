@@ -6,11 +6,11 @@ require.config({
     
   paths: {
 
-    jasmine: '/client/test/_lib/jasmine-1.2.0/jasmine',
-    jasmineHtml: '/client/test/_lib/jasmine-1.2.0/jasmine-html',
-    jasmineJunitXml: '/client/test/_lib/jasmine-reporters/jasmine.junit_reporter',
+    jasmine: '/client/test/lib/jasmine-1.2.0/jasmine',
+    jasmineHtml: '/client/test/lib/jasmine-1.2.0/jasmine-html',
+    jasmineJunitXml: '/client/test/lib/jasmine-reporters/jasmine.junit_reporter',
     
-    tests: '/client/test/tests'
+    tests: '/client/test/lib/tests'
 
   },
 

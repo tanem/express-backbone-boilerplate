@@ -8,7 +8,7 @@ module.exports = function(grunt){
       },
       client: {
         src: ['client/src/js/**/*.js', '!client/src/js/lib/**/*.js'],
-        test: ['client/test/**/*.js', '!client/test/_lib/jasmine-1.2.0/*', '!client/test/_lib/jasmine-reporters/*.js']
+        test: ['client/test/spec/**/*_spec.js', '!client/test/lib']
       },
       server: {
         src: ['server/**/*.js', '!server/node_modules/**/*'],
@@ -77,6 +77,12 @@ module.exports = function(grunt){
       }
     },
 
+    generate_testsmodule: {
+      src: '<%= jshint.client.test %>',
+      dest: 'client/test/lib/tests.js',
+      template: 'tasks/assets/testsmodule.tmpl'
+    },
+
     requirejs: {
       compile: {
         options: {
@@ -142,9 +148,9 @@ module.exports = function(grunt){
 
   grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist', 'htmlrefs:dist']);
   grunt.registerTask('docs', ['clean:docs', 'docker']);
-  grunt.registerTask('test-client', ['clean:junitxml:client', 'server', 'casperjs']);
+  grunt.registerTask('test-client', ['clean:junitxml:client', 'generate_testsmodule', 'server', 'casperjs']);
   grunt.registerTask('test-server', ['clean:junitxml:server', 'prep_junitxmldir', 'jasmine_node']);
   grunt.registerTask('test', ['clean:junitxml', 'test-server', 'test-client']);
-  grunt.registerTask('start', ['clean:all', 'compass:dev', 'docker', 'server', 'watch']);
+  grunt.registerTask('start', ['clean:all', 'compass:dev', 'docker', 'generate_testsmodule', 'server', 'watch']);
 
 };

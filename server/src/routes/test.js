@@ -7,12 +7,12 @@ module.exports = function(app){
     res.sendfile(path.join(clientTestPath, req.params[0] + '.js'));
   });
   
-  app.get('/client/test/_lib/*', function(req, res){
-    res.sendfile(path.join(clientTestPath, '_lib', req.params[0]));
+  app.get('/client/test/lib/*', function(req, res){
+    res.sendfile(path.join(clientTestPath, 'lib', req.params[0]));
   });
   
   app.get('/client/test', function(req, res){
-    res.sendfile(path.join(clientTestPath, '_lib/index.html'));
+    res.sendfile(path.join(clientTestPath, 'lib/index.html'));
   });
 
 };

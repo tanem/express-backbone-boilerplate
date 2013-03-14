@@ -1,6 +1,6 @@
 var casper = require('casper').create(),
   fs = require('fs'),
-  junitXmlDir = casper.cli.get(0);//'./_junitxml/client';
+  junitXmlDir = casper.cli.get(0);
 
 casper.start('http://localhost:3000/client/test/');
 
