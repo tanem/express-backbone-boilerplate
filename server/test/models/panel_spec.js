@@ -19,7 +19,7 @@ describe('Models / Panel', function(){
       expect(err).toBeNull();
       expect(arr.length).toEqual(2);
       expect(arr[0].id).toEqual(1);
-      expect(arr[1].id).toEqual(2);
+      expect(arr[1].id).toEqual(20);
     });
   });
 

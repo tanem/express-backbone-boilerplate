@@ -24,10 +24,14 @@ casper.waitFor(
       fs.write(key, junitXmlResults[key], 'w');
     });
 
-    this.waitForSelector('.banner .duration', function(){
-      this.test.assertSelectorExists('.alert .passingAlert', this.fetchText('.alert .bar:nth-child(1)'));
-      // if (this.test.getFailures().length > 0) this.exit(3);
-    });
+    if (this.exists('.passingAlert')) {
+      casper.echo(this.fetchText('.passingAlert.bar'), 'INFO');
+      casper.exit(0);
+    } else {
+      casper.echo(this.fetchText('.failingAlert.bar'), 'ERROR');
+      // casper.echo(this.fetchText('#details .failed .description'));
+      casper.exit(3);
+    }
 
   }
 );

@@ -8,8 +8,8 @@ module.exports = function(grunt){
       cmd: 'casperjs',
       args: [options.src, options.junitxmlDest]
     }, function(error, result, code){
-      // if (error) grunt.fail.warn(error, code);
-      grunt.log.writeln(result);
+      if (code !== 0) grunt.warn(result.stdout, code);
+      grunt.log.ok(result);
       done();
     });
 
