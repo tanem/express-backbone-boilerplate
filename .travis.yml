@@ -9,7 +9,7 @@ branches:
 
 before_script:
   - npm install -g grunt-cli
-  # Hat tip + Slight tweak: https://github.com/pilotfish/pilotfish/blob/master/.travis.yml
+  # Hat tip + slight tweak: https://github.com/pilotfish/pilotfish/blob/master/.travis.yml
   - git clone -q git://github.com/n1k0/casperjs.git
   - cd casperjs; git checkout tags/1.0.2; cd ../
   - ./casperjs/bin/casperjs --version || true
