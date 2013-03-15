@@ -1,9 +1,7 @@
 require.config({
   
   baseUrl: '/client/src/js',      
-  
-  deps: ['/client/src/js/config.js'],
-    
+      
   paths: {
 
     jasmine: '/client/test/lib/jasmine-1.3.1/jasmine',
