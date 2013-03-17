@@ -114,6 +114,18 @@ module.exports = function(grunt){
       }
     },
 
+    htmlmin: {
+      options: {
+        removeComments: true,
+        collapseWhitespace: true
+      },
+      compile: {
+        files: {
+          '_dist/client/src/index.html': '_dist/client/src/index.html'
+        }
+      }
+    },
+
     docker: {
       app: {
         expand: true,
@@ -139,6 +151,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -146,7 +159,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-htmlrefs');
   grunt.loadNpmTasks('grunt-jasmine-node');
 
-  grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist', 'htmlrefs:dist']);
+  grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist', 'htmlrefs:dist', 'htmlmin']);
   grunt.registerTask('docs', ['clean:docs', 'docker']);
   grunt.registerTask('test-client', ['clean:junitxml:client', 'generate_testsmodule', 'server', 'casperjs']);
   grunt.registerTask('test-server', ['clean:junitxml:server', 'prep_junitxmldir', 'jasmine_node']);
