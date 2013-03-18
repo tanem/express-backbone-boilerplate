@@ -3,6 +3,7 @@ var util = require('util'),
   express = require('express');
 
 var Server = module.exports = function(options){
+  events.EventEmitter.call(this);
   options = options || {};
   this.port = options.port || 3000;
   this.env = options.env || 'development';
