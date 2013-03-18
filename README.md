@@ -16,7 +16,15 @@ Run `npm install` once you've got a copy of the project.
 
 ## Client
 
-The app can be started via `grunt start`, and accessed via `http://localhost:3000/client/`.
+ * Can be started via `grunt start`
+ * Can be accessed via `http://localhost:3000/client/`
+
+You can also pass the following commandline args to `grunt start`:
+
+ * `--NODE_ENV`: `production` or `development` (defaults to `development`)
+ * `--NODE_PORT`: (defaults to `3000`)
+
+e.g. `grunt start --NODE_ENV=production --NODE_PORT=4000` will start the server in production mode on port 4000.
 
 The `grunt start` task will also:
 
