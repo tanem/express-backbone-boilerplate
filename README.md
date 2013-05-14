@@ -40,7 +40,7 @@ e.g. to start the server in production mode on port 4000:
 
     $ grunt start --NODE_ENV=production --NODE_PORT=4000
 
-The `grunt start` task will also:
+The `start` task will also:
 
  * Watch the SASS files, and recompile the dev CSS if any changes are made
  * Watch the client src & test JS files, and run JSHint plus the client tests if any changes are made
