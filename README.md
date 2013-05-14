@@ -11,6 +11,8 @@ Okay okay, not quite a bare-bones boilerplate, more of a small sample app built 
  * [PhantomJS](http://phantomjs.org/)
  * [CasperJS](http://casperjs.org/installation.html)
  * [Pygments](http://pygments.org/download/)
+ * [Grunt-CLI](http://gruntjs.com/getting-started#installing-the-cli)
+ * [Compass](http://compass-style.org/)
  
 To install:
 
