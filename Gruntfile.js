@@ -142,6 +142,40 @@ module.exports = function(grunt){
           colourScheme: 'default'
         }
       }
+    },
+
+    nodemon: {
+      dev: {
+        options: {
+          file: 'server/src/app.js',
+          arguments: ['--ENV=development'],
+          watchedExtensions: ['js'],
+          watchedFolders: ['server/src'],
+          debug: true,
+          delayTime: 1
+        }
+      },
+      nodeInspector: {
+        options: {
+          file: 'node-inspector.js',
+          watchedExtensions: ['js'],
+          watchedFolders: ['server/src'],
+          exec: 'node-inspector',
+        }
+      }
+    },
+
+    concurrent: {
+      nodemon: {
+        options: {
+          logConcurrentOutput: true,
+        },
+        tasks: [
+          'nodemon:dev',
+          'nodemon:nodeInspector',
+          'watch'
+        ]
+      }
     }
 
   });
@@ -158,6 +192,8 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-docker');
   grunt.loadNpmTasks('grunt-htmlrefs');
   grunt.loadNpmTasks('grunt-jasmine-node');
+  grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-concurrent');
 
   grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist', 'htmlrefs:dist', 'htmlmin']);
   grunt.registerTask('docs', ['clean:docs', 'docker']);
