@@ -93,7 +93,7 @@ module.exports = function(grunt){
       },
       jsClient: {
         files: ['<%= meta.client.src %>', '<%= meta.client.test'],
-        tasks: ['jshint:client']
+        tasks: ['jshint:client', 'generate_specrunner']
       },
       jsServer: {
         files: ['<%= meta.server.src %>', '<%= meta.server.test %>'],
