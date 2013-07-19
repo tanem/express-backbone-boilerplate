@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(grunt){
 
   grunt.initConfig({
@@ -17,12 +19,29 @@ module.exports = function(grunt){
     },
 
     clean: {
-      all: ['_docs', '_dist', '_junitxml'],
-      docs: '_docs',
-      dist: '_dist',
+      docs: {
+        src: '_docs'
+      },
+      dist: {
+        src: '_dist'
+      },
       junitxml: {
-        client: '_junitxml/cient',
-        server: '_junitxml/server'
+        src: '_junitxml'
+      },
+      junitxml_client: {
+        src: '_junitxml/cient'
+      },
+      junitxml_server: {
+        src: '_junitxml/server'
+      },
+      coverage: {
+        src: '_coverage'
+      },
+      coverage_client: {
+        src: '_coverage/client'
+      },
+      coverage_server: {
+        src: '_coverage/server'
       }
     },
 
@@ -58,15 +77,6 @@ module.exports = function(grunt){
       jsServer: {
         files: ['<%= jshint.server.src %>', '<%= jshint.server.test %>'],
         tasks: ['jshint:server', 'test-server']
-      }
-    },
-
-    jasmine_node: {
-      projectRoot: 'server/test',
-      forceExit: true,
-      jUnit: {
-        report: true,
-        savePath : '_junitxml/server/'
       }
     },
     
@@ -145,7 +155,7 @@ module.exports = function(grunt){
     },
 
     nodemon: {
-      dev: {
+      server: {
         options: {
           file: 'server/src/app.js',
           arguments: ['--ENV=development'],
@@ -171,10 +181,32 @@ module.exports = function(grunt){
           logConcurrentOutput: true,
         },
         tasks: [
-          'nodemon:dev',
+          'nodemon:server',
           'nodemon:nodeInspector',
           'watch'
         ]
+      }
+    },
+
+    istanbul: {
+      test: {
+        options: {
+          command: 'test'
+        }
+      },
+      dev_cover: {
+        options: {
+          coverageOutputDir: '_coverage/server',
+          command: 'cover',
+          reportType: 'html'
+        }
+      },
+      build_cover: {
+        options: {
+          coverageOutputDir: '_coverage/server',
+          command: 'cover',
+          reportType: 'cobertura'
+        }
       }
     }
 
@@ -191,15 +223,38 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-docker');
   grunt.loadNpmTasks('grunt-htmlrefs');
-  grunt.loadNpmTasks('grunt-jasmine-node');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-concurrent');
 
+  grunt.registerTask('dist', [
+    'jshint',
+    'test',
+    'clean:dist',
+    'requirejs',
+    'compass:prod',
+    'copy:dist',
+    'htmlrefs:dist',
+    'htmlmin'
+  ]);
+  grunt.registerTask('docs', ['clean:docs', 'docker']);
+  grunt.registerTask('server:cover', ['clean:coverage_server', 'istanbul:dev_cover']);
+  grunt.registerTask('server:test', ['istanbul:test']);
+  // grunt.registerTask('test', ['clean:junitxml', 'server:test', 'test-client']);
+  grunt.registerTask('start', [
+    'clean:dist',
+    'clean:junitxml',
+    'clean:coverage',
+    'docker',
+    'compass:dev',
+    'concurrent:nodemon'
+  ]);
+
+/*
   grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist', 'htmlrefs:dist', 'htmlmin']);
   grunt.registerTask('docs', ['clean:docs', 'docker']);
   grunt.registerTask('test-client', ['clean:junitxml:client', 'generate_testsmodule', 'server', 'casperjs']);
   grunt.registerTask('test-server', ['clean:junitxml:server', 'prep_junitxmldir', 'jasmine_node']);
   grunt.registerTask('test', ['clean:junitxml', 'test-server', 'test-client']);
   grunt.registerTask('start', ['clean:all', 'compass:dev', 'docker', 'generate_testsmodule', 'server', 'watch']);
-
+*/
 };

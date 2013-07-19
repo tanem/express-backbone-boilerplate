@@ -2,5 +2,11 @@
   "node": true,
   "browser": true,
   "es5": true,
-  "strict": true
+  "strict": true,
+  "globals": {
+    "describe": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "it": false
+  }
 }

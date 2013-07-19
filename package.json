@@ -33,12 +33,13 @@
     "grunt-contrib-requirejs": "~0.4.0",
     "grunt-contrib-watch": "~0.2.0",
     "grunt-htmlrefs": "~0.3.0",
-    "grunt-jasmine-node": "~0.0.6",
     "grunt-docker": "0.0.4",
     "grunt-nodemon": "0.0.7",
-    "grunt-concurrent": "~0.3.0"
+    "grunt-concurrent": "~0.3.0",
+    "mocha": "~1.12.0",
+    "expect.js": "~0.2.0"
   },
   "scripts": {
-    "test": "grunt test --verbose"
+    "test": "grunt test"
   }
 }

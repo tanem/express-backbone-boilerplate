@@ -6,3 +6,4 @@ node_modules
 _docs
 _dist
 _junitxml
+_coverage
