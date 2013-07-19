@@ -79,13 +79,6 @@ module.exports = function(grunt){
         tasks: ['jshint:server', 'test-server']
       }
     },
-    
-    casperjs: {
-      options: {
-        src: 'client/test/lib/casperjs-runner.js',
-        junitxmlDest: '_junitxml/client'
-      }
-    },
 
     generate_testsmodule: {
       src: '<%= jshint.client.test %>',
