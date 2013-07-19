@@ -1,8 +1,9 @@
+'use strict';
+
 var Panel = require('../models/panel');
 
 module.exports = function(app){
 
-  // Create.
   app.post('/api/panels', function(req, res){  
     var panel = new Panel();
     panel.save(function(err){
@@ -10,17 +11,11 @@ module.exports = function(app){
     });
   });
 
-  // Read.
-
-  // Update.
-    
-  // Delete.
-  app.delete('/api/panels/:id', function(req, res){
-    
+  app.delete('/api/panels/:id', function(req, res){    
     var id = req.params.id;
-        
     Panel.destroy(id, function(err){
-      if (!err) console.log('Panel [' + id + '] deleted.');
+      if (err) throw err;
+      console.log('Panel [%s] deleted.', id);
       res.send('');
     });
 

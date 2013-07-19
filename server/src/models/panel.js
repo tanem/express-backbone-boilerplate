@@ -1,3 +1,5 @@
+'use strict';
+
 // id is used as the label at the moment.
 // db is a fake db.
 
@@ -16,7 +18,7 @@ Panel.prototype.save = function(fn){
 
 // Returns an array of all the panels in the DB.
 module.exports.all = function(fn){
-    
+
   var arr = Object.keys(db).reduce(function(arr, id){
     arr.push(db[id]);
     return arr;

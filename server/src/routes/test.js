@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path'),
   clientTestPath = path.join(__dirname, '/../../../client/test');
 
