@@ -6,15 +6,19 @@ Okay okay, not quite a bare-bones boilerplate, more of a small sample app built 
 
 ## Dependencies
 
+Ensure the following are installed:
+
  * [Node.js](http://nodejs.org/)
  * [npm](https://npmjs.org/)
  * [PhantomJS](http://phantomjs.org/)
- * [CasperJS](http://casperjs.org/installation.html)
  * [Pygments](http://pygments.org/download/)
- * [Grunt-CLI](http://gruntjs.com/getting-started#installing-the-cli)
  * [Compass](http://compass-style.org/)
  
-To install:
+Install the global dependencies:
+
+    $ npm install -g grunt-cli karma istanbul node-inspector
+
+Change to your project directory then install the local dependencies:
 
     $ npm install
 
@@ -25,55 +29,56 @@ To install:
  * [Handlebars](http://handlebarsjs.com/) is used for client-side templating
  * [Compass](http://compass-style.org/) is used for CSS authoring
 
-To start:
+To start using default options:
 
     $ grunt start
 
-Can be accessed via `http://localhost:3000/client/`.
+Can be accessed via `http://127.0.0.1:3000/client/`. [Node Inspector](https://github.com/dannycoates/node-inspector) will also be available via `http://0.0.0.0:8080/debug?port=5858`.
 
-You can also pass the following commandline args to `grunt start`:
+Once started, the app will also:
 
- * `--NODE_ENV`: `production` or `development` (defaults to `development`)
- * `--NODE_PORT`: (defaults to `3000`)
-
-e.g. to start the server in production mode on port 4000:
-
-    $ grunt start --NODE_ENV=production --NODE_PORT=4000
-
-The `start` task will also:
-
+ * Watch the server source files, and restart the Node server if any changes are made
  * Watch the SASS files, and recompile the dev CSS if any changes are made
- * Watch the client src & test JS files, and run JSHint plus the client tests if any changes are made
- * Watch the server src & test JS files, and run JSHint plus the server tests if any changes are made
+ * Watch the relevant JS files, and run the relevant JSHint tasks if any changes are made
 
 ## Unit tests
 
 ### Client
 
- * A module listing the required tests to run is generated via grunt
  * [Jasmine](http://pivotal.github.com/jasmine/) is used for testing the JS
- * [CasperJS](http://casperjs.org/) is used to drive the tests headless via [PhantomJS](http://phantomjs.org/)
- * JUnit XML is output to `./_junitxml/client`
+ * The Jasmine SpecRunner.html is automatically generated via grunt
+ * [Karma](https://github.com/karma-runner/karma) is used to run the tests against various browsers, as well as providing code coverage via [Istanbul](https://github.com/gotwarlost/istanbul)
 
-Tests can be run in the browser via `http://localhost:3000/client/test/`.
+Tests can be run in the browser via `http://127.0.0.1:3000/client/test`.
 
-To run headless:
+To run tests only:
 
-    $ grunt test-client
+    $ grunt client:test
+
+To run tests with coverage:
+
+    $ grunt client:cover
+
+Coverage information is output to `./coverage/client`.
 
 ### Server
 
- * [jasmine-node](https://github.com/mhevery/jasmine-node) is used for testing the Node server JS
- * JUnit XML is output to `./_junitxml/server`
+ * [Mocha](http://visionmedia.github.io/mocha/) and [expect.js](https://github.com/LearnBoost/expect.js) are used for testing the Node server JS
+ * [Istanbul](https://github.com/gotwarlost/istanbul) is used to run the tests and provide code coverage
 
-To run:
+To run tests only:
 
-    $ grunt test-server
+    $ grunt server:test
+
+To run tests with coverage:
+
+    $ grunt server:coverage
+
+Coverage information is output to `./coverage/server`.
 
 ## Docs
 
  * [Docker](https://github.com/Prevole/grunt-docker) is used to generate the client-side docs
- * Output to `./_docs`
  
 To generate:
 
@@ -95,3 +100,4 @@ To generate:
  * [@andrewpmckenzie](https://github.com/andrewpmckenzie), whose [node-jasmine-dom](https://github.com/andrewpmckenzie/node-jasmine-dom) was a big inspiration for this project
  * [@smozely](https://github.com/smozely), for the scaffolding and eventMediator suggestions
  * [@timsnadden](https://github.com/timsnadden), for showing me some new npm modules and Backbone helpers
+ * [@appleYaks](https://github.com/appleYaks), whose [grunt-express-workflow](https://github.com/appleYaks/grunt-express-workflow) I leaned heavily on when configuring Istanbul and Karma
