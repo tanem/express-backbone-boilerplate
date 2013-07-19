@@ -2,6 +2,7 @@
 .sass-cache
 client/src/css
 client/test/lib/tests.js
+libpeerconnection.log
 node_modules
 _docs
 _dist
