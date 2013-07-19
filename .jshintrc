@@ -4,6 +4,7 @@
   "es5": true,
   "strict": true,
   "globals": {
+    "requirejs": false,
     "describe": false,
     "beforeEach": false,
     "afterEach": false,
