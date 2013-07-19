@@ -208,6 +208,32 @@ module.exports = function(grunt){
           reportType: 'cobertura'
         }
       }
+    },
+
+    karma: {
+      options: {
+        configFile: 'karma.conf.js',
+        runnerPort: 9100,
+        background: false,
+        singleRun: true,
+        browsers: [/*'Chrome', 'Firefox', 'Safari', */'PhantomJS']
+      },
+      test: {
+        reporters: ['dots']
+      },
+      cover: {
+        reporters: ['dots', 'coverage'],
+        coverageReporter: {
+          type: 'html',
+          dir: '_coverage/client',
+        },
+        preprocessors: {
+          'client/src/js/collections/**/*.js': 'coverage',
+          'client/src/js/core/**/*.js': 'coverage',
+          'client/src/js/models/**/*.js': 'coverage',
+          'client/src/js/views/**/*.js': 'coverage'
+        }
+      }
     }
 
   });
@@ -225,6 +251,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-htmlrefs');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-karma');
 
   grunt.registerTask('dist', [
     'jshint',
@@ -239,7 +266,9 @@ module.exports = function(grunt){
   grunt.registerTask('docs', ['clean:docs', 'docker']);
   grunt.registerTask('server:cover', ['clean:coverage_server', 'istanbul:dev_cover']);
   grunt.registerTask('server:test', ['istanbul:test']);
-  // grunt.registerTask('test', ['clean:junitxml', 'server:test', 'test-client']);
+  grunt.registerTask('client:cover', ['clean:coverage_client', 'karma:cover']);
+  grunt.registerTask('client:test', ['karma:test']);
+  grunt.registerTask('test', ['client:test', 'server:test']);
   grunt.registerTask('start', [
     'clean:dist',
     'clean:junitxml',
@@ -248,13 +277,5 @@ module.exports = function(grunt){
     'compass:dev',
     'concurrent:nodemon'
   ]);
-
-/*
-  grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist', 'htmlrefs:dist', 'htmlmin']);
-  grunt.registerTask('docs', ['clean:docs', 'docker']);
-  grunt.registerTask('test-client', ['clean:junitxml:client', 'generate_testsmodule', 'server', 'casperjs']);
-  grunt.registerTask('test-server', ['clean:junitxml:server', 'prep_junitxmldir', 'jasmine_node']);
-  grunt.registerTask('test', ['clean:junitxml', 'test-server', 'test-client']);
-  grunt.registerTask('start', ['clean:all', 'compass:dev', 'docker', 'generate_testsmodule', 'server', 'watch']);
-*/
+  //grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist', 'htmlrefs:dist', 'htmlmin']);
 };
