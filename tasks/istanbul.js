@@ -3,7 +3,7 @@
 module.exports = function(grunt){
 
   grunt.registerMultiTask('istanbul', 'Test server files as well as code coverage.', function(){
-    
+
     var done = this.async(),
       options = this.options();
 
@@ -20,12 +20,12 @@ module.exports = function(grunt){
       opts: {
         stdio: 'inherit',
       }
-    }, function(error, result, code){
+    }, function(error, result){
       if (result && result.stderr) process.stderr.write(result.stderr);
       if (result && result.stdout) grunt.log.writeln(result.stdout);
       done(error);
     });
-  
+
   });
 
 };

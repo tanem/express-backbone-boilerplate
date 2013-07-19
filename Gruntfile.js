@@ -4,17 +4,38 @@ module.exports = function(grunt){
 
   grunt.initConfig({
 
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc'
-      },
+    meta: {
       client: {
         src: ['client/src/js/**/*.js', '!client/src/js/lib/**/*.js'],
         test: ['client/test/spec/**/*_spec.js', '!client/test/lib']
       },
       server: {
-        src: ['server/**/*.js', '!server/node_modules/**/*'],
-        test: 'server/test/**/*_spec.js'
+        src: 'server/src/**/*.js',
+        test: 'server/test/**/*.js'
+      },
+      tasks: {
+        src: 'tasks/**/*.js'
+      }
+    },
+
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      client: {
+        src: [
+          '<%= meta.client.src %>',
+          '<%= meta.client.test %>'
+        ]
+      },
+      server: {
+        src: [
+          '<%= meta.server.src %>',
+          '<%= meta.server.test %>',
+        ]
+      },
+      tasks: {
+        src: '<%= meta.tasks.src %>'
       }
     },
 
@@ -47,7 +68,7 @@ module.exports = function(grunt){
 
     compass: {
       dev: {
-        options: {              
+        options: {
           sassDir: 'client/src/sass',
           cssDir: 'client/src/css',
           outputStyle: 'expanded',
@@ -55,7 +76,7 @@ module.exports = function(grunt){
         }
       },
       prod: {
-        options: {              
+        options: {
           sassDir: 'client/src/sass',
           cssDir: '_dist/client/src/css',
           outputStyle: 'compressed',
@@ -71,19 +92,17 @@ module.exports = function(grunt){
         tasks: 'compass:dev'
       },
       jsClient: {
-        files: ['<%= jshint.client.src %>', '<%= jshint.client.test %>'],
-        tasks: ['jshint:client', 'test-client']
+        files: ['<%= meta.client.src %>', '<%= meta.client.test'],
+        tasks: ['jshint:client']
       },
       jsServer: {
-        files: ['<%= jshint.server.src %>', '<%= jshint.server.test %>'],
-        tasks: ['jshint:server', 'test-server']
+        files: ['<%= meta.server.src %>', '<%= meta.server.test %>'],
+        tasks: ['jshint:server']
+      },
+      jsTasks: {
+        files: '<%= meta.tasks.src %>',
+        tasks: ['jshint:tasks']
       }
-    },
-
-    generate_testsmodule: {
-      src: '<%= jshint.client.test %>',
-      dest: 'client/test/lib/tests.js',
-      template: 'tasks/assets/testsmodule.tmpl'
     },
 
     requirejs: {
@@ -133,10 +152,11 @@ module.exports = function(grunt){
       app: {
         expand: true,
         src: [
-          '<%= jshint.client.src %>', 
-          '<%= jshint.client.test %>',
-          '<%= jshint.server.src %>',
-          '<%= jshint.server.test %>',
+          '<%= meta.client.src %>',
+          '<%= meta.client.test %>',
+          '<%= meta.server.src %>',
+          '<%= meta.server.test %>',
+          '<%= meta.tasks.src %>',
           'README.md'
         ],
         dest: '_docs',
@@ -208,13 +228,18 @@ module.exports = function(grunt){
         configFile: 'karma.conf.js',
         runnerPort: 9100,
         background: false,
-        singleRun: true,
-        browsers: [/*'Chrome', 'Firefox', 'Safari', */'PhantomJS']
+        singleRun: true
+      },
+      travis: {
+        browsers: ['PhantomJS'],
+        reporters: ['dots']
       },
       test: {
+        browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
         reporters: ['dots']
       },
       cover: {
+        browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
         reporters: ['dots', 'coverage'],
         coverageReporter: {
           type: 'html',
@@ -227,6 +252,12 @@ module.exports = function(grunt){
           'client/src/js/views/**/*.js': 'coverage'
         }
       }
+    },
+
+    generate_specrunner: {
+      src: '<%= meta.client.test %>',
+      dest: 'client/test/SpecRunner.html',
+      template: 'tasks/assets/SpecRunner.tmpl'
     }
 
   });
@@ -262,13 +293,14 @@ module.exports = function(grunt){
   grunt.registerTask('client:cover', ['clean:coverage_client', 'karma:cover']);
   grunt.registerTask('client:test', ['karma:test']);
   grunt.registerTask('test', ['client:test', 'server:test']);
+  grunt.registerTask('test:travis', ['karma:travis', 'server:test']);
   grunt.registerTask('start', [
     'clean:dist',
     'clean:junitxml',
     'clean:coverage',
+    'generate_specrunner',
     'docker',
     'compass:dev',
     'concurrent:nodemon'
   ]);
-  //grunt.registerTask('dist', ['jshint', 'test', 'clean:dist', 'requirejs', 'compass:prod', 'copy:dist', 'htmlrefs:dist', 'htmlmin']);
 };

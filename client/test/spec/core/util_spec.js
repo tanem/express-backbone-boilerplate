@@ -1,9 +1,9 @@
-define([
-  'core/util'
-], function(
-  util
-){
-    
+define(function(require){
+  
+  'use strict';
+
+  var util = require('core/util');
+
   describe('Util', function(){
 
     it('should correctly convert degrees to radians', function(){

@@ -1,10 +1,9 @@
-define([
-  'collections/panelsCollection',
-  'views/carouselView'
-], function(
-  PanelsCollection,
-  CarouselView
-){
+define(function(require){
+
+  'use strict';
+  
+  var PanelsCollection = require('collections/panelsCollection'),
+    CarouselView = require('views/carouselView');
 
   describe('CarouselView', function(){
 

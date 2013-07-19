@@ -1,11 +1,4 @@
-require([
-  'views/appView'
-], function(
-  AppView
-){
-
-  var appView = new AppView({
-    el: 'body'
-  });
-
+require(['views/appView'], function(AppView){
+  'use strict';
+  new AppView({ el: 'body' });
 });

@@ -13,7 +13,7 @@ var Server = module.exports = function(options){
   this.port = _.isUndefined(options.port) ? 3000 : +options.port;
   this.env = options.env || 'development';
   this.app = express();
-  this.configure(); 
+  this.configure();
 };
 
 util.inherits(Server, events.EventEmitter);

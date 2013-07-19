@@ -3,11 +3,16 @@
   "browser": true,
   "es5": true,
   "strict": true,
+  "unused": true,
+  "undef": true,
+  "trailing": true,
   "globals": {
+    "define": false,
     "requirejs": false,
     "describe": false,
     "beforeEach": false,
     "afterEach": false,
-    "it": false
+    "it": false,
+    "expect": true
   }
 }

@@ -1,23 +1,13 @@
-define([
-  'jquery',
-  'underscore',
-  'backbone',
-  'collections/panelsCollection',
-  'core/eventMediator',
-  'core/util',
-  'views/panelView',
-  'views/carouselView'
-], function(
-  $,
-  _,
-  Backbone,
-  PanelsCollection,
-  eventMediator,
-  util,
-  PanelView,
-  CarouselView
-){
-   
+define(function(require){
+
+  'use strict';
+
+  var Backbone = require('backbone'),
+    PanelsCollection = require('collections/panelsCollection'),
+    eventMediator = require('core/eventMediator'),
+    util = require('core/util'),
+    CarouselView = require('views/carouselView');
+    
   var AppView = Backbone.View.extend({
 
     events: {

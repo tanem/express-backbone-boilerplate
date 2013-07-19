@@ -1,18 +1,21 @@
+'use strict';
+
 module.exports = function(grunt){
   grunt.registerTask(
-    'generate_testsmodule',
-    'Generates a module that references the required test files for client testing.',
+    'generate_specrunner',
+    'Generates the SpecRunner.html file for client unit testing via Jasmine.',
     function(){
 
-      var conf = grunt.config('generate_testsmodule'),
+      var conf = grunt.config('generate_specrunner'),
         template = grunt.file.read(conf.template),
         files = grunt.file.expand(conf.src),
         filesLength = files.length,
         str = '';
 
       files.forEach(function(file, i){
-        str += '  "/' + file + '"';
-        if (i !== filesLength - 1) str += ',\n';
+        if (i !== 0) str += '    ';
+        str += 'require(\'/' + file + '\');';
+        if (i !== filesLength - 1) str += '\n';
       });
 
       grunt.file.write(
@@ -22,8 +25,6 @@ module.exports = function(grunt){
           files: str
         }
       }));
-
-      grunt.log.writeln('Finished generating tests module.');
 
     }
   );

@@ -1,5 +1,7 @@
 define(function(){
 
+  'use strict';
+  
   var degreesPerRadian = 360 / (2 * Math.PI);
 
   return {

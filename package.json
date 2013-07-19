@@ -41,6 +41,6 @@
     "grunt-karma": "~0.4.5"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test:travis"
   }
 }

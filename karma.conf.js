@@ -10,8 +10,8 @@ files = [
   REQUIRE_ADAPTER,
 
   'client/src/js/config.js',
-  'client/test/lib/config.js',
-  'client/test/test-main.js',
+  'client/test/config.js',
+  'client/test/runner.js',
   
   {pattern: 'client/test/spec/**/*_spec.js', included: false},
   {pattern: 'client/src/**/*', included: false}

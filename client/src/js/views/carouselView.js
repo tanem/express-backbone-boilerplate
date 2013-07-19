@@ -1,24 +1,13 @@
-define([
-  'modernizr',
-  'jquery',
-  'underscore',
-  'backbone',
-  'handlebars',
-  'core/eventMediator',
-  'core/util',
-  'views/panelView',
-  'text!templates/carousel.handlebars'
-], function(
-  Modernizr,
-  $,
-  _,
-  Backbone,
-  Handlebars,
-  eventMediator,
-  util,
-  PanelView,
-  carouselTemplate
-){
+define(function(require){
+
+  'use strict';
+
+  var Modernizr = require('modernizr'),
+    Backbone = require('backbone'),
+    eventMediator = require('core/eventMediator'),
+    util = require('core/util'),
+    PanelView = require('views/panelView'),
+    carouselTemplate = require('text!templates/carousel.handlebars');
 
   var CarouselView = Backbone.View.extend({
 
@@ -80,8 +69,7 @@ define([
 
     _repositionPanels: function(){
 
-      var that = this,
-        $panels = this.$('.panel'),
+      var $panels = this.$('.panel'),
         numPanels = $panels.length,
         translate;
 

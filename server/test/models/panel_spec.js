@@ -3,7 +3,7 @@
 var expect = require('expect.js'),
   Panel = require('../../src/models/panel'),
   noop = function(){};
- 
+
 describe('Models / Panel', function(){
 
   afterEach(function(){
