@@ -230,7 +230,7 @@ module.exports = function(grunt){
         background: false,
         singleRun: true
       },
-      travis: {
+      headless: {
         browsers: ['PhantomJS'],
         reporters: ['dots']
       },
