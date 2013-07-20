@@ -14,7 +14,8 @@ files = [
   'client/test/runner.js',
   
   {pattern: 'client/test/spec/**/*_spec.js', included: false},
-  {pattern: 'client/src/**/*', included: false}
+  {pattern: 'client/src/**/*', included: false},
+  {pattern: 'bower_components/**/*', included: false}
 ];
 
 
@@ -43,7 +44,7 @@ colors = true;
 
 // level of logging
 // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-logLevel = LOG_INFO;
+logLevel = LOG_DEBUG;
 
 
 // enable / disable watching file and executing tests whenever any file changes

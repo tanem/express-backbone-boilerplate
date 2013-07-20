@@ -4,7 +4,7 @@ var path = require('path'),
   clientSrcPath = path.join(__dirname, '/../../../client/src');
 
 module.exports = function(app){
-  
+
   app.get('/client/src/css/*', function(req, res){
     res.sendfile(path.join(clientSrcPath, 'css', req.params[0]));
   });

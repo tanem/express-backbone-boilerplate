@@ -19,8 +19,9 @@ var Server = module.exports = function(options){
 util.inherits(Server, events.EventEmitter);
 
 Server.prototype.configure = function(){
-  require('./routes/client')(this.app);
   require('./routes/api')(this.app);
+  require('./routes/bower')(this.app);
+  require('./routes/client')(this.app);
   if (this.env === 'development') {
     require('./routes/test')(this.app);
     require('./routes/docs')(this.app);

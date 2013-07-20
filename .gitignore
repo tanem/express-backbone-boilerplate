@@ -4,6 +4,7 @@ client/src/css
 client/test/lib/tests.js
 libpeerconnection.log
 node_modules
+bower_components
 _docs
 _dist
 _junitxml

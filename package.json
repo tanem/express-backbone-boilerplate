@@ -1,7 +1,7 @@
 {
   "name": "express-backbone-boilerplate",
   "description": "Boilerplate/sample app built with ExpressJS and Backbone.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": {
     "name": "Tane Morgan",
     "url": "http://github.com/tanem"

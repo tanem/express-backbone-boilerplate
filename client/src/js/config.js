@@ -1,12 +1,12 @@
 require.config({
   baseUrl: '/client/src/js',
   paths: {
-    modernizr: 'lib/modernizr',
-    jquery: 'lib/jquery',
-    underscore: 'lib/underscore',
-    backbone: 'lib/backbone',
-    handlebars: 'lib/handlebars',
-    text: 'lib/text'
+    modernizr: '/bower_components/modernizr/modernizr',
+    jquery: '/bower_components/jquery/jquery',
+    underscore: '/bower_components/underscore/underscore',
+    backbone: '/bower_components/backbone/backbone',
+    handlebars: '/bower_components/handlebars/handlebars',
+    text: '/bower_components/requirejs-text/text'
   },
   shim: {
     'modernizr': {
