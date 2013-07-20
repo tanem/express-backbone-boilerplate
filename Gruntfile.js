@@ -293,7 +293,7 @@ module.exports = function(grunt){
   grunt.registerTask('client:cover', ['clean:coverage_client', 'karma:cover']);
   grunt.registerTask('client:test', ['karma:test']);
   grunt.registerTask('test', ['client:test', 'server:test']);
-  grunt.registerTask('test:travis', ['karma:travis', 'server:test']);
+  grunt.registerTask('test:headless', ['karma:headless', 'server:test']);
   grunt.registerTask('start', [
     'clean:dist',
     'clean:junitxml',
