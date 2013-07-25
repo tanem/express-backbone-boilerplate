@@ -3,7 +3,7 @@
 var grunt = require('grunt'),
   Mocha = require('mocha');
 
-var mocha = new Mocha({ reporter: 'spec', ui: 'bdd' });
+var mocha = new Mocha({ reporter: 'dot', ui: 'bdd' });
 
 function run(cb) {
   var files = grunt.file.expand('server/test/**/*_spec.js');
