@@ -171,7 +171,7 @@ module.exports = function(grunt){
       server: {
         options: {
           file: 'server/src/app.js',
-          arguments: ['--ENV=development'],
+          args: ['--ENV=development'],
           watchedExtensions: ['js'],
           watchedFolders: ['server/src'],
           debug: true,
