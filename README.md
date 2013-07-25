@@ -79,7 +79,7 @@ Coverage information is output to `./coverage/server`.
 
 ## Docs
 
- * [Docker](https://github.com/Prevole/grunt-docker) is used to generate the client-side docs
+ * [Docker](https://github.com/Prevole/grunt-docker) is used to generate the documentation.
  
 To generate:
 
