@@ -202,6 +202,13 @@ module.exports = function(grunt){
     },
 
     istanbul: {
+      options: {
+        mochaFiles: 'server/test/**/*_spec.js',
+        mochaReporter: 'dot',
+        mochaUi: 'bdd',
+        root: 'server/src',
+        runner: 'server/test/runner.js'
+      },
       test: {
         options: {
           command: 'test'

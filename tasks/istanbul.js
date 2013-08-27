@@ -1,5 +1,7 @@
 'use strict';
 
+var path = require('path');
+
 module.exports = function(grunt){
 
   grunt.registerMultiTask('istanbul', 'Test server files as well as code coverage.', function(){
@@ -8,21 +10,24 @@ module.exports = function(grunt){
       options = this.options();
 
     grunt.util.spawn({
-      cmd: 'istanbul',
+      cmd: path.join(__dirname, '../node_modules/.bin/istanbul'),
       grunt: false,
       args: [
         options.command,
-        '--default-excludes',
+        '--root', options.root,
+        '--no-default-excludes',
         '--report', options.reportType,
         '--dir', options.coverageOutputDir,
-        './server/test/runner.js'
+        options.runner,
+        '--',
+        '--files', options.mochaFiles,
+        '--reporter', options.mochaReporter,
+        '--ui', options.mochaUi
       ],
       opts: {
         stdio: 'inherit',
       }
     }, function(error, result){
-      if (result && result.stderr) process.stderr.write(result.stderr);
-      if (result && result.stdout) grunt.log.writeln(result.stdout);
       done(error);
     });
 

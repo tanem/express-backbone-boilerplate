@@ -1,12 +1,16 @@
 'use strict';
 
 var grunt = require('grunt'),
-  Mocha = require('mocha');
+  Mocha = require('mocha'),
+  argv = require('optimist').argv;
 
-var mocha = new Mocha({ reporter: 'dot', ui: 'bdd' });
+var mocha = new Mocha({
+  reporter: argv.reporter,
+  ui: argv.ui
+});
 
 function run(cb) {
-  var files = grunt.file.expand('server/test/**/*_spec.js');
+  var files = grunt.file.expand(argv.files);
   files.forEach(function (file) {
     mocha.addFile(file);
   });
