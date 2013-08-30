@@ -245,11 +245,11 @@ module.exports = function(grunt){
         reporters: ['dots']
       },
       test: {
-        browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
+        browsers: ['Chrome', 'Firefox', 'PhantomJS'],
         reporters: ['dots']
       },
       cover: {
-        browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
+        browsers: ['Chrome', 'Firefox', 'PhantomJS'],
         reporters: ['dots', 'coverage'],
         coverageReporter: {
           type: 'html',
