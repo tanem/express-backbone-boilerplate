@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('expect.js'),
-  Panel = require('../../src/models/panel'),
+  Panel = require('../../src/models/panelModel'),
   noop = function(){};
 
 describe('Models / Panel', function(){

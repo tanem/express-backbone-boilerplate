@@ -14,17 +14,18 @@ var Server = module.exports = function(options){
   this.port = _.isUndefined(options.port) ? 3000 : +options.port;
   this.env = options.env || 'development';
   this.app = express();
-  this.configure();
+  this._configure();
 };
 
 util.inherits(Server, events.EventEmitter);
 
-Server.prototype.configure = function(){
+Server.prototype._configure = function(){
     
   this.app.use(express.static(path.join(__dirname, '../../client/src')));
   this.app.use('/bower_components', express.static(path.join(__dirname, '../../bower_components')));
   this.app.use('/src', express.static(path.join(__dirname, '../../client/src')));
-  require('./routes/api')(this.app);
+  
+  this._generateRoutes('./routes/panelRoutes');
   
   if (this.env === 'development') {
 
@@ -51,6 +52,26 @@ Server.prototype.configure = function(){
 
     this.app.use('/docs', express.static(path.join(__dirname, '../../_docs')));
   }
+
+};
+
+Server.prototype._generateRoutes = function(path){
+  
+  var server = this,
+    routes = require(path);
+  
+  Object.keys(routes).forEach(function(route){
+    
+    var urlInfo = route.split(' '),
+      method = urlInfo[0],
+      url = urlInfo[1];
+
+    var controllerInfo = routes[route],
+      controller = require('./controllers/' + controllerInfo.controller);
+
+    server.app[method](url, controller[controllerInfo.action]);
+
+  });
 
 };
 
