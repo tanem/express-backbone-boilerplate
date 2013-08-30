@@ -1,5 +1,6 @@
 .DS_Store
 .sass-cache
+client/test/SpecRunner.html
 client/src/css
 client/test/lib/tests.js
 libpeerconnection.log
