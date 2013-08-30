@@ -3,7 +3,7 @@
 module.exports = function(grunt){
   grunt.registerTask(
     'generate_specrunner',
-    'Generates the SpecRunner.html file for client unit testing via Jasmine.',
+    'Generates the specrunner (index.html) for client unit testing via Jasmine.',
     function(){
 
       var conf = grunt.config('generate_specrunner'),
@@ -14,7 +14,7 @@ module.exports = function(grunt){
 
       files.forEach(function(file, i){
         if (i !== 0) str += '    ';
-        str += 'require(\'/' + file + '\');';
+        str += 'require(\'' + file.split('client')[1] + '\');';
         if (i !== filesLength - 1) str += '\n';
       });
 

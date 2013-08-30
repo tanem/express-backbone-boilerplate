@@ -1,5 +1,5 @@
 require.config({
-  baseUrl: '/client/src/js',
+  baseUrl: '/src/js',
   paths: {
     modernizr: '/bower_components/modernizr/modernizr',
     jquery: '/bower_components/jquery/jquery',
