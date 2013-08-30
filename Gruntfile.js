@@ -87,6 +87,10 @@ module.exports = function(grunt){
     },
 
     watch: {
+      readme: {
+        files: 'README.md',
+        tasks: 'docs'
+      },
       sass: {
         files: 'client/src/sass/**/*.scss',
         tasks: 'compass:dev'
@@ -150,7 +154,6 @@ module.exports = function(grunt){
 
     docker: {
       app: {
-        expand: true,
         src: [
           '<%= meta.client.src %>',
           '<%= meta.client.test %>',
@@ -294,7 +297,7 @@ module.exports = function(grunt){
     'htmlrefs:dist',
     'htmlmin'
   ]);
-  grunt.registerTask('docs', ['clean:docs', 'docker']);
+  grunt.registerTask('docs', ['docker']);
   grunt.registerTask('server:cover', ['clean:coverage_server', 'istanbul:dev_cover']);
   grunt.registerTask('server:test', ['istanbul:test']);
   grunt.registerTask('client:cover', ['clean:coverage_client', 'karma:cover']);
@@ -306,7 +309,7 @@ module.exports = function(grunt){
     'clean:junitxml',
     'clean:coverage',
     'generate_specrunner',
-    'docker',
+    'docs',
     'compass:dev',
     'concurrent:nodemon'
   ]);
