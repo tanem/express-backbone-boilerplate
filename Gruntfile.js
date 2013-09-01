@@ -297,7 +297,7 @@ module.exports = function(grunt){
     'htmlrefs:dist',
     'htmlmin'
   ]);
-  grunt.registerTask('docs', ['docker']);
+  grunt.registerTask('docs', ['clean:docs', 'docker']);
   grunt.registerTask('server:cover', ['clean:coverage_server', 'istanbul:dev_cover']);
   grunt.registerTask('server:test', ['istanbul:test']);
   grunt.registerTask('client:cover', ['clean:coverage_client', 'karma:cover']);

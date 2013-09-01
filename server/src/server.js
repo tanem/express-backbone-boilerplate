@@ -38,16 +38,8 @@ Server.prototype._configure = function(){
     this.app.use('/test', express.static(path.join(__dirname, '../../client/test')));
     
     // Make `README.md.html` the index page.
-    this.app.get(/^\/docs$/, function(req, res, next){
-      req.url = req.originalUrl + '/README.md.html';
-      next();
-    });
-
-    // Rewrite the Docker generated js & css urls so they get picked up
-    // correctly by express.static.
-    this.app.get(/^\/doc-\w+\.(?:js|css)$/, function(req, res, next){
-      req.url = '/docs' + req.originalUrl;
-      next();
+    this.app.get(/^\/docs$/, function(req, res){
+      res.redirect('/docs/README.md.html');
     });
 
     this.app.use('/docs', express.static(path.join(__dirname, '../../_docs')));
