@@ -1,23 +1,21 @@
 'use strict';
 
 var PanelModel = require('../models/panelModel');
+var panelModel = new PanelModel();
 
 module.exports = {
 
   create: function(req, res){
-    var panelModel = new PanelModel();
-    panelModel.save(function(err){
-      if (err) throw err;
-      res.send(panelModel);
+    panelModel.create(req.body, function(err, panel){
+      if (err) res.json(err.statusCode, { message: err.message });
+      res.json(200, panel);
     });
   },
 
   destroy: function(req, res){
-    var id = req.params.id;
-    PanelModel.destroy(id, function(err){
-      if (err) throw err;
-      console.log('Panel [%s] deleted.', id);
-      res.send('');
+    panelModel.destroy(req.params.id, function(err){
+      if (err) res.json(err.statusCode, { message: err.message });
+      res.json(204, {});
     });
   }
 

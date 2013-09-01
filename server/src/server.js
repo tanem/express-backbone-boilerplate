@@ -64,9 +64,8 @@ Server.prototype._generateRoutes = function(path){
     
     var urlInfo = route.split(' '),
       method = urlInfo[0],
-      url = urlInfo[1];
-
-    var controllerInfo = routes[route],
+      url = urlInfo[1],
+      controllerInfo = routes[route],
       controller = require('./controllers/' + controllerInfo.controller);
 
     server.app[method](url, controller[controllerInfo.action]);

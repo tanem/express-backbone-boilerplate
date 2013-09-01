@@ -206,11 +206,11 @@ module.exports = function(grunt){
 
     istanbul: {
       options: {
-        mochaFiles: 'server/test/**/*_spec.js',
+        mochaFiles: 'server/test/spec/**/*_spec.js',
         mochaReporter: 'dot',
         mochaUi: 'bdd',
         root: 'server/src',
-        runner: 'server/test/runner.js'
+        runner: 'server/test/helpers/runner.js'
       },
       test: {
         options: {

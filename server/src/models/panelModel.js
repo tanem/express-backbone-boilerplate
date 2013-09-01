@@ -1,46 +1,43 @@
 'use strict';
 
-// id is used as the label at the moment.
-// db is a fake db.
+var _ = require('lodash');
+var ids = 0;
+var db = {};
 
-var ids = 0,
-  db = {};
+var PanelModel = module.exports = function PanelModel() {};
 
-var Panel = module.exports = function Panel() {
-  this.id = ++ids;
-  this.createdAt = new Date();
+PanelModel.prototype.create = function(attrs, fn){
+  var panelModel = new PanelModel();
+  _.extend(panelModel, {
+    createdAt: Date.now(),
+    id: ++ids
+  }, attrs);
+  db[ids] = panelModel;
+  fn(null, panelModel);
 };
 
-Panel.prototype.save = function(fn){
-  db[this.id] = this;
-  fn();
-};
-
-// Returns an array of all the panels in the DB.
-module.exports.all = function(fn){
-
+PanelModel.prototype.findAll = function(fn){
   var arr = Object.keys(db).reduce(function(arr, id){
     arr.push(db[id]);
     return arr;
   }, []);
-    
   fn(null, arr);
-
 };
 
-// Remove a panel by id.
-module.exports.destroy = function(id, fn){
+PanelModel.prototype.destroy = function(id, fn){
   if (db[id]) {
     delete db[id];
-    fn();
+    fn(null);
   } else {
-    fn(new Error('Panel ' + id + ' does not exist'));
+    fn({
+      statusCode: 404,
+      message: 'Panel ' + id + ' does not exist'
+    });
   }
 };
 
-// Clears all objects in the DB.
-module.exports.reset = function(fn){
+PanelModel.prototype.reset = function(fn){
   db = {};
   ids = 0;
-  fn();
+  fn(null);
 };

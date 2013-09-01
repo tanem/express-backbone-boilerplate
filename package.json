@@ -39,7 +39,8 @@
     "mocha": "~1.12.0",
     "expect.js": "~0.2.0",
     "grunt-karma": "~0.4.5",
-    "istanbul": "~0.1.43"
+    "istanbul": "~0.1.43",
+    "sinon": "~1.7.3"
   },
   "scripts": {
     "test": "grunt test:headless"
