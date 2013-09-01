@@ -1,8 +1,8 @@
 'use strict';
 
-var _ = require('lodash');
-var ids = 0;
-var db = {};
+var _ = require('lodash'),
+  ids = 0,
+  db = {};
 
 var PanelModel = module.exports = function PanelModel() {};
 

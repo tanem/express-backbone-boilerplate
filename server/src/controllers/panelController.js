@@ -1,7 +1,7 @@
 'use strict';
 
-var PanelModel = require('../models/panelModel');
-var panelModel = new PanelModel();
+var PanelModel = require('../models/panelModel'),
+  panelModel = new PanelModel();
 
 module.exports = {
 
