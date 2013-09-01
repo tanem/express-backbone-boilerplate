@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/tanem/express-backbone-boilerplate.png)](https://travis-ci.org/tanem/express-backbone-boilerplate)
 
-Okay okay, not quite a bare-bones boilerplate, more of a small sample app built using Express and Backbone plus a few friends. I've called it a boilerplate because I've used it as the basis for a few bigger projects, so hope it can help others in this regard too. 
+A small sample app built using Express and Backbone plus a few friends. I've used it as the basis for a few bigger projects, so hope it can help others in this regard too. 
 
 ## Dependencies
 
@@ -34,7 +34,7 @@ To start using default options:
 
     $ grunt start
 
-Can be accessed via `http://127.0.0.1:3000/client/`. [Node Inspector](https://github.com/dannycoates/node-inspector) will also be available via `http://0.0.0.0:8080/debug?port=5858`.
+Can be accessed via `http://127.0.0.1:3000/`. [Node Inspector](https://github.com/dannycoates/node-inspector) will also be available via `http://0.0.0.0:8080/debug?port=5858`.
 
 Once started, the app will also:
 
@@ -50,7 +50,7 @@ Once started, the app will also:
  * The Jasmine SpecRunner.html is automatically generated via grunt
  * [Karma](https://github.com/karma-runner/karma) is used to run the tests against various browsers, as well as providing code coverage via [Istanbul](https://github.com/gotwarlost/istanbul)
 
-Tests can be run in the browser via `http://127.0.0.1:3000/client/test`.
+Tests can be run in the browser via `http://127.0.0.1:3000/test`.
 
 To run tests only:
 
@@ -85,7 +85,7 @@ To generate:
 
     $ grunt docs
 
-Can be accessed via `http://localhost:3000/_docs`.
+Can be accessed via `http://localhost:3000/docs`.
 
 ## Distribution
 
