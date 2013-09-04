@@ -25,7 +25,7 @@ module.exports = function(grunt){
         '--ui', options.mochaUi
       ],
       opts: {
-        stdio: 'inherit',
+        stdio: 'inherit'
       }
     }, function(error, result){
       done(error);
