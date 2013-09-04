@@ -7,6 +7,8 @@ var http = require('http'),
   _ = require('lodash'),
   express = require('express');
 
+var controllerRegistry = {};
+
 var Server = module.exports = function(options){
   events.EventEmitter.call(this);
   options = options || {};
@@ -25,7 +27,8 @@ Server.prototype._configure = function(){
   this.app.use('/bower_components', express.static(path.join(__dirname, '../../bower_components')));
   this.app.use('/src', express.static(path.join(__dirname, '../../client/src')));
   
-  this._generateRoutes('./routes/panelRoutes');
+  // TODO: auto generate from files present in routers dir.
+  this._generateRoutes('./routers/panelRouter');
   
   if (this.env === 'development') {
 
@@ -49,18 +52,44 @@ Server.prototype._configure = function(){
 
 Server.prototype._generateRoutes = function(path){
   
+  // Like Crockford's `beget`, but this version allows us to essentially
+  // call the controller constructor with an array of args. This makes
+  // life easier when injecting controller dependencies.
+  function createController(Constructor, args) {
+    function F() {
+      Constructor.apply(this, args);
+    }
+    F.prototype = Constructor.prototype;
+    return new F();
+  }
+
   var server = this,
-    routes = require(path);
+    router = require(path);
   
-  Object.keys(routes).forEach(function(route){
+  Object.keys(router).forEach(function(route){
     
     var urlInfo = route.split(' '),
       method = urlInfo[0],
       url = urlInfo[1],
-      controllerInfo = routes[route],
-      controller = require('./controllers/' + controllerInfo.controller);
+      controllerInfo = router[route],
+      controller = controllerRegistry[controllerInfo.controller],
+      Controller;
 
-    server.app[method](url, controller[controllerInfo.action]);
+    // If the controller instance doesn't exist in the registry, create a
+    // new one and add it to the registry.
+    if (!controller) {
+      Controller = require('./controllers/' + controllerInfo.controller);
+
+      // For now we're assuming only models are required by controllers.
+      _.each(Controller.inject, function(value, index, array){
+        var Model = require('./models/' + value);
+        array[index] = new Model();
+      });
+      controller = createController(Controller, Controller.inject);
+      controllerRegistry[controllerInfo.controller] = controller;
+    }
+
+    server.app[method](url, controller[controllerInfo.action].bind(controller));
 
   });
 
