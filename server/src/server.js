@@ -4,10 +4,10 @@ var http = require('http'),
   path = require('path'),
   util = require('util'),
   events = require('events'),
+  fs = require('fs'),
   _ = require('lodash'),
-  express = require('express');
-
-var controllerRegistry = {};
+  express = require('express'),
+  injector = require('./injector');
 
 var Server = module.exports = function(options){
   events.EventEmitter.call(this);
@@ -22,14 +22,20 @@ var Server = module.exports = function(options){
 util.inherits(Server, events.EventEmitter);
 
 Server.prototype._configure = function(){
-    
+  
+  var server = this;
+
   this.app.use(express.static(path.join(__dirname, '../../client/src')));
   this.app.use('/bower_components', express.static(path.join(__dirname, '../../bower_components')));
   this.app.use('/src', express.static(path.join(__dirname, '../../client/src')));
-  
-  // TODO: auto generate from files present in routers dir.
-  this._generateRoutes('./routers/panelRouter');
-  
+
+  fs.readdir(path.join(__dirname, 'routers'), function(err, files){
+    if (err) throw err;
+    _.each(files, function(file){
+      if (/.*Router\.js$/.test(file)) server._generateRoutes(file.split('.js')[0]);
+    });
+  });
+
   if (this.env === 'development') {
 
     // Make `SpecRunner.html the index page.
@@ -50,46 +56,23 @@ Server.prototype._configure = function(){
 
 };
 
-Server.prototype._generateRoutes = function(path){
-  
-  // Like Crockford's `beget`, but this version allows us to essentially
-  // call the controller constructor with an array of args. This makes
-  // life easier when injecting controller dependencies.
-  function createController(Constructor, args) {
-    function F() {
-      Constructor.apply(this, args);
-    }
-    F.prototype = Constructor.prototype;
-    return new F();
-  }
+Server.prototype._generateRoutes = function(routerPath){
 
   var server = this,
-    router = require(path);
-  
+    router = require('./routers/' + routerPath);
+
   Object.keys(router).forEach(function(route){
     
     var urlInfo = route.split(' '),
       method = urlInfo[0],
-      url = urlInfo[1],
-      controllerInfo = router[route],
-      controller = controllerRegistry[controllerInfo.controller],
-      Controller;
+      url = urlInfo[1];
+    
+    var controllerInfo = router[route],
+      controller = controllerInfo.controller,
+      action = controllerInfo.action;
 
-    // If the controller instance doesn't exist in the registry, create a
-    // new one and add it to the registry.
-    if (!controller) {
-      Controller = require('./controllers/' + controllerInfo.controller);
-
-      // For now we're assuming only models are required by controllers.
-      _.each(Controller.inject, function(value, index, array){
-        var Model = require('./models/' + value);
-        array[index] = new Model();
-      });
-      controller = createController(Controller, Controller.inject);
-      controllerRegistry[controllerInfo.controller] = controller;
-    }
-
-    server.app[method](url, controller[controllerInfo.action].bind(controller));
+    var controllerObj = injector.create('./controllers/' + controller);
+    server.app[method](url, controllerObj[action].bind(controllerObj));
 
   });
 
@@ -98,6 +81,7 @@ Server.prototype._generateRoutes = function(path){
 Server.prototype.start = function(){
   var server = this;
   http.createServer(this.app).listen(this.port, this.hostname, function(){
+
     // Setting port again here since we could have started on a random port.
     server.port = this.address().port;
     server.emit('listening', server.hostname, server.port, server.env);
