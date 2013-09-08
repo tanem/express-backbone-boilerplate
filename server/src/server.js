@@ -9,12 +9,12 @@ var http = require('http'),
   express = require('express'),
   injector = require('./injector');
 
-var Server = module.exports = function(options){
+var Server = module.exports = function Server(opts) {
   events.EventEmitter.call(this);
-  options = options || {};
-  this.hostname = options.hostname || '127.0.0.1';
-  this.port = _.isUndefined(options.port) ? 3000 : +options.port;
-  this.env = options.env || 'development';
+  opts = opts || {};
+  this.hostname = opts.hostname || '127.0.0.1';
+  this.port = _.isUndefined(opts.port) ? 3000 : +opts.port;
+  this.env = opts.env || 'development';
   this.app = express();
   this._configure();
 };
@@ -68,11 +68,14 @@ Server.prototype._generateRoutes = function(routerPath){
       url = urlInfo[1];
     
     var controllerInfo = router[route],
-      controller = controllerInfo.controller,
+      controller = injector.get(controllerInfo.controller),
       action = controllerInfo.action;
 
-    var controllerObj = injector.create('./controllers/' + controller);
-    server.app[method](url, controllerObj[action].bind(controllerObj));
+    // var controllerObj = injector.getInstance('./controllers/' + controller);
+    //server.foo = injector.getInstance('./controllers/' + controller);
+    //server.bar = injector.getInstance('./controllers/' + controller);
+
+    server.app[method](url, controller[action].bind(controller));
 
   });
 

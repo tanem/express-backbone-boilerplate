@@ -2,28 +2,42 @@
 
 var _ = require('lodash');
 
-var registry = {};
+var modules = {};
+
 var injector = module.exports = {};
-  
-injector.create = function(path){
-  var Module, args;
-  if (!registry[path]) {
-    Module = require(path);
-    args = [];
-    _.each(Module.inject, function(dependency, i){
-      // Assuming models for now...
-      var Dependency = require('./models/' + dependency);
-      args[i] = new Dependency();
-    });
-    registry[path] = this._construct(Module, args);
-  }
-  return registry[path];
+
+injector.registerModules = function(obj){
+  _.extend(modules, obj);
 };
 
-// Like Crockford's `beget`, but this version allows us to call `Constructor`
-// with an array of args. This makes life easier when injecting dependencies.
-injector._construct = function(Constructor, args){
+injector.get = function(name){
+  var module = modules[name];
+  if (!module) throw new Error(name + ' has not been configured');
+  if (module.type) return this._construct(module.type);
+  else if (module.value) return module.value;
+  else throw new Error(name + ' has an unknown return instruction');
+};
+
+injector._construct = function(Constructor){
+  var args = [];
+  _.each(Constructor.inject, function(key, i){
+    args[i] = injector.get(key);
+  });
+  return this._beget(Constructor, args);
+};
+
+injector._beget = function(Constructor, args){
   function F() { Constructor.apply(this, args); }
   F.prototype = Constructor.prototype;
   return new F();
+};
+
+// TESTING API
+
+injector._getModules = function(){
+  return modules;
+};
+
+injector._clearModules = function(){
+  modules = {};
 };
