@@ -15,6 +15,9 @@ module.exports = function(grunt){
       },
       tasks: {
         src: 'tasks/**/*.js'
+      },
+      readme: {
+        src: 'README.md'
       }
     },
 
@@ -97,15 +100,15 @@ module.exports = function(grunt){
       },
       jsClient: {
         files: ['<%= meta.client.src %>', '<%= meta.client.test'],
-        tasks: ['jshint:client', 'generate_specrunner']
+        tasks: ['jshint:client', 'generate_specrunner', 'client:test', 'docs']
       },
       jsServer: {
         files: ['<%= meta.server.src %>', '<%= meta.server.test %>'],
-        tasks: ['jshint:server']
+        tasks: ['jshint:server', 'server:test', 'docs']
       },
       jsTasks: {
         files: '<%= meta.tasks.src %>',
-        tasks: ['jshint:tasks']
+        tasks: ['jshint:tasks', 'docs']
       }
     },
 
@@ -297,7 +300,7 @@ module.exports = function(grunt){
     'htmlrefs:dist',
     'htmlmin'
   ]);
-  grunt.registerTask('docs', ['clean:docs', 'docker']);
+  grunt.registerTask('docs', ['docker']);
   grunt.registerTask('server:cover', ['clean:coverage_server', 'istanbul:dev_cover']);
   grunt.registerTask('server:test', ['istanbul:test']);
   grunt.registerTask('client:cover', ['clean:coverage_client', 'karma:cover']);
@@ -309,6 +312,7 @@ module.exports = function(grunt){
     'clean:junitxml',
     'clean:coverage',
     'generate_specrunner',
+    'clean:docs',
     'docs',
     'compass:dev',
     'concurrent:nodemon'

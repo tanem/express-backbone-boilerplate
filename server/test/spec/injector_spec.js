@@ -18,12 +18,12 @@ describe('injector', function(){
   });
 
   afterEach(function(){
-    injector._clearModules();
+    injector.modules = {};
   });
 
   it('should register modules correctly', function(){
     injector.registerModules({ 'baz': { type: 'Baz' } });
-    expect(injector._getModules()).to.eql({
+    expect(injector.modules).to.eql({
       'foo': { type: Foo },
       'bar': { value: 'bar' },
       'baz': { type: 'Baz' }
