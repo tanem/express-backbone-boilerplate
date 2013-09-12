@@ -1,6 +1,6 @@
 'use strict';
 
-var injector = require('./injector'),
+var infector = require('infector'),
   Server = require('./server'),
   argv = require('optimist').argv;
 
@@ -14,7 +14,7 @@ server.on('listening', function(hostname, port, env){
   console.log('Server listening in %s mode at http://%s:%s/', env, hostname, port);
 });
 
-injector.registerModules({
+infector.registerModules({
   'panelController': { type: require('./controllers/panelController') },
   'panelModel': { type: require('./models/panelModel') },
   'panelRouter': { value: require('./routers/panelRouter') },

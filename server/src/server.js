@@ -7,7 +7,7 @@ var http = require('http'),
   fs = require('fs'),
   _ = require('lodash'),
   express = require('express'),
-  injector = require('./injector');
+  infector = require('infector');
 
 var Server = module.exports = function Server(opts) {
   events.EventEmitter.call(this);
@@ -68,12 +68,8 @@ Server.prototype._generateRoutes = function(routerPath){
       url = urlInfo[1];
     
     var controllerInfo = router[route],
-      controller = injector.get(controllerInfo.controller),
+      controller = infector.get(controllerInfo.controller),
       action = controllerInfo.action;
-
-    // var controllerObj = injector.getInstance('./controllers/' + controller);
-    //server.foo = injector.getInstance('./controllers/' + controller);
-    //server.bar = injector.getInstance('./controllers/' + controller);
 
     server.app[method](url, controller[action].bind(controller));
 
