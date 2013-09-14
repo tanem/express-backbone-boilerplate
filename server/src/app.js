@@ -14,7 +14,7 @@ server.on('listening', function(hostname, port, env){
   console.log('Server listening in %s mode at http://%s:%s/', env, hostname, port);
 });
 
-infector.registerModules({
+infector.register({
   'panelController': { type: require('./controllers/panelController') },
   'panelModel': { type: require('./models/panelModel') },
   'panelRouter': { value: require('./routers/panelRouter') },
