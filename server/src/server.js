@@ -6,15 +6,14 @@ var http = require('http'),
   events = require('events'),
   fs = require('fs'),
   _ = require('lodash'),
-  express = require('express'),
-  infector = require('infector');
+  express = require('express');
 
-var Server = module.exports = function Server(opts) {
+var Server = module.exports = function Server(hostname, port, env, infector) {
   events.EventEmitter.call(this);
-  opts = opts || {};
-  this.hostname = opts.hostname || '127.0.0.1';
-  this.port = _.isUndefined(opts.port) ? 3000 : +opts.port;
-  this.env = opts.env || 'development';
+  this.hostname = hostname || '127.0.0.1';
+  this.port = _.isUndefined(port) ? 3000 : +port;
+  this.env = env || 'development';
+  this.infector = infector;
   this.app = express();
   this._configure();
 };
@@ -68,7 +67,7 @@ Server.prototype._generateRoutes = function(routerPath){
       url = urlInfo[1];
     
     var controllerInfo = router[route],
-      controller = infector.get(controllerInfo.controller),
+      controller = server.infector.get(controllerInfo.controller),
       action = controllerInfo.action;
 
     server.app[method](url, controller[action].bind(controller));
