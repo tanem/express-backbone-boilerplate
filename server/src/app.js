@@ -1,6 +1,6 @@
 'use strict';
 
-var infector = require('infector'),
+var Infector = require('infector'),
   Server = require('./server'),
   argv = require('optimist').argv;
 
@@ -13,6 +13,8 @@ var server = new Server({
 server.on('listening', function(hostname, port, env){
   console.log('Server listening in %s mode at http://%s:%s/', env, hostname, port);
 });
+
+var infector = new Infector();
 
 infector.register({
   'panelController': { type: require('./controllers/panelController') },
