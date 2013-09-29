@@ -26,9 +26,9 @@ Server.prototype._configure = function(){
   
   var server = this;
 
-  this.app.use(express.static(path.join(__dirname, '../../client/src')));
-  this.app.use('/bower_components', express.static(path.join(__dirname, '../../bower_components')));
-  this.app.use('/src', express.static(path.join(__dirname, '../../client/src')));
+  this.app.use(express['static'](path.join(__dirname, '../../client/src')));
+  this.app.use('/bower_components', express['static'](path.join(__dirname, '../../bower_components')));
+  this.app.use('/src', express['static'](path.join(__dirname, '../../client/src')));
 
   fs.readdir(path.join(__dirname, 'routers'), function(err, files){
     if (err) throw err;
@@ -45,14 +45,14 @@ Server.prototype._configure = function(){
       next();
     });
 
-    this.app.use('/test', express.static(path.join(__dirname, '../../client/test')));
+    this.app.use('/test', express['static'](path.join(__dirname, '../../client/test')));
     
     // Make `README.md.html` the index page.
     this.app.get(/^\/docs$/, function(req, res){
       res.redirect('/docs/README.md.html');
     });
 
-    this.app.use('/docs', express.static(path.join(__dirname, '../../_docs')));
+    this.app.use('/docs', express['static'](path.join(__dirname, '../../_docs')));
   }
 
 };

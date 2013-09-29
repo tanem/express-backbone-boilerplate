@@ -6,7 +6,7 @@
   "undef": true,
   "trailing": true,
   "globals": {
-    "Infector": false,
+    "Infector": true,
     "sinon": false,
     "noop": false,
     "source": false,
