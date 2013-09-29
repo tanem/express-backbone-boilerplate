@@ -6,15 +6,16 @@ var Infector = require('infector'),
 var infector = new Infector();
 
 infector.register({
-  'panelController': { type: require('./controllers/panelController') },
-  'panelModel': { type: require('./models/panelModel') },
-  'panelRouter': { value: require('./routers/panelRouter') },
-  'server': { type: require('./server') },
-  'infector': { value: infector },
-  'hostname': { value: argv.HOSTNAME },
-  'port': { value: argv.PORT },
-  'env': { value: argv.ENV }
-
+  panelController: { type: require('./controllers/panelController'), isSingleton: true },
+  panelModel: { type: require('./models/panelModel'), isSingleton: true },
+  panelRouter: { value: require('./routers/panelRouter') },
+  server: { type: require('./server'), isSingleton: true },
+  infector: { value: infector },
+  hostname: { value: argv.HOSTNAME },
+  port: { value: argv.PORT },
+  env: { value: argv.ENV },
+  date: { value: Date },
+  db: { value: {} }
 });
 
 var server = infector.get('server');

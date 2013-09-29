@@ -18,6 +18,8 @@ var Server = module.exports = function Server(hostname, port, env, infector) {
   this._configure();
 };
 
+Server.infect = ['hostname', 'port', 'env', 'infector'];
+
 util.inherits(Server, events.EventEmitter);
 
 Server.prototype._configure = function(){

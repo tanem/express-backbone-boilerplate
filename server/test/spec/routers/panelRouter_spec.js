@@ -1,8 +1,15 @@
 'use strict';
 
-var panelRouter = source('routers/panelRouter');
-
 describe('panelRouter', function(){
+
+  var infector, panelRouter;
+
+  beforeEach(function(){
+    infector = new Infector({
+      panelRouter: { value: source('routers/panelRouter') }
+    });
+    panelRouter = infector.get('panelRouter');
+  });
 
   describe('post /api/panels', function(){
     it('should call the controller "create" method', function(){

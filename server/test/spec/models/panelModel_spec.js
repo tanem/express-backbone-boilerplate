@@ -1,17 +1,16 @@
 'use strict';
 
-var PanelModel = source('models/panelModel');
-
 describe('panelModel', function(){
 
-  var panelModel;
+  var infector, panelModel;
 
   beforeEach(function(){
-    panelModel = new PanelModel();
-  });
-
-  afterEach(function(done){
-    panelModel.reset(done);
+    infector = new Infector({
+      panelModel: { type: source('models/panelModel') },
+      db: { value: {} },
+      date: { value: { now: function(){ return 1000; } } }
+    });
+    panelModel = infector.get('panelModel');
   });
 
   it('should correctly return an array of all panels in the DB', function(done){
@@ -27,7 +26,6 @@ describe('panelModel', function(){
   });
 
   it('should correctly create a panel in the DB', function(done){
-    var stub = sinon.stub(Date, 'now').returns(1000);
     panelModel.create({}, function(err){
       expect(err).to.be(null);
       panelModel.findAll(function(err, arr){
@@ -35,7 +33,6 @@ describe('panelModel', function(){
         expect(arr).to.have.length(1);
         expect(arr[0].id).to.be(1);
         expect(arr[0].createdAt).to.be(1000);
-        stub.restore();
         done();
       });
     });
