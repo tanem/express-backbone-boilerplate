@@ -1,59 +1,71 @@
 'use strict';
 
+var PanelController = source('controllers/panelController'),
+  PanelModel = source('models/panelModel');
+
 describe('panelController', function(){
   
-  var infector, panelController, panelModel, res;
+  var panelController, panelModel, res;
 
   beforeEach(function(){
-    infector = new Infector({
-      panelController: { type: source('controllers/panelController') }
-    });
-    panelModel = {};
+    panelModel = new PanelModel();
     res = { json: sinon.stub() };
   });
 
-  it('should send the correct response when panel creation is successful', function(){
-    panelModel.create = function(attrs, fn){ fn(null, { foo: 'bar' }); };
-    infector.register({ panelModel: { value: panelModel } });
-    panelController = infector.get('panelController');
+  describe('create method', function(){
 
-    panelController.create({ body: { foo: 'bar' } }, res);
+    var req = { body: { foo: 'bar' } };
 
-    expect(res.json.args[0]).to.eql([200, { foo: 'bar' }]);
+    it('should send the correct response when the model is created', function(){
+      panelModel.create = function(model, fn){
+        fn(null, model);
+      };
+      panelController = new PanelController(panelModel);
+
+      panelController.create(req, res);
+
+      expect(res.json.args[0]).to.eql([ 200, { foo: 'bar' } ]);
+    });
+
+    it('should send the correct response when model creation fails', function(){
+      panelModel.create = function(model, fn){
+        fn({ statusCode: 400, message: 'Panel not created' });
+      };
+      panelController = new PanelController(panelModel);
+
+      panelController.create(req, res);
+
+      expect(res.json.args[0]).to.eql([ 400, { message: 'Panel not created' } ]);
+    });
+
   });
 
-  it('should send the correct response when panel creation is unsuccessful', function(){
-    panelModel.create = function(attrs, fn){
-      fn({ statusCode: 400, message: 'Panel not created' });
-    };
-    infector.register({ panelModel: { value: panelModel } });
-    panelController = infector.get('panelController');
+  describe('destroy method', function(){
 
-    panelController.create({ body: null }, res);
+    var req = { params: { id: -1 } };
 
-    expect(res.json.args[0]).to.eql([400, { message: 'Panel not created' }]);
-  });
+    it('should send the correct response if the model wasn\'t found', function(){
+      panelModel.destroy = function(id, fn){
+        fn({ statusCode: 404, message: 'Panel ' + id + ' does not exist' });
+      };
+      panelController = new PanelController(panelModel);
 
-  it('should send the correct response when panel destruction is successful', function(){
-    panelModel.destroy = function(id, fn){ fn(null); };
-    infector.register({ panelModel: { value: panelModel } });
-    panelController = infector.get('panelController');
+      panelController.destroy(req, res);
 
-    panelController.destroy({ params: { id: 1 } }, res);
+      expect(res.json.args[0]).to.eql([ 404, { message: 'Panel -1 does not exist' } ]);
+    });
 
-    expect(res.json.args[0]).to.eql([204, {}]);
-  });
+    it('should send the correct response when the model is destroyed', function(){
+      panelModel.destroy = function(id, fn){
+        fn(null);
+      };
+      panelController = new PanelController(panelModel);
 
-  it('should send the correct response when panel destruction is unsuccessful', function(){
-    panelModel.destroy = function(id, fn){
-      fn({ statusCode: 404, message: 'Panel ' + id + ' does not exist' });
-    };
-    infector.register({ panelModel: { value: panelModel } });
-    panelController = infector.get('panelController');
+      panelController.destroy(req, res);
 
-    panelController.destroy({ params: { id: -1 } }, res);
+      expect(res.json.args[0]).to.eql([ 204, {} ]);
+    });
 
-    expect(res.json.args[0]).to.eql([404, { message: 'Panel -1 does not exist' }]);
   });
 
 });

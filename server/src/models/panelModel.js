@@ -1,31 +1,32 @@
 'use strict';
 
-var _ = require('lodash');
+var _ = require('lodash'),
+  ids = 0,
+  db = {};
 
-var PanelModel = module.exports = function PanelModel(date, db) {
-  this.date = date;
-  this.db = db;
-  this.ids = 0;
-};
-
-PanelModel.infect = ['date', 'db'];
+var PanelModel = module.exports = function PanelModel() {};
 
 PanelModel.prototype.create = function(attrs, fn){
-  var panelModel = _.extend({
-    createdAt: this.date.now(),
-    id: ++this.ids
+  var panelModel = new PanelModel();
+  _.extend(panelModel, {
+    createdAt: Date.now(),
+    id: ++ids
   }, attrs);
-  this.db[this.ids] = panelModel;
+  db[ids] = panelModel;
   fn(null, panelModel);
 };
 
 PanelModel.prototype.findAll = function(fn){
-  fn(null, _.values(this.db));
+  var arr = Object.keys(db).reduce(function(arr, id){
+    arr.push(db[id]);
+    return arr;
+  }, []);
+  fn(null, arr);
 };
 
 PanelModel.prototype.destroy = function(id, fn){
-  if (this.db[id]) {
-    delete this.db[id];
+  if (db[id]) {
+    delete db[id];
     fn(null);
   } else {
     fn({
@@ -33,4 +34,10 @@ PanelModel.prototype.destroy = function(id, fn){
       message: 'Panel ' + id + ' does not exist'
     });
   }
+};
+
+PanelModel.prototype.reset = function(fn){
+  db = {};
+  ids = 0;
+  fn(null);
 };

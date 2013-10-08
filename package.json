@@ -22,7 +22,7 @@
     "express": "~3.1.0",
     "lodash": "~1.3.1",
     "optimist": "~0.6.0",
-    "infector": "~0.5.2"
+    "infector": "~0.4.0"
   },
   "devDependencies": {
     "grunt": "~0.4.0",

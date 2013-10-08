@@ -2,7 +2,6 @@
 
 var path = require('path');
 
-global.Infector = require('infector');
 global.expect = require('expect.js');
 global.sinon = require('sinon');
 global.noop = function(){};
