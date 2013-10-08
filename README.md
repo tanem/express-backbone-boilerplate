@@ -96,11 +96,9 @@ To generate:
 
     $ grunt dist
 
-## Credits
+## Thanks
 
  * [@andrewpmckenzie](https://github.com/andrewpmckenzie), whose [node-jasmine-dom](https://github.com/andrewpmckenzie/node-jasmine-dom) was a big inspiration for this project
  * [@smozely](https://github.com/smozely), for the scaffolding and eventMediator suggestions
  * [@timsnadden](https://github.com/timsnadden), for showing me some new npm modules and Backbone helpers
  * [@appleYaks](https://github.com/appleYaks), whose [grunt-express-workflow](https://github.com/appleYaks/grunt-express-workflow) I leaned heavily on when configuring Istanbul and Karma
- * [@vojtajina](https://github.com/vojtajina), whose injector recipe in [node-di](https://github.com/vojtajina/node-di) gave me ideas for configuring my own
- * [@balderdashy](https://github.com/balderdashy), whose routing configuration in [Sails.js](https://github.com/balderdashy/sails) inspired mine
