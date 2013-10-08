@@ -27,7 +27,7 @@ module.exports = function(grunt){
       opts: {
         stdio: 'inherit'
       }
-    }, function(error){
+    }, function(error, result){
       done(error);
     });
 
