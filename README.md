@@ -16,12 +16,16 @@ Ensure the following are installed:
  
 Install the global dependencies:
 
-    $ npm install -g grunt-cli karma istanbul node-inspector bower
+```
+$ npm install -g grunt-cli karma istanbul node-inspector bower
+```
 
 Change to your project directory then install the local dependencies:
 
-    $ npm install
-    $ bower install
+```
+$ npm install
+$ bower install
+```
 
 ## Client
 
@@ -32,7 +36,9 @@ Change to your project directory then install the local dependencies:
 
 To start using default options:
 
-    $ grunt start
+```
+$ grunt start
+```
 
 Can be accessed via `http://127.0.0.1:3000/`. [Node Inspector](https://github.com/dannycoates/node-inspector) will also be available via `http://0.0.0.0:8080/debug?port=5858`.
 
@@ -54,11 +60,15 @@ Tests can be run in the browser via `http://127.0.0.1:3000/test`.
 
 To run tests only:
 
-    $ grunt client:test
+```
+$ grunt client:test
+```
 
 To run tests with coverage:
 
-    $ grunt client:cover
+```
+$ grunt client:cover
+```
 
 Coverage information is output to `./coverage/client`.
 
@@ -69,11 +79,15 @@ Coverage information is output to `./coverage/client`.
 
 To run tests only:
 
-    $ grunt server:test
+```
+$ grunt server:test
+```
 
 To run tests with coverage:
 
-    $ grunt server:coverage
+```
+$ grunt server:coverage
+```
 
 Coverage information is output to `./coverage/server`.
 
@@ -83,7 +97,9 @@ Coverage information is output to `./coverage/server`.
  
 To generate:
 
-    $ grunt docs
+```
+$ grunt docs
+```
 
 Can be accessed via `http://localhost:3000/docs`.
 
@@ -94,7 +110,9 @@ Can be accessed via `http://localhost:3000/docs`.
 
 To generate:
 
-    $ grunt dist
+```
+$ grunt dist
+```
 
 ## Thanks
 
