@@ -23,8 +23,7 @@ $ npm install -g grunt-cli karma istanbul node-inspector bower
 Change to your project directory then install the local dependencies:
 
 ```
-$ npm install
-$ bower install
+$ npm install; bower install
 ```
 
 ## Client
