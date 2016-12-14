@@ -73,7 +73,7 @@ Coverage information is output to `./coverage/client`.
 
 ### Server
 
- * [Mocha](http://visionmedia.github.io/mocha/) and [expect.js](https://github.com/LearnBoost/expect.js) are used for testing the Node server JS
+ * [Mocha](http://mochajs.org/) and [expect.js](https://github.com/LearnBoost/expect.js) are used for testing the Node server JS
  * [Istanbul](https://github.com/gotwarlost/istanbul) is used to run the tests and provide code coverage
 
 To run tests only:
