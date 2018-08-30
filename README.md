@@ -51,7 +51,7 @@ Once started, the app will also:
 
 ### Client
 
- * [Jasmine](http://pivotal.github.com/jasmine/) is used for testing the JS
+ * [Jasmine](https://jasmine.github.io/) is used for testing the JS
  * The Jasmine SpecRunner.html is automatically generated via grunt
  * [Karma](https://github.com/karma-runner/karma) is used to run the tests against various browsers, as well as providing code coverage via [Istanbul](https://github.com/gotwarlost/istanbul)
 
