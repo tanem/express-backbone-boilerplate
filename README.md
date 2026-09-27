@@ -1,5 +1,7 @@
 # Express Backbone Boilerplate
 
+> **Unmaintained.** This project is no longer maintained and the repository is archived.
+
 [![build status](https://img.shields.io/travis/tanem/express-backbone-boilerplate/master.svg?style=flat-square)](https://travis-ci.org/tanem/express-backbone-boilerplate)
 
 A small sample app built using Express and Backbone plus a few friends. I've used it as the basis for a few bigger projects, so hope it can help others in this regard too. 
